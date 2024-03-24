@@ -1,0 +1,414 @@
+\chapter{Second-Order Conditions}
+
+\section*{Local and Global Maxima}
+
+The previous chapter developed sufficient conditions for optimality, using properties like concavity and quasi-concavity. These were defined globally, that is, over the full domain of definition of the functions. For example, a function is called concave if the tangent at \textit{any} point lies on or above the graph of the function, or if the graph lies on or above the chord joining \textit{any} two points of it. Correspondingly, the conditions are sufficient for a global maximum; the $\bar{x}$ satisfying them does at least as well as \textit{any} other feasible $x$. In a sense the conditions are ideal; if they are met, we have no further worry that some distant point somewhere may do better than the one we are looking at. But in many applications the functions do not have the desired property over their whole domain of definition.
+
+In this chapter the focus is on the curvature of the objective and constraint functions in a small neighborhood of the proposed optimum. The conditions are expressed in terms of the second-order derivatives of the functions at this point. Conditions on such derivatives are sufficient for local optima; if they hold, the proposed point does better than all points in a sufficiently small neighborhood of it.
+
+This is a useful property when global conditions are not met. Moreover, it has a valuable by-product. In Chapter 4 I introduced the term \textit{comparative statics} for the general method of comparisons of solutions in response to small changes in parameters. Thus far we have been concerned only with the comparative statics of the maximum value $v$, and not of the optimum choice variables $x$. Now we focus on the latter. It turns out that the second-order conditions play an instrumental role in determining the comparative static responses of the optimum choice variables. Therefore I shall develop the theory of second-order conditions and their application to comparative statics in parallel. I shall start with simple cases where the maximization is not subject to any constraints, and go on to the more complex theory of constrained maximization.
+
+\section*{Unconstrained Maximization} 
+
+First suppose a scalar variable $x$ is being chosen to maximize $F(x)$. Let $\tilde{x}$ be a candidate for the optimum choice, and expand $F(x)$ in a Taylor series around $\bar{x}$:
+\begin{equation} \label{equa8.1}
+F(x) = F(\bar{x}) + F^\prime(\bar{x})(x-\bar{x}) + \frac{1}{2} F^{\prime \prime}(\bar{x}) (x-\bar{x})^2 + \dots
+\end{equation}
+The first-order necessary condition for optimality is $F^\prime(\bar{x})=0$. Using it, we can write (\ref{equa8.1}) as
+\begin{equation} \label{equa8.2}
+F(x) - F(\bar{x}) =  \frac{1}{2} F^{\prime \prime}(\bar{x}) (x-\bar{x})^2 + \dots
+\end{equation}
+
+For $x$ near enough to $\bar{x}$, the quadratic term will dominate the higher-order terms (concealed in the \dots) in the Taylor expansion. Therefore if $F^{\prime \prime}(\bar{x})$ is positive, we will be able to find an $x$ near enough to $x$ for which $F(x)>F(\bar{x})$. In other words, $\bar{x}$ will not yield a maximum of $F(x)$ in a small neighborhood. Of course it could not yield a maximum over the whole range of $F$ either. This argument gives us a \textit{second-order necessary} condition for $\bar{x}$ to yield a maximum, local or global, of $F(x)$, namely
+\begin{equation} \label{equa8.3}
+F^{\prime \prime}(\bar{x}) \leq 0
+\end{equation}
+
+If this derivative is negative, then the quadratic term in (\ref{equa8.2}) will be negative. In a small enough interval around $\bar{x}$, we will have $F(x) < F(\bar{x})$, irrespective of the signs of higher-order terms. Thus, given that (\ref{equa8.1}) holds,
+\begin{equation} \label{equa8.4}
+F^{\prime \prime} (\bar{x}) < 0
+\end{equation}
+is a \textit{second-order sufficient} condition for $\bar{x}$ to give a \textit{local} maximum of $F(x)$.
+
+Note two points of difference between (\ref{equa8.3}) and (\ref{equa8.4}). The former is a weak inequality while the latter is the corresponding strict inequality. The former is a necessary condition for local or global maxima, while the latter is a sufficient condition for local maxima only. Similar remarks apply to second-order conditions in more general contexts. Therefore I shall concentrate on the local sufficiency role of second-order conditions, and leave it to the readers to formulate the corresponding necessary ones.
+
+A local maximum satisfying the second-order conditions is called a \textit{regular} maximum. If the maximum is `irregular', that is, $F^{\prime \prime}=0$, we have to look at higher-order derivatives. Then $F^{\prime \prime \prime}(\bar{x})=0$ is a necessary condition, and  $F^{\prime \prime \prime \prime}(\bar{x})<0$ is a sufficient condition. I shall leave aside such complications.
+
+Now suppose the problem involves a parameter $\theta$. The first-order condition is 
+\begin{equation} \label{equa8.5}
+F_x (\bar{x}, \theta)=0
+\end{equation}
+This implicitly defines $\bar{x}$ as a function of $\theta$, and we need to know how the optimum choice will respond to changes in $\theta$. Differentiating (\ref{equa8.5}) totally, we have
+\begin{equation*}
+F_{xx}(\bar{x}, \theta) d\bar{x} + F_{x\theta}(x, \theta)d\theta =0
+\end{equation*}
+or
+\begin{equation} \label{equa8.6}
+d\bar{x} / d\theta = - F_{x\theta}(x,\theta)/ F_{xx}(x,\theta)
+\end{equation}
+At a regular maximum, the denominator on the right hand side is negative. Then the sign of $d\bar{x}/d\theta$ is the same as that of the cross partial derivative $F_{x\theta}$ at the optimum. This shows at once how the second-order condition helps us in assessing the qualitative effects of parameter changes on the optimum choice.
+
+As a simple economic illustration, consider a profit maximizing firm whose demand curve, and hence the revenue curve shifts. Let $R(x, \theta)$ be the revenue as a function of output $x$ and a shift parameter $\theta$. Arrange matters so that $R_\theta$ is always positive: an increase in $\theta$ shifts the demand and the revenue curves upward. A  calculation similar to that above will show that an increase in $\theta$ will increase the profit-maximizing output $\bar{x}$ if $R_{x\theta}$ is positive, that is, if the increase in $\theta$ shifts the \textit{marginal} revenue upward. Now it is perfectly possible that as $\theta$ increases, the average revenue (the demand curve) shifts up but the marginal revenue shifts down; what is needed is a twist that reduces the elasticity of demand. Then a favorable shift of demand will cause output to fall. This is what underlies many fond paradoxes ans trick questions in elementary microeconomics courses.
+
+Let us turn to the case of maximization with a vector of choice variables, but still no constraints. Now the Taylor expansion is
+\begin{equation} \label{equa8.7}
+F(x) = F(\bar{x}) + F_x(\bar{x})(x-\bar{x}) + \frac{1}{2}(x-\bar{x})^TF_{xx}(\bar{x})(x-\bar{x}) + \dots
+\end{equation}
+
+Here $F_{xx}$ is the symmetric square matrix of the second-order partial derivatives $F_{jk} \equiv \partial^2 F/ \partial x_j \partial x_k$, the superscript $T$ denotes the transpose operation to change the column vector into a row vector, and the second-order terms are the quadratic form
+\begin{equation} \label{equa8.8}
+(x-\bar{x})^T F_{xx} (\bar{x}) (x-\bar{x}) = \sum_{j=1}^n \sum_{k=1}^n F_{jk}(\bar{x}) (x_j - \bar{x}_j) (x_k - \bar{x}_k)
+\end{equation}
+
+Before turning to the maximization problem, it is useful to note how (\ref{equa8.7}) gives a new characterization of concavity. If $F$ is concave, it lies on or below its tangent, or its value is less than or equal to that given by the Taylor expansion up to first order. For this to be true when $x$ is sufficiently close to $\bar{x}$ where the second-order terms dominate the difference, we must have
+\begin{equation*}
+(x-\bar{x})^T F_{xx}(\bar{x}) (x-\bar{x}) \leq 0
+\end{equation*}
+for all $x$.
+
+A quadratic form $y^T M y$, where $M$ is a symmetric matrix, is called \textit{negative definite} if its value is negative for all $y \neq 0$. This corresponds to the following condition on $M$. Consider a principal minor of order $k$ of $M$, that is, the submatrix formed by the elements common to any $k$ rows and the $k$ columns with the same numbers as the chosen rows. The determinant of such a principal minor should have the sign of $(-1)^k$, negative if $k$ is odd and positive if $k$ is even. Moreover, this should hold for every $k$ from 1 to $n$, the dimension of the matrix. In fact it suffices to check this for the \textit{leading} principal minors, namely those formed by taking the first $k$ rows and columns. The form is called \textit{negative semi-definite} it its value is non-positive for all $y$; the conditions for this are the corresponding weak inequalities on the principal minors. With these definitions, we say that $F$ is concave at $\bar{x}$ if $F_{xx(\bar{x})}$ is the matrix of a negative semi-definite quadratic form.
+
+Now consider the maximization problem. The first-order necessary condition is $F_x(\bar{x})=0$, and then the second-order sufficient condition is that the quadratic form on the right-hand side of (\ref{equa8.7}) is negative for all $x \neq \bar{x}$, that is, negative definite. The corresponding necessary condition is that it be negative semi-definite. The objective function need not be concave in the general sense defined in Chapter 6, but it must be concave at the point $\bar{x}$ in the sense just defined.
+
+All this once again helps in doing comparative statics. Suppose a vector of parameters $\theta$ enters the definition of $F$. The first-order condition if $F_x(\bar{x}, \theta)=0$. Differentiating, we have
+\begin{equation*}
+F_{xx}(\bar{x}, \theta) d\bar{x} + F_{x\theta}(\bar{x}, \theta) d\theta =0
+\end{equation*}
+which looks exactly like the corresponding equation for the one-variable case, except that now $d\bar{x}$ and $d\theta$ are vectors, and $F_{xx}$ and $F_{x\theta}$ are matrices. The solution for $d\bar{x}$ is 
+\begin{equation} \label{equa8.9}
+d\bar{x} =- F_{xx}(\bar{x}, \theta)^{-1} F_{x\theta}(\bar{x}, \theta)d\theta
+\end{equation}
+The inverse of a negative definite matrix is also negative definite, and the information about the sign of its minors can be combined with the information about $F_{x\theta}$ in specific problems to find the signs of the changes in some choice variables as some parameters change. The results with many variables and parameters are thus not as simple or general as those before. But I shall offer one application in Example 8.4.
+
+\section*{Constrained Optimization}
+
+I shall begin with the simplest case of two choice variables and one equation constraint, and then state how its results extend to more general situations. Consider the maximization of $F(x_1, x_2)$ subject to $G(x_1, x_2) =c$, where both $F$ and $G$ are increasing functions of their arguments. Figure \ref{Fig2.1}, \ref{Fig6.1}, and \ref{Fig6.3} considered various aspects of this. The crucial point is the \textit{relative} curvature of the tow contours through the optimum $x$; the contour of $F$ should be more convex than that of $G$. To express this algebraically, and find the second derivative of this function. Begin with the contour of $F(x_1, x_2)$.
+
+The expression for the first-order derivative was obtained in conjunction with the tangency argument of Figure \ref{Fig2.1}. Equation (\ref{equa2.8}) is 
+
+\begin{equation*}
+d x_2 / d x_1 = - F_1 (x_1, x_2) / F_2 (x_1, x_2)
+\end{equation*}
+Now we must differentiate this again, remembering that $x_2$ on the right-hand side is a function of $x_1$. Therefore
+\begin{equation*}
+\begin{array}{rl}
+ \dfrac{d^2 x_2}{d x_1^2} & = \dfrac{d [-F_1/F_2]}{dx_1} \\
+         & = - \dfrac{ F_2 ( F_{11} + F_{12} dx_2/dx_1 ) - F_1(F_{21}+F_{22} dx_2/dx_1)}{F_2^2} \\
+         & = - \dfrac{ F_2^2 F_{11} - 2 F_1 F_2 F_{12} + F_1^2 F_{22}}{ F_2^3 }
+\end{array}
+\end{equation*}
+The arguments $(x_1, x_2)$ of all the derivatives of $F$ are suppressed for brevity.
+
+A similar expression can be derived for the second derivative along the constraint curve. The second-order sufficient condition for $\bar{x}$ to be a local optimum is that $d^2 x_2 / d x_1^2$ along the $F$ contour should be greater than that along the $G$ contour. Using the first-order necessary conditions
+\begin{equation*}
+F_j(\bar{x}) = \lambda G_j (\bar{x}) \quad \mbox{for} \quad j=1,2
+\end{equation*}
+remembering that we are assuming the $F_j$ and $G_j$ to be positive, and simplifying, the second-order condition becomes
+\begin{equation} \label{equa8.10}
+G_2^2(F_{11} - \lambda G_{11} ) - 2 G_1 G_2 (F_{12} - \lambda G_{12}) + G_1^2 (F_{22}-\lambda G_{22}) < 0
+\end{equation}
+
+This is more neatly expressed in matrix notation: evaluated at $\bar{x}$,
+\begin{equation} \label{equa8.11}
+\det \left[
+\begin{array}{ccc}
+F_{11} -\lambda G_{11} &  F_{12}-\lambda G_{12} & -G_1 \\
+F_{21} -\lambda G_{21} &  F_{22}-\lambda G_{22} & -G_2 \\
+-G_1  & -G_2 & 0
+\end{array}
+\right] > 0
+\end{equation}
+
+The conditions for the general problem with $n$ choice variables and $m<n$ equation constraints are a direct generalization of this. In the matrix notation already established, we form the partitioned matrix
+\begin{equation*}  
+\left[ 
+\begin{array}{cc}
+F_{xx} -\lambda G_{xx} &  - G_x^T \\
+-G_x  &  0
+\end{array}  
+\right]
+\end{equation*}
+of course evaluated at $\bar{x}$. The top left partition is $n \times n$, the bottom right is an $m \times m$ matrix of zeros, and the other two partitions are $m \times n$ and $n \times m$ as appropriate.
+
+Consider its square submatrices formed by the last $k$ rows and the corresponding columns. We can let $k$ range from 1 to $(m+n)$, and the submatrix for $k=m+n$ will be the whole matrix. For low values of $k$, the submatrices will be singular because of the large number of zeros in the bottom right corner. But those for which $k=2m$ or more are not necessarily singular. The second order sufficient conditions for a local maximum then impose restrictions on the signs of their determinants. The signs are required to alternate, the first one (that formed by the last $2m$ rows and the corresponding columns) having the sign of $(-1)^m$.
+
+I shall omit the proof, but shall verify that the earlier result $\ref{equa8.11}$ arises as a special case of this. When $n=2$ and $m=1$, there are only two submatrices to consider. The determinant of the submatrix formed by the last two rows and columns is $-G_2^2$, which is negative. This automatically conforms with the requirement that it should have the sign of $(-1)^1$. The next determinant is that of the whole matrix, and the alternation rule requires it to be positive. That is just what (\ref{equa8.11}) expresses.
+
+Note that the successive submatrices start from the lower right hand corner, not the top left. Thus $(F_{xx} - \lambda G_{xx})$ is not involved. It need not have a determinant of any particular sign, let alone be negative definite. Thus $(F -\lambda G)$ need not be concave, and while the first order necessary conditions say that $x$ gives a stationary point of $(F - \lambda G)$, it need not maximize it. This possibility was mentioned
+in Chapter 7 and illustrated in Example 7.2; now we see more clearly why it can arise.
+
+As usual, the second order conditions are closely related to questions of comparative statics. Add an $s$-dimensional vector of parameters $\theta$
+ to the functions $F$ and $G$ in the above problem. Then the first order conditions are
+\begin{equation*}
+F_x (\bar{x}, \theta) - \lambda G_x (x, \theta) =0
+\end{equation*}
+and the constraints are satisfied, so
+\begin{equation*}
+  G (\bar{x}, \theta) = c
+\end{equation*}
+The optimum choice vector $\bar{x}$ as well as the vector of multipliers $\lambda$ can change as $\theta$ changes. Differentiating totally, we have
+\begin{equation*}
+\begin{array}{l}
+ \sum\limits_{k=1}^n (\partial^2 F/ \partial x_j \partial x_k) d \bar{x}_k +
+\sum\limits_{r=1}^s (\partial^2 F/ \partial x_j \partial \theta_r) d \theta_r \\ 
+ -\sum\limits_{i=1}^m \lambda_i \left[ \sum\limits_{k=1}^n (\partial^2 G^i / \partial x_j \partial x_k) d \bar{x}_k + \sum\limits_{r=1}^s (\partial^2 G^i/ \partial x_j \partial \theta_r) d \theta_r  \right] \\
+ - \sum\limits_{i=1}^m d \lambda_i \partial G^i / \partial x_j = 0
+\end{array}
+\end{equation*}
+This formidable expression, and a simpler one obtained by total differentiation of the constraint, can both be stated in a much more compact form in matrix notation:
+\begin{equation} \label{equa8.12}
+\left[
+\begin{array}{cc}
+F_{xx} - \lambda G_{xx}  & -G_x^T \\
+-G_x   & 0
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+ d \bar{x}   \\
+ d \lambda^T
+\end{array}
+\right] = -
+\left[
+\begin{array}{cc}
+F_{x \theta} - \lambda G_{x \theta}  \\
+-G_\theta   
+\end{array}
+\right] d \theta
+\end{equation}
+Of course all the derivatives are evaluated at $(\bar{x}, \theta)$.
+
+It should be no surprise that the partitioned matrix on the right hand side is the same as the one involved in the second order conditions. Once again, those conditions give us some information about the solutions. Their use is best demonstrated in particular contexts, and I shall do so in Example 8.4.
+
+Finally, consider the case of inequality constraints: the choice of $x$ to maximize $F(x)$ subject to $G(x) \leq c$. In Chapter 3 we saw that the space of parameters $\theta$ that enter into the definition of the functions $F$ and $G$ splits into several regions. In each region, a subset of the constraints binds (holds with equality), and the rest are slack. Different regions have different patterns of binding and slack constraints. So long as the initial configuration is in the interior of one of these regions, we can consider small deviations from it, treating the binding constraints exactly as in the above theory of equation constraints, and simply forgetting about the constraints that remain slack throughout the exercise. But if the initial point is on the boundary between two regions with different patterns of binding and slack constraints, then deviations to one side will have to be treated using one set of equations, and those to another side using a different set. Our approach based on a common Taylor expansion will not handle this. In fact there is little systematic that can be said in such cases; each has to be handled \textit{ad hoc}. Luckily, optima are perched on the boundary between two regions only for exceptional configurations of parameters, so we need not worry too much about them.
+
+\section*{Envelope Properties}
+
+In Chapter 5 we established the envelope property of the maximum value function of an optimization problem:
+\begin{equation*}
+V(\theta) = \max\limits_x \{ F(x,\theta) \ | \  G(x) \leq c \}
+\end{equation*}
+is the upper envelope of the family of functions $F(x, \theta)$ in each of which $x$ is held fixed. If $x^1$ happens to be optimum for $\theta_1$, then $V(\theta)$ and $F(x^1, \theta)$ are tangential at $\theta_1$. Figure \ref{Fig5.1} illustrates this. A relation between the curvatures of the two functions is also apparent from the figure: $V$ is more convex than each $F$. This second order envelope property is the subject of this section.
+
+Chapter 5 subsequently considered a more general problem, where the vector $x$ was partitioned into subvectors $(y,z)$. The $y$ variables always changed optimally as $\theta$ changed, while $z$ were held fixed in a subproblem interpreted as the short run. We saw that provided the short run and long run maximum value functions were differentiable, they had the same slopes when the variables fixed in the short run happened to be at their long run optimum values. Now a related second order property suggests itself: the fewer variables are held fixed, the more convex should the maximum value function be. That is the form in which I shall establish the result.
+
+Continuing the notation of that chapter, let $Z(\theta)$ be the long run optimum values of the $z$ variables, $V(\theta)$ the long run maximum value function, and $V(z, \theta)$ the short run maximum value function. When $\theta$ changes to $\theta^\prime$, we have
+\begin{equation*}
+  V[  Z(\theta), \theta^\prime ] \leq V[ Z( \theta^\prime ), \theta^\prime ] = V(\theta^\prime)
+\end{equation*}
+Expanding the two expressions on the left and the right around $\theta$ in Taylor series, we have
+\begin{equation*}
+\begin{array}{rl}
+  V[  Z(\theta), \theta  ] & + V_\theta[ Z(\theta), \theta ](\theta^\prime - \theta) + \dfrac{1}{2} V_{\theta \theta} [ Z(\theta), \theta ](\theta^\prime - \theta)^2 + \dots \\
+& \leq V(\theta) + V_\theta(\theta) (\theta^\prime - \theta) + \dfrac{1}{2} V_{\theta \theta} ( \theta )(\theta^\prime - \theta)^2 + \dots
+\end{array}
+\end{equation*}
+The first order envelope property allows us to cancel the first two terms on the left-hand side with those on the right-hand side. This leaves
+\begin{equation*}
+\{ V_{\theta \theta} [Z(\theta), \theta] - V_{\theta \theta}(\theta) \}(\theta^\prime -\theta)^2 + \dots \leq 0
+\end{equation*}
+Taking $\theta^\prime$ sufficiently close to $\theta$, the quadratic term dominates the rest of the expansion (concealed in \dots) on the left-hand side. For the inequality to hold in this situation, we must have
+\begin{equation} \label{equa8.13}
+V_{\theta \theta} [ Z(\theta), \theta ] \leq V_{\theta \theta} (\theta)
+\end{equation}
+This proves that the long-run maximum value function is at least as convex as the short-run one at the point where the two are tangent. For suitably `regular' maxima, we have a strict inequality like (\ref{equa8.13}). I shall not pursue this refinement, but will take up an important application of (\ref{equa8.13}) in Example 8.2.
+
+\section*{Examples}
+
+\subsubsection*{\textit{Example 8.1: Consumer Theory}}
+
+In Example 5.2 the consumer's expenditure function $E(p,u)$ was defined as the minimum outlay required to attain the utility level $u$ at prices $p$. The compensated demand function $C(p,u)$ was the vector of quantities that solved this cost-minimization problem. The envelope property implied that 
+\begin{equation*}
+ C(p,u) = E_p (p,u)
+\end{equation*}
+the vector of price-derivatives of the expenditure function.
+
+In Example 6.2 we showed that the expenditure function was concave. Now we know the characterization of concavity in terms of second-order derivatives, and can use this to obtain useful properties of compensated demand functions.
+
+Differentiating the above relationship, we have
+\begin{equation} \label{equa8.14}
+  C_p(p,u) = E_{pp}(p,u)
+\end{equation}
+Since the matrix of second-order derivatives on the right-hand side is symmetric, we have the symmetry of substitution effects of price changes:
+\begin{equation*}
+ \partial C^j / \partial p_k = \partial C^k / \partial p_j = E_{jk}
+\end{equation*}
+
+Next, since $E$ is concave, the matrix on the right-hand side is negative semi-definite. In particular, its diagonal entries, being $1 \times 1$ minors, must be $\leq 0$. Therefore
+\begin{equation} \label{equa8.15}
+   \partial C^j / \partial p_k  \leq 0 \quad \mbox{for all} \ j
+\end{equation}
+In other words, the own substitution effects of price changes are non-positive.
+
+The same result follows even more simply from the very concept of a maximum. Manipulation of the `revealed preference' inequalities showing that the optimum does at least as well as any other feasible choice leads us to the desired result. Suppose $p^a$ and $p^b$ are two price vectors, and $x^a$ and $x^b$ the corresponding compensated demands. Both attain the same utility level $u$. Since $x^a$ gives the smaller expenditure when prices are $p^a$ and $x^b$ does the same for $p^b$, we have
+\begin{equation*}
+  p^a x^a \leq p^a x^b  \quad \mbox{and} \quad p^b x^b \leq p^b x^a
+\end{equation*}
+Adding the two inequalities together and simplifying,
+\begin{equation} \label{equa8.16}
+  (p^b - p^a)(x^b - x^a ) \leq 0
+\end{equation}
+This is a general version of (\ref{equa8.15}): if $p^b$ and $p^a$ differ only in their $j$th component, the product in (\ref{equa8.16}) reduces to
+\begin{equation*}
+    (p_j^b - p_j^a)(x_j^b - x_j^a) \leq 0
+\end{equation*}
+showing that the own substitution effect of any price change is non-positive. This argument is more general in another sense: it requires no assumptions of differentiability, quasi-concavity etc. Therefore you should use `revealed preference' arguments whenever possible.
+
+\subsubsection*{\textit{Example 8.2: The LeChatelier Samuelson Principle}}
+
+Consider the consumer's expenditure minimization problem once again, this time focusing on the second-order envelope properties. Consider a change in any one price, say $p_1$. Compare two situations. In the first, the quantities of all goods are free to change optimally. In the second, the quantity of one good, say $x_2$, must be kept fixed at its initially optimal level. Each problem will have its own expenditure function. The first-order envelope property says that, displayed as functions of $p_1$, the two will be tangential at the initial point. The second-order property says that the expenditure function of the first problem (where there is more freedom of choice) will be more concave (remember this is a minimization problem): its second derivative with respect to $p_1$ will be more negative. But the first derivative in each problem is the compensated demand for $x_1$ in that situation. Therefore
+\begin{equation*} % \label{equa8.16}
+  \left| \dfrac{\partial x_1}{\partial p_1} \right|_{x_2 \mbox{\ free}} \geq  \left| \dfrac{\partial x_1}{\partial p_1} \right|_{x_2 \mbox{\ fixed}}
+\end{equation*}
+In other words, fixing the quantity of some other good 2 makes the compensated demand for good 1 less responsive to its own price. Roughly speaking, any imposed rigidity in one sector of the economy causes a reduction in the responsiveness to prices in other sectors. This is true irrespective of whether goods 1 and 2 are substitutes or complements. This is known as the LeChatelier Samuelson Principle.
+
+\subsubsection*{\textit{Example 8.3: Derived Demand}}
+
+The cost function of a producer is defined by analogy with the expenditure function of a consumer. If $y$ is a scalar output produced using a vector $x$ of inputs and a production function $f(x)$, we let $w$ be a row vector of input prices and define
+\begin{equation}  \label{equa8.17}
+ c(w,y) = \min\limits_x \{ wx \ | \ f(x) \geq y    \}
+\end{equation}
+The properties of this are found by analogy with those of the expenditure function (see Examples 5.2, 6.2, and 8.1). It is increasing in all its arguments, homogeneous of degree 1 in $w$ for each fixed $y$, and concave in $w$ for each fixed $y$. The cost-minimizing input choice vector $x$ is found by differentiating the cost function with respect to the input prices:
+\begin{equation} \label{equa8.18}
+   x = C_w(w,y)
+\end{equation}
+
+In the production context there is a further point of interest. Output has a natural scale whereas utility does not. Therefore the concept of returns to scale is pertinent for a producer's cost function but not for a consumer's expenditure function. In particular, if the returns to scale are constant, then cost is proportional to output, and the cost function has a multiplicatively separable form
+\begin{equation}  \label{equa8.19}
+   C(w,y) = y c(w)
+\end{equation}
+The function $c(w)$ is now the minimum cost of producing one unit of output. In elementary microeconomics this is called the average-equals-marginal cost when the cost curve is horizontal; here we go one step further and recognize that the height of this cost curve depends on the input prices.
+
+Now consider a competitive equilibrium of an industry with such a cost curve and a demand curve $D(p)$. When each firm's average or marginal cost is horizontal at $c(w)$, so is the industry's. Its intersection with the demand curve determines the industry equilibrium. The price equals the average (equals marginal) cost:
+\begin{equation*}   
+   p = c(w)
+\end{equation*}
+The output is found from the demand curve:
+\begin{equation*}   
+   y = D(p)
+\end{equation*}
+Finally, the input demands are found by using the special form (\ref{equa8.19}) in the general result (\ref{equa8.18}):
+\begin{equation*}   
+   x = y c_w(w)
+\end{equation*}
+By successive substitution we obtain the industry's demand for inputs as a function of the input prices, when the output market is in equilibrium:
+\begin{equation} \label{equa8.20}   
+   x = D[ c(w) ] c_w(w)
+\end{equation}
+This is called the `derived demand', and the next question is to find its derivatives.
+
+The chain rule gives
+\begin{equation*}   
+   \partial x_j / \partial w_k = D c_{jk} + D^\prime c_k c_j
+\end{equation*}
+where I have omitted the arguments of the functions for brevity. This is better written as an elasticity:
+\begin{equation} \label{equa8.21}   
+   \dfrac{w_k}{x_j} \dfrac{\partial x_j}{\partial w_k} = \theta_k (\sigma_{jk} - \eta)
+\end{equation}
+where $\eta$ is the elasticity of the industry demand curve 
+\begin{equation*}   
+   \eta = - p D^\prime(p) / D(p)
+\end{equation*}
+$\theta_k$ is the share of the $k$th input in average cost:
+\begin{equation*}   
+   \theta_k = w_k x_k / [y c(w)]
+\end{equation*}
+and $\sigma_{jk}$ is the elasticity of substitution between inputs $j$ and $k$:
+\begin{equation*}   
+   \sigma_{jk} = c c_{jk} / (c_j c_k)
+\end{equation*}
+of which a special case was examined in Exercise 5.2.
+
+To interpret (\ref{equa8.21}), it is useful to split the effect of $w_k$ on $x_j$ into two parts. The first is a substitution effect: as relative prices of factors change, the cost-minimizing factor proportions change. As in consumer theory, the sign of this effect is unambiguous when $j=k$; the concavity of $c$ implies $c_{kk} \leq 0$ and so $\sigma_{kk} \leq 0$. When $j \neq k$, the effect depends on whether inputs $j$ and $k$ are substitutes or complements. The other term gives the output effect. An increasing in $w_k$ raises the whole average equals marginal cost schedule, reducing the equilibrium output along the demand curve and thereby the demand for all factors.
+
+\subsubsection*{\textit{Example 8.4: Use of Second-Order Conditions}}
+
+Consider a firm that buys a vector $x$ of inputs at prices $w$, produces output $y=f(x)$, and sells it for revenue $R(y)$. Its profit expressed as a function of the choice variables $x$ and the input prices (parameters) $w$ is 
+\begin{equation*}   
+   F(x,w) = R[ f(x) ] - wx
+\end{equation*}
+
+We can find the effect of a change in $w$ on the optimum $x$ by using the general formula (\ref{equa8.9}). Now $w$ replaces $\theta$, and
+\begin{equation*}   
+   F_x = -w, \quad f_{xw} = -I
+\end{equation*}
+where $I$ is the identity matrix. So
+\begin{equation*}   
+   d \bar{x} = F_{xx} ( \bar{x}, w )^{-1} d w^T
+\end{equation*}
+where the transpose is taken because $dw$ is a row vector like $w$. Then
+\begin{equation*}   
+   dw d \bar{x} = dw F_{xx} ( \bar{x}, w )^{-1} d w^T
+\end{equation*}
+By the second-order necessary conditions the quadratic form is negative semi-definite, so $dw d\bar{x} \leq 0$. If the maximum is regular, that is, if the second-order sufficient conditions are satisfied, then the quadratic form is negative definite, and we have the somewhat stronger result $dw d\bar{x} < 0$.
+
+Next consider a consumer maximizing utility $U(x)$ subject to the budget constraint $px \leq I$. The first-order condition is 
+\begin{equation*}   
+   U_x(\bar{x} ) = \lambda p
+\end{equation*}
+and so long as utility is increasing, the budget constraint holds with equality, 
+\begin{equation*}   
+  p\bar{x}  = I
+\end{equation*}
+We want to find the pure substitution effect of a price change. So let prices change by $dp$, and at the same time change income by $dI = dp \bar{x}$ to compensate the consumer, where $\bar{x}$ is the optimum choice at the initial $(p, I)$. Then total differentiation of the first-order condition and the budget equation gives a particular version of the general result (\ref{equa8.12}),
+\begin{equation*}
+\left[
+\begin{array}{cc}
+    U_{xx} & -p^T \\ -p & 0   
+\end{array}
+\right] 
+\left[ \begin{array}{c}
+ d \bar{x} \\ d \lambda
+\end{array}   \right] = 
+\left[ \begin{array}{c}
+ \lambda d p^T \\ 0
+\end{array}   \right]
+\end{equation*}
+Then 
+\begin{equation*}
+dp \ d \bar{x}  = \dfrac{1}{\lambda}[ d \bar{x}^T \quad d \lambda ]
+\left[
+\begin{array}{cc}
+    U_{xx} & -p^T \\ -p & 0   
+\end{array}
+\right] 
+\left[ \begin{array}{c}
+ d \bar{x} \\ d \lambda
+\end{array}   \right] 
+\end{equation*}
+which is negative when the second-order sufficient conditions for a regular maximum hold. This is another way of fixing the sign of the own substitution effect in consumption.
+
+\section*{Exercises}
+
+\subsubsection*{\textit{Exercise 8.1: Production Theory}}
+
+In Exercise 6.2 we examined a firm's profit function
+\begin{equation*}   
+  \prod (q,p) = \max\limits_{x,y}  \{ qy -px \ | \ G(x,y) \leq 0 \}
+\end{equation*}
+where $q$ and $p$ are respectively the vectors of prices of outputs and inputs, $y$ and $x$ the corresponding quantity vectors, and the constraint reflects technological feasibility. There er proved that $\prod$ was a convex function of $(q,p)$.
+
+Now you are asked to show that the optimum choices of $y$ and $x$ are given in terms of the partial derivatives of $\prod$ by
+\begin{equation*}   
+ y = \prod_q (q,p)   \quad x = -\prod_p(q,p)
+\end{equation*}
+Hence show that output supply curves are upward-sloping and input demand curves are downward-sloping:
+\begin{equation*}   
+  \partial y_j / \partial q_j \geq 0  \quad  \partial x_k / \partial p_k \leq 0
+\end{equation*}
+for all $j, k$.
+
+\subsubsection*{\textit{Exercise 8.2: More on Derived Demand}}
+
+Consider a competitive firm like that of Example 8.3, but without the assumption of constant returns to scale. Suppose its total cost function is $C(w,y)$, so the marginal cost is $C_y(w,y)$. Assume that the marginal cost curve is rising, or $C_{yy} >0$. The firm takes the output price $p$ and the input price vector $w$ as given, and maximizes profit. Find the set of equations that determines its input demand vector $x$. Examine the role of the cross-partial derivative $\partial ^2 C / \partial y \partial w_k$ in determining the sign of $\partial x_j / \partial w_k$. Interpret your result.
+
+\subsubsection*{\textit{Exercise 8.3: Minimization}}
+
+Develop second-order conditions for unconstrained and constrained minimization problems by analogy with the maximization problems of the text. You will need to define \textit{positive} definite and semi-definite quadratic forms, and the signs of the principal minors of their matrices.
+
+
+
+
+
+
+

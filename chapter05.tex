@@ -1,0 +1,332 @@
+\chapter{Maximum Value Functions}
+
+The last chapter introduced the concept of comparative static, and used it to interpret the Lagrange multipliers as the rates of change of the maximum attainable value of the objective function with respect to the right-hand sides of the constraint equations. Many other parameters enter the objective function and the constraint functions, and the maximum attainable value of the objective function depends on them all. The method used before can be adapted to understand the nature of this more general dependence. That is the object of this chapter. As there, I shall begin with the case where all constraints are exact equalities, and consider inequality constraints later.
+
+\section*{Parameters in the Objective Function}
+
+Consider first the case where the parameters affect the maximand alone. A common example is a producer who chooses a mix of inputs to minimize the cost of producing a given target output. The prices of the inputs are parameters that affect his objective function. But the constraint, which says that the chosen inputs should yield the desired output, involves only the production function and not the prices. As another example, consider a small country that chooses its production pattern to maximize the national product evaluated at world prices; now these prices are parameters that affect the maximand. More generally, suppose a vector $\theta$ of parameters enters the objective function, so $x$ is chosen to maximize $F(x,\theta)$ subject to the usual vector constraint $G(x)=c$. Lagrange's modification - we now recognize the dependence of $F$ and the Lagrangian on $\theta$. Thus
+\begin{equation*}
+L(x, \lambda, \theta) = F(x, \theta) + \lambda[c-G(x)]
+\end{equation*}
+and the optimum $\bar{x}$ satisfies the first-order conditions
+\begin{equation*}
+L_x(\bar{x}, \lambda, \theta)=0, \quad L_\lambda(\bar{x},\lambda, \theta)=0
+\end{equation*}
+
+Write $v$ for the maximum value once again. Suppose $\theta$ changes to $(\theta + d\theta)$. Correspondingly, let the optimum $\bar{x}$ change to $(\bar{x} +d\bar{x} )$, and the maximum value to $(v +dv)$. Using first-order Taylor approximations as in Chapter 4, we can find an expression for $dv$.
+\begin{equation} \label{equa5.1}
+\begin{array}{rl}
+dv & = F(\bar{x} + d\bar{x}, \theta+d\theta) - F(\bar{x}, \theta) \\
+   & = F_x(\bar{x}, \theta) d\bar{x} + F_\theta(\bar{x}, \theta) d\theta \\
+   & = \lambda G_x(\bar{x}) d\bar{x} + F_\theta(\bar{x}, \theta) d\theta \\
+   & = F_\theta(\bar{x}, \theta) d\theta
+\end{array}
+\end{equation}
+In this calculation, the passage from the second to the third line uses Lagrange's first-order condition, and the passage to the last line uses the fact that the value of $G$ stays equal to $c$ in the course of the change in $\theta$.
+
+Once again, for changes in $\theta$ that are large enough to make the first-order approximation invalid, we can carry the series expansion further to find closer approximations to changes in $v$. But the result above has great interest because of its simplicity. It says that to find the first-order change in the maximum value of the objective function in response to changes in parameters that do not affect the constraints, we need not worry about the simultaneous change in the optimum choice $\bar{x}$ itself. All we have to do is to calculate the partial effect of the parameter change, and evaluate the expression at the initial optimum choice.
+
+The cost-minimization problem mentioned above illustrates this well. Suppose $x$ is the vector of inputs, $G$ the production function, and $c$ the required output quantity. Let $\theta$ be the row vector of input prices. Then the producer minimizes $\theta x$, that is,
+\begin{equation*}
+\mbox{maximizes} F(x,\theta) = -\theta x \quad \mbox{subject to} G(x)=c
+\end{equation*}
+Write the resulting maximum as $(-v)$. Then (\ref{equa5.1}) gives 
+\begin{equation*}
+d(-v) =d\theta F_\theta(\bar{x}, \theta) = -d\theta \bar{x}
+\end{equation*}
+Note that $d\theta$ is a row vector, so we interpret $F_\theta$ as a column vector and write the inner product as shown. The result is 
+\begin{equation} \label{equa5.2}
+dv = d\theta \bar{x}
+\end{equation}
+
+Now $v$ is just the minimum cost of producing output $c$ when input prices are $\theta$. When input prices change, the producer will change his input mix, using less of the inputs that have become relatively more expensive and more of the others. That is, he will substitute along an isoquant of the production function. But the $x$ in (\ref{equa5.2}) is the optimal choice for the original parameter vector $\theta$, not the one for $\theta +d\theta$, or some average. In other words, the first-order change in the cost is just the change in the cost of the original optimum $\bar{x}$, as if fixed coefficients ruled. Another way of looking at this is useful. If we write $v=\theta \bar{x}$ and differentiate, we have
+\begin{equation*} 
+dv = \theta d\bar{x} + d\theta \bar{x}
+\end{equation*}
+The first term on the right-hand side is the value of the change in the input mix, using the original prices. But at those prices, the original mix is chosen optimally, therefore the value of any change in it must be zero to the first order. This just leaves the second term, as in (\ref{equa5.2}).
+
+\section*{The Envelope Theorem}
+
+\begin{figure}[!htb] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+\centering %图片居中
+%\includegraphics[width=0.8\textwidth]{./Fig3.1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\begin{tikzpicture}[scale=0.12]
+    % 绘制坐标轴
+    \draw[->] (0,0) -- (90,0) node[below] {$\theta$};
+    \draw[->] (0,0) -- (0,80) ;
+    \draw[black] (0,0) node[below left] {O};
+
+\draw[domain=5:77,smooth,variable=\x,red] plot ({\x},{ 0.01*\x *\x +10}) node[left] {$V(\theta)$};
+
+\draw[domain=7:33,smooth,variable=\x,blue] plot ({\x},{-0.01*\x*\x + 0.8*\x + 2}) node[below] {$F(\bar{x}^1, \theta)$};
+\filldraw [black] (20,14) circle (20pt) ;
+\draw[dashed,black] (20,14) -- (20,0) node [below] {$\theta_1$} ;
+
+\draw[domain=45:75,smooth,variable=\x,blue] plot ({\x},{-0.01*\x*\x + 2.4*\x - 62}) node[right] {$F(\bar{x}^1, \theta)$};
+\filldraw [black] (60,46) circle (20pt) ;
+\draw[dashed,black] (60,46) -- (60,0) node [below] {$\theta_2$} ;
+
+\end{tikzpicture}
+\caption{The Envelope Theorem} %最终文档中希望显示的图片标题
+\label{Fig5.1} %用于文内引用的标签
+\end{figure}
+
+The algebra of the previous section is illustrated geometrically in Figure \ref{Fig5.1}. For a particular value of $\theta$, say $\theta_1$, suppose the optimum choice is $\bar{x}^1$. The two curves represent two functions of $\theta$. One is $F(\bar{x}^1, \theta)$, where $x$ is held fixed at $\bar{x}^1$ as $\theta$ varies. The other is the optimum value function linking $v$ and $\theta$, where $x$ is allowed to vary optimally as $\theta$ varies. Formally, this function is defined by
+\begin{equation} \label{equa5.3}
+V(\theta) = \mathop{\max}_{x} \{  F(x, \theta)| G(x)=c  \}
+\end{equation}
+which is read as `$V(\theta)$ is the maximum over $x$ of $F(x,\theta)$ subject to $G(x)=c$'. Next write the optimum choice $\bar{x}$ itself as a function $x = X(\theta)$, then we have
+\begin{equation*}  
+V(\theta) = F(X(\theta), \theta)
+\end{equation*}
+
+The two functions $V(\theta)$ and $F(\bar{x}^1, \theta)$ coincide at $\theta_1$, because $x^1$ happens to be the optimal choice there. For other values of $\theta$, unless $\bar{x}^1$ remains the optimal choice, the curve slowing the optimum value function will be higher than that of $F(x^1  ,\theta )$. (In many event, it cannot be lower.) Therefore the two curves should be mutually tangential at $\theta_1$, and that is just what (\ref{equa5.1}) expresses.
+
+Similarly, we could draw the graph of $F(\bar{x}^2, \theta)$, where $\bar{x}^2$ is the optimal choice at $\theta_2$. This would touch the graph of the optimal value function $V(\theta)$ at $\theta_2$. In fact we could draw a whole family of curves of $F(x, \theta)$ for a whole range of fixed values of $x$, each optimal for some $\theta$. No member of this family of curves could ever cross above the graph of $V(\theta)$, and each would be tangential to the optimal value function at that value of $\theta$ where its $x$ happened to be the optimal choice. In other words, the optimal value function is the upper envelope of the family of value functions, in each of which the choice variables are held fixed. That is why the formula (\ref{equa5.1}) is often referred to as the $Envelope Theorem$.
+
+In the cost-minimization application, for example, let a scalar parameter $\theta$ denote the price of just one input. When the vector of input quantities is held fixed, the cost of production is a linear function of $\theta$. The minimized cost as a function of $\theta$ is the lower envelope (no upper, because this is a problem of minimization, not maximization) of all these straight lines, Figure \ref{Fig5.2} shows this.
+
+\begin{figure}[!htb] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+\centering %图片居中
+%\includegraphics[width=0.8\textwidth]{./Fig3.1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\begin{tikzpicture}[scale=2.5]
+    % 绘制坐标轴
+    \draw[->] (0,0) -- (4,0) node[below] {$\theta$};
+    \draw[->] (0,0) -- (0,4) node[left] {$c$};
+    \draw[black] (0,0) node[below left] {O};
+
+\draw[domain=0:3,smooth,variable=\x,red] plot ({\x},{ sqrt{ (6* \x - \x * \x)} }) node[below] {minimum cost};
+
+\draw[domain=0:1.5,smooth,variable=\x, blue] plot ( {\x} , { \x *5 / sqrt(11) + 3 / sqrt(11) } );
+\draw[domain=0:2,smooth,variable=\x, blue] plot ( {\x} , { \x *2 / sqrt(5) + 3 / sqrt(5) } ) node[above] {cost line for fixed $x$};
+\draw[domain=0:2.8,smooth,variable=\x, blue] plot ( {\x} , { \x * sqrt(2)/4 + 3 / sqrt(2) } );
+
+\filldraw [black] (1/2, {sqrt(11)/2}) circle (1pt) ;
+\filldraw [black] (1,{sqrt(5)}) circle (1pt) ;
+\filldraw [black] (2,{2*sqrt(2)}) circle (1pt) ;
+
+\end{tikzpicture}
+\caption{The minimum cost function} %最终文档中希望显示的图片标题
+\label{Fig5.2} %用于文内引用的标签
+\end{figure}
+
+The main focus here is on a first=order or tangency property: where the upper envelope meets one member of the family of curves, the two are tangential. In the cost-minimization example, let $x$ denote the quantity of the input whose price $\theta$ is being varied. The slope of each line equals the fixed $x$ along it. The line touches the minimum cost function at that $\theta$ where this $x$ is optimal. Therefore the slope of the minimum cost function at every point is just the optimal value of $x$ there. In other words, the minimum cost function carries within it the information about the optimum choices of inputs. This idea will be developed further in Example 5.2.
+
+A second-order or curvature property is also evident. Figure \ref{Fig5.1} shows each $F(\bar{x}, \theta)$ as a concave curve and $V(\theta)$ as a convex curve. But more generally, the envelope must be more convex than any member of the family of which it is the envelope. Thus the cost function for any fixed input choice is linear in input prices, but the lower envelope (the minimum cost curve) is concave. This property will be studied in more detail in Chapter 8, and it will lead to an important comparative static result called the Le Chatelier-Samuelson Principle.
+
+\section*{Parameters Affecting All Functions}
+
+Now suppose $G$ as well as $F$ involves $\theta$. The calculation proceeds as above, except that the change in $G$ is no longer zero. Suppose the vector constraint is $G(x, \theta)=c$, where $\theta$ and $c$ are distinct. Then
+\begin{equation*}
+G_x(x, \theta) dx + G_\theta(x, \theta) d\theta = 0
+\end{equation*}
+Using this in the previous chain of equations, we have
+\begin{equation}  \label{equa5.4}
+\begin{array}{rl}
+dv & = - \lambda G_\theta(\bar{x}, \theta) d\theta + F_\theta(\bar{x}, \theta) d\theta \\
+   &  = L_\theta(\bar{x}, \lambda, \theta) d\theta
+\end{array}
+\end{equation}
+The difference between this and (\ref{equa5.1}) has an intuitive explanation. When $\theta$ affects the constraints, a change $d\theta$ has the direct effect of increasing the value of $G$ by $G_\theta(\bar{x}, \theta) d\theta$. This acts exactly like an equal reduction in $c$. The interpretation of the Lagrange multiplier tells us that the equivalent reduction in $c$ reduces $v$ by $\lambda G_\theta( \bar{x}, \theta  )   d\theta$. This is just the additional term in (\ref{equa5.4}) when compared to (\ref{equa5.1}).
+
+In the previous chapter, a similar comparative static analysis with respect to changes in the parameters $c$ led to (4.2), which gave us the important interpretation of this chapter can subsume the earlier case. To see this explicitly, define a larger vector of parameters, $\hat{\theta}$ which includes $\theta$ and $c$ as subvectors and write the constraints as
+\begin{equation*}
+\hat{G}(x, \hat{\theta}) \equiv G(x, \theta) -c =0
+\end{equation*}
+The Lagrangian can now be written as
+\begin{equation*}
+\hat{L}(x, \lambda, \hat{\theta}) \equiv F(x, \theta) - \lambda \hat{G}(x, \hat{\theta})
+\end{equation*}
+and (\ref{equa5.4}) becomes
+\begin{equation*}
+ dv = \hat{L}_{\hat{\theta}} (\bar{x}, \lambda, \hat{\theta} ) d\hat{\theta}
+\end{equation*}
+Separating the subvectors in $\hat{\theta}$, note that 
+\begin{equation*}
+ \hat{G}_{\hat{\theta}} (x, \hat{\theta} ) d\hat{\theta} = G_\theta(x, \theta) d\theta - dc
+\end{equation*}
+Therefore the expression for $dv$ becomes
+\begin{equation*}
+ dv = L_\theta(\bar{x}, \lambda, \theta) d\theta + \lambda dc
+\end{equation*}
+which includes (\ref{equa5.3}) and (4.2) as special cases.
+
+\section*{Some Choice Variable Fixed}
+
+When the parameters $\theta$ in the constrained optimization problem change, so do the optimum choice vector $x$ and the maximum value $v$. But we have seen that the first-order effect on $v$ can be calculated by holding $x$ fixed at the old optimum and finding the partial effect of $\theta$ on $v$. If the parameters affect the constraints, we must remember to include the contribution of the equivalent reduction in the right-hand-side magnitudes $c$, but we still ignore the change in $x$.
+
+This suggests a generalization. Is the effect on $v$ the same when only some components of $x$ adjust to their new optimum levels while others must be kept fixed at the original levels? Comparisons of this kind are common in economics. The most prominent examples is the distinction between the short run and the long run some quantities that can be varied optimally in the long run must be held fixed in the short run.
+
+This question can be tackled using the same calculus method as was used in deriving (\ref{equa5.1}) and (\ref{equa5.4}). But the geometry that provided the intuition for the envelope property does the job far more simply. Let us begin by stating the question somewhat more precisely.
+
+Partition the vector $x$ into two subvectors $y$ and $z$. Subsuming the right-hand sides of the constraints into the parameter vector as explained above, write the problem as:
+\begin{equation} \label{equa5.5}
+  \mbox{maximize} \quad F(y,z,\theta) \quad \mbox{subject to} \quad G(y,z,\theta)=0
+\end{equation}
+There are two versions. In the long run, both $y$ and $z$ are choice vectors, while in the short run, $z$ is held fixed and only $y$ allowed to vary. For the latter problem to be meaningful, the number of constraints must be less than the dimension of $y$.
+
+Write the long run optimum choices and the resulting value as functions of $\theta$, say
+\begin{equation} \label{equa5.6}
+  y=Y(\theta), \quad z=Z(\theta), \quad v=V(\theta)
+\end{equation}
+In the short run, $z$ should be treated as just another parameter along with $\theta$, and the optimum choice $y$ and the resulting value $v$ are functions of $(z,\theta)$, say
+\begin{equation} \label{equa5.7}
+  y = Y(z,\theta), \quad v=V(z,\theta)
+\end{equation}
+The use of the same symbols $Y$ and $V$ to denote different functions in the two cases should not cause confusion since the distinct arguments will be displayed as appropriate.
+
+The definition of optimization gives at once
+\begin{equation*}
+   V(\theta) \geq V(z,\theta) \quad \mbox{for all} (z,\theta)
+\end{equation*}
+with equality if $z=Z(\theta)$, the optimal choice. Then, just as in Figure \ref{Fig5.1}, the graph of $V(\theta)$ is the upper envelope of the curves showing $V(z,\theta)$ as functions of $\theta$ for the whole range of possible values of $z$.
+
+In the functions are differentiable, we can conclude that
+\begin{equation} \label{equa5.8}
+   V^\prime(\theta) = V_\theta(Z(\theta), \theta)
+\end{equation}
+where the right-hand side is the partial derivative of the short sun optimum value function $V(z, \theta)$ taken holding the first argument $z$ fixed, but evaluated at the point $z=Z(\theta)$.
+
+Now the geometry alerts us to a potential problem that the calculus approach would have concealed, namely that the functions may not be differentiable. Even when the underlying objective and constraint functions $F$ and $G$ are as smooth as one might like, the optimum value function $V$ can have sudden changes of slope. We saw an example of this in connection with the interpretation of Lagrange multipliers in the last section of Chapter 4, and in Figure \ref{Fig4.1}. When there are inequality constraints, or non-negativity constraints on the choice variables, these can be binding for one range of parameter values, and slack elsewhere. The objective function may respond differently to parameter changes depending on the configuration of binding or slack constraints. At the point where there is a regime change, from binding to slack or vice versa, the graph of the maximum value function may have a kink.
+
+In many applications we will not be concerned with such regime changes and will be able to use (\ref{equa5.8}), but the possibility of its failure should be kept in mind. In some contexts such as linear programming, changes of slope necessarily arises as the parameter values move from one combination of tight and slack constraints to another.
+
+\section*{Examples}
+
+\subsubsection*{\textit{Example 5.1: Short Run and Long Run Costs}}
+
+As an illustration of the Envelope Theorem on its home ground, consider the relation between short run and long run cost curves for the production function
+\begin{equation} \label{equa5.9}
+   Q = (K L)^{1/\alpha}
+\end{equation}
+Where $Q$ is output, $K$ is capital fixed in the short run, and $L$ is labor. Returns to scale are constant if $\alpha=2$, increasing if $\alpha <2$, and decreasing if $\alpha >2$.
+
+Let $w$ be the wage rate and $r$ the user cost of capital (the rental price of capital services if they are rented, or the sum of interest and depreciation costs if capital equipment is purchased). The long run cost function is
+\begin{equation} \label{equa5.10}
+    C(w,r,Q) = \min\limits_{K,L}\ \{ wL + rK \ | \  KL=Q^\alpha     \}
+\end{equation}
+Using Lagrange's method, the cost-minimizing input choices are easily seen to be
+\begin{equation} \label{equa5.11}
+    K = (wQ^\alpha / r)^{1/2}, \quad L = (rQ^\alpha/w)^{1/2}
+\end{equation}
+Then
+\begin{equation} \label{equa5.12}
+    C(w,r,Q) = 2(wr)^{1/2}  Q^{\alpha/2}
+\end{equation}
+See Exercise 5.1 below for a more general case.
+
+In the short run, there is no freedom of choice. If output $Q$ is to be produced using capital $K$, labor $L=Q^\alpha / K$ must be hired, and the cost function becomes
+\begin{equation} \label{equa5.13}
+    C(w,r,Q,K) = w Q^\alpha / K + rK
+\end{equation}
+If there were a third input, say raw materials, whose quantity can be varied in the short run, there would be a short run cost-minimization problem to be solved. I shall leave this as an exercise.
+
+The long run marginal cost is found by differentiating (\ref{equa5.12}):
+\begin{equation} \label{equa5.14}
+    C_Q(w,r,Q) = \alpha (wr)^{1/2} Q^{\alpha/2 -1}
+\end{equation}
+In the short run, (\ref{equa5.13}) gives
+\begin{equation} \label{equa5.15}
+    C_Q(w,r,Q,K) = \alpha w Q^{\alpha-1} / K
+\end{equation}
+If the value of $K$ happens to be the long run optimum given by (\ref{equa5.11}), then the short run marginal cost (\ref{equa5.15}) and the long run marginal cost (\ref{equa5.14}) coincide, as the Envelope Theorem requires.
+
+\subsubsection*{\textit{Example 5.2: Consumer Demand}}
+
+The most important new idea introduced in this chapter was to regard the maximum value of the objective as a function of the parameters of the problem. Such functions contain a lot of economically useful information, which can be used to simplify the treatment of optimizing behavior in many applications. This example treats the case of consumer demand theory based on utility maximization.
+
+Consider a consumer who maximizes utility $U(x)$ subject to the budget constraint $px=I$, where $p$ is a row vector of prices, $x$ a column vector of quantities, and $I$ is money income. The parameters of the problem are $p$ and $I$, and the resulting maximum utility is a function $V(p, I)$. This is called the \textit{indirect} utility function, to distinguish it from the \textit{direct} utility function $U(x)$ defined over the quantities.
+
+Some properties of $V$ are evident. For example, changing all prices and income in the same proportion leaves the budget constraint unchanged, and thus does not affect the optimal choice or the resulting utility. Therefore $V$ is homogeneous of degree zero in $(p,I)$. We will have occasion to study some other properties later. The focus of interest here is the application of the Envelope Theorem, or more specifically, the formula (\ref{equa5.4}). Note that the Lagrangian is
+\begin{equation*}
+   L(x,\lambda,p,I) = U(x) + \lambda(I-px)
+\end{equation*}
+Therefore
+\begin{equation} \label{equa5.16}
+   V_I(p,I) = L_I(x,\lambda,p,I) = \lambda
+\end{equation}
+evaluated at the optimum. Similarly the column vector of derivatives of $V$ with respect to the prices is
+\begin{equation} \label{equa5.17}
+   V_p(p,I) = L_p(x,\lambda,p,I) = - \lambda x
+\end{equation}
+again evaluated at the optimum. Of course the utility-maximizing quantities $x$ comprise the (vector) demand function $D(p,I)$. Therefore we can divide (\ref{equa5.17}) by (\ref{equa5.16}) and write
+\begin{equation} \label{equa5.18}
+   D(p,I) = - V_p(p,I) / V_I(p,I)
+\end{equation}
+
+This is a useful and important result. If we are given the consumer's (direct) utility function and asked to find his demand functions, we have to carry out the whole constrained maximization solution, which is messy even in the simplest cases. On the other hand, if we are given his indirect utility function, we can find the demands by differentiation alone.Thus it is much simpler to summarize our information about consumers by means of indirect utility functions. Particularly in general equilibrium models where consumers are only one part of the story, this economy of effort and of notation makes a great deal of difference. We will see some instances of this in the chapters to follow.
+
+Next consider the mirror-image problem where the consumer is seen as minimizing the expenditure required for attaining a given target utility level. The resulting minimum expenditure is a function of the price vector $p$ and the target utility level $u$. Call it the consumer's \textit{expenditure function}, and write it $E{p,u}$. Keeping $u$ fixed and changing all prices in the same proportion will simply change the necessary expenditure by this problem; therefore $E$ is homogeneous of degree one in $p$ for fixed $u$. Other properties of $E$ will be developed as necessary. Once again, our focus is on the envelope property.
+
+Write the Lagrangian for the minimization problem as
+\begin{equation*}
+   L(x,\mu,p,u) = px + \mu[u-U(x)]
+\end{equation*}
+Arguing as before, we have
+\begin{equation} \label{equa5.19}
+   E_u(p, u) = \mu
+\end{equation}
+This Lagrange multiplier gives the increase in expenditure required to achieve a marginal increase in the utility level. Therefore it is just the reciprocal of the marginal utility of money $\lambda$ above. Next
+\begin{equation*}
+   E_p(p,u) = x
+\end{equation*}
+Cost-minimizing commodity choices for a given utility level are the Hicksian \textit{compensated} demand function $C(p,u)$. The situation is as if, following any price change, the consumer is compensated by changing his money income just enough to leave him on the same indifference curve as before. Thus we have shown that
+\begin{equation} \label{equa5.20}
+   C(p,u) = E_p(p,u)
+\end{equation}
+This expression is even simpler than that for the \textit{uncompensated} demand function $D$ above.
+
+Finally, we can relate the indirect utility function and the expenditure function, and thereby the uncompensated and compensated demand functions. Suppose we begin with a utility level $u$, and find the utility-maximizing choice. So long as all prices are positive, as will be the case in most elementary economic applications, this gives back the utility level we started with, that is, $u=V(p,I)$. The cost-minimizing choice of $x$ is also the utility maximizing choice, that is, $C(p,u) = D(p,I)$ so long as $u$ and $I$ are related as above. Take the $j$th component equation, and differentiate it with respect to $p_k$. Hold $u$ fixed, but make $I=E(p,u)$ a function of $p_k$. By the chain rule,
+\begin{equation*}
+   C_k^j(p,u) = D_k^j(p,I) + D_I^j(p,I) E_k(p,u)
+\end{equation*}
+But
+\begin{equation*}
+   E_k(p,u) = C^k(p,u) = D^k(p,I)
+\end{equation*}
+the demand for good $k$. Therefore
+\begin{equation} \label{equa5.21}
+   C_k^j(p,u) = D_k^j(p, I) + D^k(p,I) D_I^j(p,I)
+\end{equation}
+This relationship between the derivatives of compensated and uncompensated demand functions is called the Slusky-Hicks equation. Some readers may know it in a different notation:
+\begin{equation*}
+   \left( \dfrac{\partial x_j}{\partial p_k} \right)_{u \ \mbox{constant}} = \left( \dfrac{\partial x_j}{\partial p_k} \right)_{I \ \mbox{constant}} + x_k \dfrac{\partial x_j}{\partial I}
+\end{equation*}
+
+\section*{Exerces}
+
+\subsubsection*{\textit{Exercise 5.1: The Cobb-Douglas Cost Function}}
+
+Consider a production function
+\begin{equation} \label{equa5.22}
+y = A \prod\limits_{j=1}^n  x_j^{\alpha_j}
+\end{equation}
+where $y$ is output, the $x_j$ are inputs, and $A$ and the $\alpha_j$ are positive constants. Let $w=(w_j)$ be the vector of input prices, and show that the minimum cost of producing a given output level $y$ is
+\begin{equation} \label{equa5.23}
+  C(w,y) = \beta (y/A)^{1/\beta}  \prod\limits_{j=1}^n  (w_j / \alpha_j)^{\alpha_j / \beta}
+\end{equation}
+where $\beta = \sum_j \alpha_j$. If $\beta <1$, calculate the corresponding maximum profit function $\pi(p,w)$ where $p$ is the output price. What goes wrong if $\beta \geq 1$?
+
+\subsubsection*{\textit{Exercise 5.2: The CES Expenditure Function}}
+
+Suppose the direct utility function is
+\begin{equation} \label{equa5.24}
+   U(x,y) = [\alpha x^\rho + \beta y^\rho]^{1/\rho}
+\end{equation}
+where $x$ and $y$ are the quantities of the two goods, and $\alpha$, $\beta$ and $\rho$ are given constants, with $\alpha$, $\beta$ positive and $\rho <1 $. Show that the expenditure function is of the form
+\begin{equation} \label{equa5.25}
+   E(p,q,u) = [a p^r + b q^r]^{1/r}
+\end{equation}
+where $p$, $q$ are the prices of the goods, $u$ is the utility level, and $a$, $b$ and $r$ are constants that can be expressed in terms of $\alpha$, $\beta$ and $\rho$.
+
+Find the compensated demand function and show that the ratio of the cost-minimizing quantities is
+\begin{equation*}
+   x/y = (a/b)(q/p)^{1-r}
+\end{equation*}
+The elasticity of $(x/y)$ with respect to $(q/p)$
+\begin{equation*}
+   \dfrac{d \ln (x/y)}{d \ln (q/p)}
+\end{equation*}
+is called the elasticity of substitution in production. Show that in this example, it is constant and equal to $(1-r)$. what condition must be imposed on $\rho$ to ensure a non-negative elasticity of substitution, that is, $r<1$?
+
+

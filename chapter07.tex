@@ -1,0 +1,471 @@
+\chapter{Concave Programming}
+
+\section*{Concave Functions and Their Derivatives}
+
+In the last chapter I defined convex sets and quasi—concave and concave functions, and developed a geometric approach to constrained optimization based on the separation of two convex sets. This had the conceptual merit of suggesting a decentralized implementation of society's economic optimization problem. But it was of limited value in solving actual examples. In this chapter I combine the idea of convexity with a more conventional calculus approach. The result is that the Lagrange or Kuhn-Tucker conditions, in conjunction with convexity properties of the objective and constraint functions, are sufficient for optimality.
+
+The first step is to express the convexity etc. of functions in terms of their derivatives. In Chapter 6, a concave function was defined by the property that the chord joining any two points on its graph lies entirely below (or at most coincident with) the graph; see Figure \ref{Fig6.2}. If we let the point $x^b$ move closer and closer to $x^a$, the chord approaches the tangent to $F(x)$ at $x^a$. The requirement of concavity then says that the graph of the function should lie on or below the tangent. The worst that is allowed is when $F(x)$ has straight-line segments, then the tangent could coincide with our such segment.
+
+More formally, for $\theta \in [0,1]$, we have
+\begin{equation*}
+F[x^a + \theta(x^b - x^a)] = F[\theta x^b +(1-\theta)x^a] \geq \theta F(x^b) + (1-\theta) F(x^a)
+\end{equation*}
+Therefore
+\begin{equation*}
+   \dfrac{F[x^a + \theta(x^b - x^a)] - F(x^a)}{\theta} \geq  F(x^b) - F(x^a)
+\end{equation*}
+Now let $\theta$ tend to zero. Provided $F$ is differentiable, the chain rule says that the left-hand side tends to $F_x(x^a)(x^b - x^a)$, where $F_x$ is the row vector of partial derivatives, and the product is an inner product. Then
+\begin{equation} \label{equa7.1}
+  F_x(x^a)(x^b - x^a) \geq F(x^b) - F(x^a)
+\end{equation}
+When $x$ is one—dimensional, $F_x(x^a)$ is just the slope of the tangent to $F(x)$ at at $x^a$, so the left-hand side is the vertical distance along this tangent as we move from $x^a$ to $x^b$. Then (\ref{equa7.1}) says that the change in the value of a concave function is overestimated by its tangent, that is, the tangent lies above the curve. More generally, the left-hand side is just the linear term in the Taylor approximation to the change in $F(x)$ using $x^a$ as the initial point; this approximation is an overestimate of the change in $F(x)$.
+
+Similarly, if $G$ is a differentiable convex function, then
+\begin{equation} \label{equa7.2}
+  G_x(x^a)(x^b - x^a) \leq G(x^b) - G(x^a)
+\end{equation}
+A particularly important class of optimization problems has a concave objective function and convex constraint functions; the term \textit{concave programming} is often used to describe the general problem of this kind, and it is the subject of the next section.
+
+\section*{Concave Programming}
+
+Consider the maximization of $F(x)$ subject to a vector constraint $G(x) \leq c$, where $F$ is differentiable and concave, and each component constraint function $G^i$ is differentiable and convex. This is called the general problem of \textit{concave programming}. For concreteness and economic interest, I shall use the terminology of the production problem, where $x$ is the vector of outputs, $F(x)$ is the revenue from the sale of the outputs, $c$ a fixed vector of input supplies, and $G(x)$ is the vector of inputs needed to produce $x$. But the mathematics is independent of this interpretation.
+
+The conditions of optimality for a particular value of $c$ are found by first considering the problem for a general $c$. Then the optimum choice of $x$, say $\bar{x}$, and the maximum value $v = F (\bar{x})$, both become functions of $c$. Let $X(c)$ denote the optimum choice
+function, and $V(c)$ the maximum value function.
+
+The first result is that $V$ is a non-decreasing function. This is because an $x$ that was feasible for a given value of $c$ remains feasible
+when any component of $c$ increases, so the maximum value cannot decrease.
+
+The next result is that $V$ is concave. Let $c$ and $c^\prime$ be any two input supply vectors, with
+\begin{equation*}
+\bar{x} = X(c), \quad \bar{x}^\prime = X(c^\prime), \quad \bar{v} =V(c), \quad \bar{v}^\prime = V(c^\prime)
+\end{equation*}
+Since the optimum choices must be feasible, we have $G(\bar{x}) \leq c$ and $G(\bar{x}^\prime) \leq c^\prime$.
+
+Now let $\theta$ be any number in [0,1]. For $V$ to be concave, it should be possible to achieve revenue at least as high as $\theta V(c) + (1-\theta)V(c^\prime)$ when the input supply vector is $\theta c + (1-\theta)c^\prime$. A natural candidate for the output vector is $\theta \bar{x} + (1-\theta) \bar{x}^\prime$. The first point to check is whether this is feasible. For each $i$, the convexity of $G^i$ implies
+\begin{equation*}
+G^i[\theta \bar{x} +(1-\theta)\bar{x}^\prime] \leq \theta G^i(\bar{x}) + (1-\theta) G^i(\bar{x}^\prime) \leq \theta c_i + (1-\theta)c_i^\prime
+\end{equation*}
+proving feasibility. The next point is to find the resulting revenue. Using the concavity of $F$, we have
+\begin{equation*}
+F[\theta \bar{x} + (1-\theta) \bar{x}^\prime ] \geq \theta F(\bar{x}) + (1-\theta)F(\bar{x}^\prime) \geq \theta \bar{v} + (1-\theta)\bar{v}^\prime
+\end{equation*}
+Thus we have found a feasible output vector that yields revenue at least as high as the expression on the extreme right of this chain of inequalities. The maximum value, $V[\theta c +(1-\theta) c^\prime]$, can be no smaller. This is the result we want to prove.
+
+The economics behind this is that the convexity of $G$ rules out economies of scale or specialization in production, ensuring that a weighted average of outputs can be produced using the same weighted average of inputs. Then the concavity of $F$ ensures that the resulting revenue is at least as high as the same weighted average of the separate revenues.
+
+As $V$ is a concave function, the set of points on or below its graph is a convex set. This is an $(m + 1)$-dimensional set, the collection of all points $(c, v)$ such that $v \leq V(c)$. That is, revenue of at least $v$ can be produced using the input vector $c$. Therefore it is natural to think of it as the set of production possibilities for revenue. Figure \ref{Fig7.1} shows this set as the shaded area $\mathcal{A}$ in the case where $c$ is a scalar. Since $V$ is non-decreasing and concave, the set has a frontier that shows a positive but diminishing marginal product of the input in producing revenue. 
+\begin{figure}[!htb] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+\centering %图片居中
+%\includegraphics[width=0.8\textwidth]{./Fig3.1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\begin{tikzpicture}[scale=2.5]
+    % 绘制坐标轴
+    \draw[->] (0,0) -- (2.5,0) node[below] {$c$};
+    \draw[->] (0,0) -- (0,1.4) node[left] {$v$};
+    \draw[black] (0,0) node[below left] {$O$};
+    
+\fill[pattern=north east lines, domain=0.54:1.94, smooth, variable=\x] plot ({\x},{sqrt(\x-0.5)-0.2}) -- (1.94,0) -- (0.54,0) -- cycle;
+\draw[domain=0.54:1.94, smooth, variable=\x, black] plot ({\x},{sqrt(\x-0.5)-0.2});  % 重新绘制抛物线以覆盖填充边界
+
+\draw[black] (1.14,0) -- (1.14,1.2) ; 
+\draw[black] (0,0.6) -- (1.14,0.6) ; 
+\draw[black] (0.6,0.2625) -- (1.8,1.0125) ;  
+
+\fill[pattern = north west lines] (0,0.6) -- (1.14,0.6) -- (1.14,1.2) -- (0,1.2) -- cycle;
+\filldraw [black] (1.94,1) node[right] {$v=V(c)$}; 
+\filldraw [black] (1.14,0) node[below] {$c^*$}; 
+\filldraw [black] (0,0.6) node[left] {$v^*$}; 
+\filldraw [black] (0.6,0.9) node {$\mathcal{B}$}; 
+\filldraw [black] (1.6,0.4) node {$\mathcal{A}$}; 
+
+\end{tikzpicture}
+\caption{The value function in concave programming} %最终文档中希望显示的图片标题
+\label{Fig7.1} %用于文内引用的标签
+\end{figure}
+
+Convex sets are meant to be separated from other convex sets. To do this in the most useful way for the present purpose, choose a point $(c^*, v^*)$ in $\mathcal{A}$ such that $v^* = V(c^*)$. This must be a boundary point, since for any $r > 0$, the point $(c^*,v^* —r)$ is in $\mathcal{A}$ but $(c^*, v^* +r)$ is not. Now define $\mathcal{B}$ as the set of all points $(c,v)$ such that $r \leq c^*$ and $v \geq v^*$, that is, revenue $v$ cannot be attained with inputs $c$ except when $c = c^*$ and $v = v^*$. Thus the set $\mathcal{B}$ serves the same role as the corresponding set in Chapter 6. Clearly $\mathcal{B}$ is a convex set with a non—empty interior, and $\mathcal{A}$ and $\mathcal{B}$ have only boundary points in common. Therefore the Separation Theorem can be applied. For reasons that will become clear in a moment, I write the equation of the separating hyperplane as
+\begin{equation*}
+\iota v - \lambda c = b = \iota v^* - \lambda c^*
+\end{equation*}
+where $\iota$ is a scalar, $\lambda$ is an $m$-dimensional row vector, and the signs are so chosen that
+\begin{equation} \label{equa7.3}
+\iota v - \lambda c \left\{  
+\begin{array}{ll}
+\leq b \quad \mbox{for all} \  (c,v) \in \mathcal{A} \\
+\geq b \quad \mbox{for all} \  (c,v) \in \mathcal{B}
+\end{array}
+ \right.
+\end{equation}
+
+The first point to note is that $\iota$ and $\lambda$ must both be non-negative. For example, suppose $\iota$ is negative. Now consider the point $(c^*, v^*+1)$, which is clearly in $\mathcal{B}$. We have
+\begin{equation*}
+\iota (v^* +1) - \lambda c^* = b - \iota < b
+\end{equation*}
+which contradicts the separation property. Similarly, for each $i=1,2,\dots,m$, considering points $(c^* - c^i, v^*)$, where $e^i$ is a vector with its $i$th component equal to 1 and all other components zero, we see that $\lambda_i$ cannot be negative.
+
+Now comes a more subtle question: can $\iota$ equal zero? Let us see the consequences of that. For the equation of the hyperplane to be meaningful, the combined vector $(\iota, \lambda)$ must be non-zero. If $\iota =0$, therefore, at least one component of $\lambda$ must be non-zero, that is, positive. The equation of the separating hyperplane becomes $-\lambda c = -\lambda c^*$, or $\lambda (c-c^*) \geq 0$. In the scalar constraint case, the separating line is vertical at $c^*$, and the set $\mathcal{A}$ lies entirely to the right of it.
+
+Figure 7.2 shows two ways in which this can happen. In both cases, there are no feasible points to the left of $c^*$; production is impossible if input supply falls short of this level. In some applications, this can happen because of indivisibilities. The two cases
+differ in the behavior of $V(c)$ as $c$ approaches $c^*$ from the right. In case (a), the marginal revenue product of the resource goes to infinity, and only a vertical separating line will do. In case (b), the limit of the marginal revenue product stays finite, and While a vertical separating line exists, there are also many other separating lines with finite slope, and therefore positive $\iota$. This shows that the conditions soon to be found for ensuring a positive $\iota$ are only sufficient and not necessary.
+
+\begin{figure}[!htp]  % 常见htbp  here top bottom p表示浮动  !表示忽略“美学”标准
+ \centering
+ \subfloat[ ] %第一张子图
+ {
+   \begin{minipage}{0.5\linewidth}
+\centering
+        \begin{tikzpicture}[scale=2]
+    % 绘制坐标轴
+    \draw[->] (0,0) -- (2.5,0) node[below] {$c$};
+    \draw[->] (0,0) -- (0,2.5) node[left] {$v$};
+    \draw[black] (0,0) node[below left] {$O$};
+
+\draw[black] (0,1) node[left] {$v^*$};
+\draw[black] (1,0) node[below ] {$c^*$};
+\filldraw [black] (0.5,1.5) node {$\mathcal{B}$}; 
+\filldraw [black] (1.6,0.6) node {$\mathcal{A}$}; 
+\filldraw [black] (1.7,1.5) node {$v=V(c)$}; 
+
+    \draw[domain=1:2,smooth,variable=\x] plot ({\x},{ 1+sqrt(1- (\x-2)*(\x-2) )}) ;
+    \draw[] (1,0) -- (1,2.2) ; 
+    \draw[] (0,1) -- (1,1);
+        \end{tikzpicture}
+   \end{minipage} }
+ \subfloat[ ] %第二张子图
+   {
+   \begin{minipage}{0.5\linewidth}
+\centering
+       \begin{tikzpicture}[scale=2]
+    % 绘制坐标轴
+    \draw[->] (0,0) -- (2.5,0) node[below] {$c$};
+    \draw[->] (0,0) -- (0,2.5) node[left] {$v$};
+    \draw[black] (0,0) node[below left] {$O$};
+
+\draw[black] (0,1) node[left] {$v^*$};
+\draw[black] (1,0) node[below ] {$c^*$};
+\filldraw [black] (0.5,1.5) node {$\mathcal{B}$}; 
+\filldraw [black] (1.6,0.4) node {$\mathcal{A}$}; 
+\filldraw [black] (1.7,1.0) node {$v=V(c)$}; 
+    \draw[] (1,0) -- (1,2.2) ; 
+    \draw[] (0,1) -- (1,1);
+    \draw[] (1,1) -- (2,1.5);
+\draw[domain=0.6:1.6,smooth,variable=\x] plot ({\x},{ 2*\x -1  }) ;
+
+      \end{tikzpicture}
+   \end{minipage} }
+ \caption{Failure of the constraint qualification} 
+\label{Fig7.2} 
+\end{figure}
+
+The natural condition is to rule out indivisibility. If the set $\mathcal{A}$ has any points to the left of $c^*$, then it cannot have an infinite slope at $c^*$. For this, there must be an $x^o$ such that $G(x^o) < c^*$ and $F(x^o)$ is defined; then we can choose $(G(x^o), F(x^o))$ as the desired point in $\mathcal{A}$. If there are several constraints, we need the corresponding vector inequality $G(x^o) \ll c^*$. This then is the \textit{constraint qualification} for the concave programming problem. It is sometimes called the \textit{Slater condition}.
+
+To prove that the Slater condition implies a positive $\iota$, suppose that the condition holds but $\iota=0$. Then at least one component of $\lambda$ must be positive. Now every component of $G(x^o) - c^*$ is strictly negative. Then
+\begin{equation*}
+\lambda [G(x^o) - c^*] = \sum\limits_{i=1}^m \lambda_i [G^i(x^o) - c_i^*] < 0
+\end{equation*}
+because at least one component product on the right-hand side is negative, and all are non-positive. But the point $(G(x^o), F(x^o))$ is in $\mathcal{A}$, therefore by the separation property
+\begin{equation*}
+- \lambda G(x^o)  =  \iota F(x^o) - \lambda_i G(x^o) \leq \iota v^* - \lambda c^* =  - \lambda c^*
+\end{equation*}
+or $\lambda [G(x^o) - c^*] \geq 0$. We have proved the same expression to be both negative and non-negative; the contradiction forces us to conclude that the supposition $\iota=0$ must be wrong.
+
+The separation property (\ref{equa7.3}) is unaffected if we multiply $b$, $\iota$, and every component of $\lambda$ by the same positive number. Once we can be sure that $\iota \neq 0$, we can choose this scale to make $\iota = 1$. In economic terms, $\iota$ and $\lambda$ constitute a system of shadow prices, $\iota$ for the revenue and $\lambda$ for the inputs. Only relative prices matter for economic decisions, and in setting $\iota =1$, we are choosing revenue to be the numeraire. This seems an obvious choice, and I shall adopt it henceforth. But sometimes we might wish to do otherwise; for example $F(x)$ might give the revenue in a foreign currency, and then $\iota$ would be an exchange rate to convert it into domestic currency units. The important thing is to establish conditions under which the marginal revenue product of inputs at the optimum is finite, ensuring that the proposed numeraire is not a free good.
+
+Next observe that by the separation property, $c^*, v^*)$ achieves the maximum value of $(v — \lambda c)$ among all points $(c,v) \in \mathcal{A}$. This has an important economic implication. If we interpret $\lambda$ as the vector of shadow prices of the inputs, then $(v — \lambda c)$ is the profit that accrues when a producer uses inputs $c$ to produce revenue $v$. Since all points in $\mathcal{A}$ represent feasible production plans of this kind, the result says that a profit-maximizing producer will pick $(c^*, v^*)$. He need not be aware that in fact the availability of inputs is limited to $c^*$. He may think himself free to choose any $c$, but ends up choosing the right $c^*$. The prices $\lambda$ bring home to him the scarcity. The interpretation is special, but the principle is general and important: constrained choice can be converted into unconstrained choice if the proper scarcity costs or shadow values of the constraints are netted out of the criterion function. To the economist, this is the most important feature of Lagrange's Method in concave programming.
+
+The shadow price interpretation of $\lambda$ can be confirmed some what more formally. For any $c$, the point $(c, V(c))$ is in $\mathcal{A}$. So by the separation property we have
+\begin{equation*}
+V(c) - \lambda c \leq V(c^*) - \lambda c^*
+\end{equation*}
+or
+\begin{equation} \label{equa7.4}
+V(c) - V(c^*) \leq \lambda (c-c^*)
+\end{equation}
+The linear function on the right overestimates changes in the value of $V$. This looks very much like the concavity property (\ref{equa7.1}), and suggests that $\lambda$ should equal $V_c(c^*)$, the vector of partial derivatives of $V$ at $c^*$. That would make $\lambda$ the vector of the marginal revenue products of the inputs at the optimum, or the vector of shadow prices for the constraints. But one difficulty remains: we cannot be sure that $V$ is differentiable. So far in this chapter we have not even assumed $F$ and $G$ to be differentiable, but even when we do, $V$ may fail to be. This can happen for the same reason as we saw in Chapter 4 and Figure \ref{Fig4.1}. Different inequality constraints may hold as exact equalities for different ranges of the parameters, and where the solution switches from one regime to another, the slope of $V$ may change suddenly.
+
+Even when such discontinuities in the slope of $V$ exist, a very natural generalization of the concept of diminishing returns holds. As the value of some component of $c$ increases, the corresponding partial derivative of $V$ may jump downward, but not upward. This follows from the concavity of $V$.
+
+The asterisks, having served their purpose of distinguishing a particular point in the $(c,v)$ space for separation, may now be dropped. Let us consider a general point $(c, V(c))$ with its associated multiplier vector $\lambda$. Compare this with a neighboring point where only the $i$th input is increased: $(c+he^i, V(c+he^i))$ where $h$ is a positive scalar and $e^i$ is a vector with its $i$th component equal to 1 and all others zero. Then (\ref{equa7.4}) becomes
+\begin{equation*}
+V(c+he^i) - V(c) \leq \lambda h e^i = h \lambda_i
+\end{equation*}
+Since $h$ is positive, we can divide by it to write
+\begin{equation*}
+  [V(c+he^i ) -V(c)] /h \leq \lambda_i
+\end{equation*}
+It is easy to show that by the concavity of $V$, the left-hand side is a non-increasing function of $h$, and therefore must have a limit as $h$ goes to zero from positive values. In a diagram showing $c_i$ and $V(c)$, the expression on the left-hand side is simply the slope of a chord joining the point $(c, V(c))$ to an adjacent point to the right (because $h>0$). Its limit is defined as the `rightward' partial derivative of $V$ with respect to the $i$th coordinate of $c$, and written $V_i^+(c)$. Thus we have proved that $V_i^+(c) \leq \lambda_i$.
+
+Next repeat the procedure but let $h$ be negative. Now division by $h$ reverses the direction of the inequality, and taking the limit from negative values of $h$ gives us the `leftward' partial derivative $V_i^-(c)$. This proves $V_i^-(c) \geq \lambda_i$. Combining the two, we have the final result that generalizes the notion of diminishing marginal products:
+\begin{equation} \label{equa7.5}
+V_i^-(c) \geq \lambda_i \geq V_i^+(c)
+\end{equation}
+Figure \ref{Fig7.3} illustrates this for the case of a scalar $c$.
+\begin{figure}[!htb] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+\centering %图片居中
+%\includegraphics[width=0.8\textwidth]{./Fig3.1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\begin{tikzpicture}[scale=2.5]
+    % 绘制坐标轴
+    \draw[->] (0,0) -- (2,0) node[below] {$c$};
+    \draw[->] (0,0) -- (0,2) node[left] {$v$};
+    \draw[black] (0,0) node[below left] {$O$};
+    
+\draw[black] (1.6,1.6) node[right] {$V_+^\prime(c)$};
+\draw[black] (1.4,1.6) node[above] {$\lambda$};
+\draw[black] (0.6,0.2) node[left] {$V_-^\prime(c)$};
+\draw[domain=1:1.6, smooth, variable=\x, black, line width=1pt] plot ({\x},{1+ln(\x)});  
+\draw[domain=0.78:1, smooth, variable=\x, black, line width=1pt] plot ({\x},{2*sqrt(\x -0.75)});  
+
+\draw[] (0.6,0.6) -- (1.6,1.6);
+\draw[domain=0.6:1.3, smooth, variable=\x, black] plot ({\x},{2*\x -1});  
+\draw[domain=0.6:1.4, smooth, variable=\x, black] plot ({\x},{1.5*\x -0.5}); 
+\end{tikzpicture}
+\caption{Generalized marginal products} %最终文档中希望显示的图片标题
+\label{Fig7.3} %用于文内引用的标签
+\end{figure}
+
+So far the vector of choice variables, $x$, has been kept in the background. Let us bring it in explicitly. Recall that $\bar{x}$ maximizes $F(x)$  subject to $G(x ) \leq c$. Let $\lambda$ be the vector of shadow prices of inputs found from the separating hyperplane as in Figure \ref{Fig7.1}. The point $(F(\bar{x}), G(\bar{x}))$ is in $\mathcal{A}$, so the separation property gives
+\begin{equation} \label{equa7.6}
+F(\bar{x}) -\lambda G(\bar{x}) \leq V(c) - \lambda c
+\end{equation}
+Of course $F(\bar{x} = V(c))$, so
+\begin{equation} \label{equa7.7}
+\lambda [c- G(\bar{x})] \leq 0
+\end{equation}
+Now every component of the row vector $\lambda$ is non-negative, and every component of the column vector $[c- G(\bar{x})]$ is also non-negative. Therefore for every $i$, the product $\lambda_i [c_i - G^i(\bar{x})]$ is non-negative. The inner product in (\ref{equa7.7}) is the sum of these terms. It can be non-positive only if each term is zero. Therefore for every $i$, either $\lambda_i =0$ or $c_i -G^i(\bar{x}) =0$. This is just the notion of complementary slackness developed in Chapter 3, and it fits in well with the interpretation of $\lambda_i$ as the shadow price of the $i$th constraint. The shadow price of any slack constraint is zero, and any constraint with a positive shadow price must be binding. Note an implication of complementary slackness: the inequalities in (\ref{equa7.6}) and (\ref{equa7.7}) must in fact hold as equations.
+
+Finally, since $(F(x), G(x))$ is in $\mathcal{A}$ for any $x$, and since (\ref{equa7.6} ) holds as an equation because of complementary slackness, the separation property gives
+\begin{equation} \label{equa7.8}
+F(x) - \lambda G(x) \leq F(\bar{x}) - \lambda G(\bar{x})
+\end{equation}
+for all $x$. That is, $\bar{x}$ maximizes $F(x) -\lambda G(x) $ without any constraints. This is an alternative statement, in terms of underlying choice variables, of how shadow prices allow us to convert the original constrained revenue-maximization problem into an unconstrained profit-maximization problem.
+
+All of the above reasoning can now be summarized into the basic theorem of this section:
+
+\textit{Necessary conditions of Concave Programming:} Suppose that $F$ is a concave function and $G$ is a vector convex function, and that there exists an $x^o$ satisfying $G(x^o) \ll c$. If $\bar{x}$ maximizes $F(x)$ subject to $G(x) \leq c$, then there is a row vector $\lambda$ such that (i) $\bar{x}$ maximizes $F(x) - \lambda G(x)$ without any constraints, and (ii) $\lambda \geq 0$, $G(\bar{x}) \leq c$ with complementary slackness.
+
+None of this requires $F$ and $G$ to have derivatives. But if the functions are differentiable, then we have the first-order necessary conditions for the maximization in (i), namely
+\begin{equation} \label{equa7.9}
+F_x(\bar{x}) - \lambda G_x(\bar{x}) =0
+\end{equation}
+In terms of the Lagrangian $L(x,\lambda)$ of Chapter 3, (\ref{equa7.9}) becomes $L_x(\bar{x}, \lambda) =0$. This is just the condition (\ref{equa3.5}) of Lagrange's Theorem with Inequality Constraints. Here I did not impose any non-negativity constraints on the choice variables $x$, but that was just to keep the algebra as simple as possible. Such conditions can be added on without causing any new difficulties, and then we get the corresponding condition (\ref{equa3.7}) of the Kuhn-Tucker Theorem. I leave it as an exercise for the reader to verify this.
+
+There is one respect in which concave programming goes beyond the general Lagrange or Kuhn—Tucker conditions. The conditions of Chapter 3 merely set the first-order derivatives of the Lagrangian with respect to the choice variables equal to zero. This was not sufficient to ensure maximization, and in general there was no claim that $\bar{x}$ is maximized the Lagrangian. When $F$ is concave and $G$ is convex, part (i) of the above theorem on Concave Progamming is easily transformed into $L(x, \lambda) \leq L(\bar{x}, \lambda)$ for all $x$, so $\bar{x}$ does maximize the Lagrangian. The distinction does make economic sense: we know that profit-maximization at given prices can be problematic when there are economies of scale. Price must still equal marginal cost at the optimum, but profit need not be maximized, even in comparison with neighboring points. In the same way, our interpretation of Lagrange‘s method as converting constrained revenue-maximization into unconstrained profit-maximization must be confined to the case of concave programming.
+
+The previous paragraph was on the verge of saying that the first-order conditions are sufficient to yield a true maximum in the concave programming problem. That is indeed so. The argument proceeds in two parts.
+
+First, suppose $\bar{x}$ satisfies the conditions (i) and (ii) in the statement of the necessary conditions. Then, for any $x$, we have
+\begin{equation*}
+F(\bar{x}) - \lambda G(\bar{x}) \geq F(x) - \lambda G(x)
+\end{equation*}
+or using complementary slackness, 
+\begin{equation*}
+F(\bar{x}) - \lambda c \geq F(x) - \lambda G(x)
+\end{equation*}
+If $x$ is feasible, $G(x) \leq c$, and then
+\begin{equation*}
+F(\bar{x}) \geq  F(x) + \lambda [c - G(x)]  \geq F(x) 
+\end{equation*}
+
+Next suppose $\bar{x}$ satisfies the first-order conditions (\ref{equa7.9}). Since $F$ is concave, $G$ is convex, and $\lambda \geq 0$, $F-\lambda G$ is concave. Then (\ref{equa7.1} ) applied to this function gives
+\begin{equation*}
+[F(x) - \lambda G(x)] - [F(\bar{x}) - \lambda G(\bar{x})]  \leq [F_x(\bar{x}) - \lambda G_x(\bar{x})](x -\bar{x})
+\end{equation*}
+But the right hand side is zero by (\ref{equa7.9}). Therefore
+\begin{equation*}
+ F(x) - \lambda G(x) \leq F(\bar{x}) - \lambda G(\bar{x}) 
+\end{equation*}
+or $\bar{x}$ maximizes $F(x) -\lambda G(x)$ without any constraints.
+
+This is summed up in the next theorem:
+
+\textit{Sufficient Conditions for Concave Programming:} If $\bar{x}$ and $\lambda$ are such that 
+\begin{itemize}
+\item[(i)] $\bar{x}$ maximizes $F(x) - \lambda G(x)$ without any constraints, and 
+\item[(ii)] $\lambda \geq 0$, $G(\bar{x}) \leq c$ with complementary slackness,
+\end{itemize}
+then $\bar{x}$ maximizes $F(x)$ subject to $G(x) \leq c$. If $(F-\lambda G)$ is concave (for which in turn it suffices to have $F$ concave and $G$ convex), then (\ref{equa7.9}) implies (i) above.
+
+Note that no constraint qualification appears in the sufficient conditions; it pertains to the validity of the necessary conditions.
+
+\section*{Quasi-Concave Programming}
+
+In the separation approach of Chapter 6, $F$ was merely quasi-concave and each component constraint function in $G$ was quasi-convex. In this chapter the stronger assumption of concavity and convexity has been made so far. In fact the weaker assumptions of quasi-concavity and -convexity make little difference to the necessary conditions. They yield sufficient conditions like the ones above for concave programming, but only in the presence of some further technical conditions that are quite complex to establish. Therefore I shall discuss only a limited version of quasi-concave programming, namely one where the objective function is quasi-concave and the constraint function is linear. Of course the mirror—image case of a linear objective and a quasi-convex constraint can be treated in the same way. Therefore my analysis covers each of the decentralized pair of decision problems into which the separation approach of Chapter 6 split the general quasi—concave programming problem.
+
+First we must establish a property of quasi-concave functions that is similar to the `overestimation by the tangent' property of concave functions. Start with the definition: if $F$ is quasi-concave, then for any $x^a$ and $x^b$ and for any $\theta$ in [0,1], we are to have
+\begin{equation*}
+F[(1-\theta)x^a + \theta x^b] \geq \min [F(x^a), F(x^b)]
+\end{equation*}
+Suppose $F(x^b) \geq F(x^a)$. Then
+\begin{equation*}
+F[ x^a + \theta (x^b - x^a)] \geq F(x^a)
+\end{equation*}
+Fix $x^a$, $x^b$, and regard the left-hand side as a function of $\theta$, say $h(\theta)$. Then the inequality is simply
+\begin{equation*}
+ h(\theta) \geq h(0) \quad \mbox{for all } \theta \geq 0 \ \mbox{and} \leq 1
+\end{equation*}
+Therefore $h^\prime(0) \geq 0$. But by the chain rule,
+\begin{equation*}
+ h^\prime(\theta) = F_x[x^a + \theta (x^b - x^a)]  (x^b - x^a)
+\end{equation*}
+Evaluating this at $\theta =0$, we have
+\begin{equation} \label{equa7.10}
+F_x(x^a) (x^b - x^a) \geq 0
+\end{equation}
+This holds for all $x^a$, $x^b$ such that $F(x^b) \geq F(x^a)$. Note that $F_x$ is a row vector, so the expression on the left-hand side is an inner product.
+
+Now consider the maximization of $F(x)$ subject to $px \leq b$, where $p$ is a row vector and $b$ a number. The necessary conditions for $\bar{x}$ to be optimum are 
+\begin{equation} \label{equa7.11}
+F_x(\bar{x}) - \lambda p = 0
+\end{equation}
+If $\lambda > 0$ the constraint is binding, and this is the only case I shall consider. (By taking cubic transforms of $F$, it is possible to get spurious stationary points where (\ref{equa7.11}) holds with $\lambda =0$, but that is not a case of sufficient economic interest for an elementary exposition.) The aim is to prove that if $F$ is continuous and quasi-concave, the conditions (\ref{equa7.11}) are also sufficient. That is, if they are satisfied by $\bar{x}$ and $\lambda >0$, then $\bar{x}$ solves the quasi-concave programming problem.
+
+To prove this, consider any $x$ such that $F(x) > F(\bar{x}) \equiv \bar{v}$. I shall prove that $x$ is not feasible, that is, $px > b$. Start by using (\ref{equa7.10}) with $x^a = \bar{x}$ and $x^b = \bar{x}$. Then $F(x) > F(\bar{x})$ implies
+\begin{equation*}
+F_x(\bar{x}) (x-\bar{x}) \geq 0
+\end{equation*}
+Substitute (\ref{equa7.11}) into this and divide by the positive number $\lambda$ to get
+\begin{equation*}
+p(x - \bar{x}) \geq 0, \quad \mbox{or} \quad px \geq p \bar{x}
+\end{equation*}
+In other words, the upper contour set of $F(x)$ for the value $\bar{v}$ is contained in the half of the $x$-space on or above the constraint line.
+
+Figure \ref{Fig7.4} illustrates this. Geometrically, the vector $F_x(\bar{x})$ is normal (perpendicular) to the contour of $F(x)$ at $\bar{x}$. The vector $p$ is normal to the constraint line $px =b $ at any point on it. The usual condition of tangency between the two curves is equivalent to saying that their normal vectors be parallel. That is just what (\ref{equa7.11}) expresses, with the constant of proportionality equal to $\lambda$.
+\begin{figure}[!htb] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+\centering %图片居中
+%\includegraphics[width=0.8\textwidth]{./Fig3.1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\begin{tikzpicture}[scale=2]
+    % 绘制坐标轴
+    \draw[->] (0,0) -- (3,0) node[below] {$x_1$};
+    \draw[->] (0,0) -- (0,3) node[left] {$x_2$};
+    \draw[black] (0,0) node[below left] {$O$};
+    \draw[black] (1.9,0.7) node[below] {$px= p\bar{x}$};
+\draw[black] (2,1) node[right] {$F(x)= F(\bar{x} )$}; 
+\draw[domain=1:2, smooth, variable=\x, black] plot ({\x},{2-sqrt(-3+4*\x-\x*\x)});  
+\draw[domain=0.7:1.9, smooth, variable=\x, black] plot ({\x},{ -\x +4-sqrt(2)  } );  
+ 
+\filldraw [black]  ({2-1/sqrt(2)}, {2-1/sqrt(2)}) circle (1pt) node [below left] {$\bar{x}$} ;
+\draw[->]  ({2-1/sqrt(2)}, {2-1/sqrt(2)}) -- (1.8,1.8) node[above] {$ F_x(\bar{x}) =\lambda p$} ;
+
+\end{tikzpicture}
+\caption{Quasi-concave objective and linear constraint} %最终文档中希望显示的图片标题
+\label{Fig7.4} %用于文内引用的标签
+\end{figure}
+
+Since $F$ is continuous and $F(x) > F(\bar{x})$, in fact $x$ is an interior point of the upper contour set. Therefore it is also an interior point of the set $px \geq b$. In other words, it satisfies $px >b$. So any $x$ yielding value greater than $F(\bar{x})$ is infeasible, or any feasible $x$ yields no greater value than $F(x)$. This completes the proof.
+
+\section*{Uniqueness}
+
+The above sufficient conditions for concave as well as quasi—concave programming are \textit{weak} in the sense that they establish that no other feasible choice $x$ can do better than $\bar{x}$. They do not rule out the existence of other feasible choices that yield $F(x) = F(\bar{x})$. In
+other words, they do not establish the uniqueness of the optimum. As in Chapter 6, an additional condition, namely a strengthening of the concept of concavity or quasi-concavity, gives uniqueness.
+
+For example, the definition of strict concavity requires all interior points of the chord joining any two points on the graph of the function to lie strictly below the graph. This rules out any straight line segments where the graph and the chord can coincide. Formally, call $F$ strictly concave if, for distinct $x^a$, $x^b$, and for any $\theta$ in [0,1] except the end—points 0 and 1, we have
+\begin{equation} \label{equa7.12}
+ F[\theta x^a + (1-\theta)x^b] > \theta F(x^a) + (1-\theta) F(x^b)
+\end{equation}
+If the objective function $F$ in the concave programming problem is strictly concave, then the maximizer $\bar{x}$ is unique. The proof proceeds by assuming another equally good choice, say $\tilde{x}$, and showing that $\frac{1}{2} (\bar{x} + \tilde{x}) $ can do even better. I shall leave the simple details to the reader.
+
+\section*{Examples}
+
+\subsubsection*{\textit{Example 7.1: Linear Programming}}
+
+An important special case of concave programming is the theory of \textit{linear programming}. Here the objective and constraint functions are linear:
+\begin{equation*}
+F(x) = ax, \quad G(x) = Bx
+\end{equation*}
+where $a$ is an $n$-dimensional row vector and $B$ an $m \times n$ matrix. Now
+\begin{equation*}
+F_x(x) = a, \quad G_x(x) = B
+\end{equation*}
+Sign constraints $x \geq 0$ are also imposed. When the constraint functions are linear, no constraint qualification is needed; interested readers can see the reason for this from the formal development of the Kuhn-Tucker theory in the Appendix.
+
+All the conditions of concave programming are fulfilled, and the appropriate Kuhn—Tucker conditions (\ref{equa3.7}) and (\ref{equa3.10}) are necessary as well as sufficient. There is a small new notational point. In this problem we will have occasion to consider the Lagrange multipliers as variables. Therefore their particular values corresponding to the optimum of the problem at hand will be indicated by placing bars over the corresponding symbols.
+
+The Lagrangian is 
+\begin{equation} \label{equa7.13}
+ L(x, \lambda) = ax + \lambda (c - Bx)
+\end{equation}
+and the optimum $\bar{x}$, $\bar{\lambda}$ satisfy the conditions
+\begin{equation} \label{equa7.14}
+ a - \bar{\lambda} B \leq 0, \bar{x} \geq 0, \quad \mbox{with complementary slackness}
+\end{equation}
+\begin{equation} \label{equa7.15}
+ c - B \bar{x}  \geq 0, \bar{\lambda} \geq 0, \quad \mbox{with complementary slackness}
+\end{equation}
+
+Between them, (\ref{equa7.14}) and (\ref{equa7.15}) contain $2^{m+n}$ combinations of patterns of equations and inequalities. Not all of these are permissible. Generally, if $k$ of the constraints in (\ref{equa7.15}) hold with equality, this puts $k$ restrictions on the $n$-dimensional vector $x$. To determine it, we should have $(n—k)$ more conditions from (\ref{equa7.14}), so exactly this number of the non-negativity constraints should bind. When this is the case, the corresponding count for $\lambda$ is also correct. Each such $(\bar{x}, \bar{\lambda})$ pair is called a `basic solution'. The space of parameters $(a,c, B)$ splits into regions, in each of which one basic solution obtains. At the boundaries where two such regions meet, there are additional non-basic solutions where both inequalities in some of the complementary slackness pairs hold as equations.
+
+The transition from one such region to another causes a sudden change in the Lagrange multipliers, and therefore kinks in the maximum value function of the kind we saw in Figure \ref{Fig4.1}.
+
+Now consider a new linear programming problem: find a row vector $y$ to minimize $yc$ subject to the constraints $y B \geq a$, $y \geq 0$, where the vectors $a, c$, and the matrix $B$, are exactly as before. In our maximization terminology, this can be written as
+\begin{equation*}
+\max (-yc) \quad \mbox{subject to} \quad -yB \leq -a, \ y \geq 0
+\end{equation*}
+Except for an interchange of row vectors and column vectors, this is of the same form as the above problem involving $x$. Therefore we can introduce a column vector $\mu$ of multipliers, and define the Lagrangian
+\begin{equation} \label{equa7.16}
+M(y, \mu) = -yc + (-a +yB)\mu 
+\end{equation}
+The optimum $\bar{y}$ and $\bar{\mu}$ are defined by the necessary and sufficient Kuhn-Tucker conditions
+\begin{equation} \label{equa7.17}
+  -c + B\bar{\mu} \leq 0, \  \bar{y} \geq 0, \quad \mbox{with complementary slackness}
+\end{equation}
+\begin{equation} \label{equa7.18}
+  -a + \bar{y} B \geq 0, \  \bar{\mu} \geq 0, \quad \mbox{with complementary slackness}
+\end{equation}
+
+Now (\ref{equa7.17}) is exactly the same as (\ref{equa7.15}), and (\ref{equa7.18}) is the same as (\ref{equa7.14}), if we replace $\bar{y}$ by $\bar{\lambda}$, and $\bar{\mu}$ by $\bar{x}$. In other words, the optimum $\bar{x}$ and $\bar{\lambda}$ of the original problem solve the new problem, with their roles interchanged: $\bar{\lambda}$ is the optimal vector of the choice variables in the new problem, and $\bar{x}$ is the corresponding vector of the multipliers.
+
+The new problem is said to be \textit{dual} to the original, which is then called the \textit{primal} problem in the pair. This captures an important economic relationship between prices and quantities in economics. The primal problem has the standard interpretation. Let $x$ be the vector of output quantities, and $a$ that of prices or unit values of the outputs. The matrix $B$ contains unit input coefficients, so $Bx$ is the vector of input requirements for producing $x$. Finally, $c$ is the vector of input supplies.
+
+When the optimum $\bar{x}$ is found, the corresponding $\bar{\lambda}$ is the vector of shadow prices of the inputs. We just saw that among all the vectors $\lambda$ that satisfy the constraints $\lambda B \geq a$ and $\lambda \geq 0$, the $\bar{\lambda}$ yields the minimum value of $\lambda c$. Thus the shadow prices minimize the cost of the inputs $c$. Note that the $j$th component of $\lambda B$ is $\Sigma_i \lambda_i B_{ij}$, which is just the cost of the bundle of inputs needed to produce one unit of good $j$ , calculated using the shadow prices of the inputs. Thus the constraint is that the vector of such input costs is at least as great as the vector of the unit values of outputs. In other words, the shadow prices of inputs ensure that no good can make a strictly positive profit — a standard `competitive' condition in economics.
+
+Complementary slackness in (\ref{equa7.14}) ensures that if the unit cost of production of good $j$ actually exceeds its price, that is, production would entail a loss when calculated at the proper shadow prices of inputs, then the good will be produced in zero quantity. Conversely, if good $j$ is produced in positive quantity, then the unit cost exactly equals the price, that is, the profit is exactly zero.
+
+This can be summarized by observing that complementary slackness in (\ref{equa7.14}) implies
+\begin{equation*}
+ a \bar{x} = \bar{\lambda} B \bar{x}
+\end{equation*}
+and that in (\ref{equa7.15}) gives
+\begin{equation*}
+  \bar{\lambda} c = \bar{\lambda} B \bar{x}
+\end{equation*}
+Combining the two, we have
+\begin{equation} \label{equa7.19}
+a \bar{x} = \bar{\lambda} c
+\end{equation}
+This says that the value of the optimum output equals the cost of the factor supplies evaluated at the shadow prices. The result can be interpreted as the familiar circular flow of income, that is, national product equals national income.
+
+Finally, it is easy to check that if we take the dual problem as our starting-point and go through the mechanical steps of finding \textit{its} dual, we return to the primal. In other words, duality is `reflexive'.
+
+This is in essence the duality theory of linear programming except for one point. We took the optimum $\bar{x}$ as our starting-point, paying no attention to the existence of the solution. This may be problematic, either because the constraints may be mutually inconsistent, or because they may define an unbounded feasible set and the objective function may tend to infinity as we proceed out along this unbounded set. I shall leave the treatment of this issue to more advanced texts.
+
+\subsubsection*{\textit{Example 7.2: Failure of Profit-maximization}}
+
+For a scalar $x$, consider the maximization of $F(x) = e^x$ subject to $G(x) \equiv x \leq 1$. Since $F$ is increasing, the optimum occurs at $x=1$. The Kuhn—Tucker conditions apply, and give $\lambda = e$.
+
+But $x=1$ does not maximize $F(x) — \lambda G(x)$ without constraints. In fact $e^x - ex$ can be made arbitrarily large by increasing $x$ beyond 1. Lagrange's method does not convert the original constrained maximization problem into an unconstrained profit-maximization problem. The difficulty is that $F$ is not concave.
+
+\section*{Exercise}
+
+\subsubsection*{\textit{Exercise 7.1: Minimization}}
+
+Develop the theory of minimization of a convex function along lines parallel to those used in this chapter for maximization of a concave function.
+
+\subsubsection*{\textit{Exercise 7.2: Convexity of Maximum Value Function}}
+
+Let $\theta$ be a vector of parameters, and consider the problem of choosing $x$ to maximize $F(x,\theta)$ subject to $G(x) \leq 0$. Let $V(\theta)$ denote the maximum value as a function of the parameters. Prove that if $F$ is convex as a function of $\theta$ for each fixed $x$, then $V$ is convex.
+
+In Chapter 5 we saw geometrically (Figure \ref{Fig5.2}) that the minimum cost of producing a given quantity of output, regarded as a function of input prices, is concave. Derive that formally as a corollary of the above general result.
+
+\subsubsection*{\textit{Exercise 7.3: More on Linear Programming}}
+
+Show that the optimal solution $\bar{x}$ of the linear—programming problem of Example 7.1, and the corresponding vector of multipliers $\bar{\lambda}$, are such that
+\begin{equation*}
+L(x, \bar{\lambda}) \leq L(\bar{x}, \bar{\lambda}) \leq L(\bar{x}, \lambda)
+\end{equation*}
+for all non-negative $x$ and $\lambda$. In other words, $\bar{x}$ maximizes the Lagrangian when $\lambda = \bar{\lambda}$, and $\bar{\lambda}$ minimizes the Lagrangian when $x = \bar{x}$. In other words, the graph of the Lagrangian in $(x, \lambda)$ space is shaped like a saddle. Therefore $(\bar{x}, \bar{\lambda})$ is said to be a \textit{saddle-point} of the Lagrangian.
+
+Let $V(a, c)$ denote the maximum value function of the linear-programming problem. Show that $V$ is convex in $a$ for each fixed $c$, and concave in $c$ for each fixed $a$.
+
+
+
+

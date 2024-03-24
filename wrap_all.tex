@@ -1,0 +1,53 @@
+\documentclass[a4paper,12pt,oneside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+% \graphicspath{{./pics/}}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{patterns} 
+\usetikzlibrary{shadings}
+\usetikzlibrary{decorations.markings}
+
+\usepackage{hyperref} %生成引用链接，注：该宏包可能与其他宏包冲突，故放在所有引用的宏包之后
+\usepackage{cleveref} %实现图片和表格、公式的引用，cleveref包必须放在hyperref包之后
+
+\hypersetup{   %链接设置
+hidelinks,
+colorlinks=true,
+linkcolor=red,
+citecolor=blue,
+urlcolor = black
+}
+
+\usepackage{subfig}  % 画子图
+\usepackage[title,titletoc]{appendix}
+
+\begin{document}
+
+\author{Avinash K Dixit}
+\title{Optimization in Economic Theory \\  \normalsize{2nd Edition}  }   
+\date{July 1990}
+
+\frontmatter
+\maketitle
+\tableofcontents
+
+\mainmatter
+\include{./chapter01}
+\include{./chapter02}
+\include{./chapter03}
+\include{./chapter04}
+\include{./chapter05}
+\include{./chapter06}
+\include{./chapter07}
+\include{./chapter08}
+\include{./chapter09}
+\include{./chapter10}
+\include{./chapter11}
+\include{./appendix}
+
+\backmatter
+% bibliography, glossary and index would go here.
+
+\end{document}

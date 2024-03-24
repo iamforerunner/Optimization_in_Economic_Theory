@@ -1,0 +1,403 @@
+\chapter{Time: The Maximum Principle}
+
+\section*{Statement of the Problem}
+
+As in the case of uncertainty, the study of optimization over time requires no new general principles. The Variables to be chosen will pertain to different dates, but we can always stack them. together in one large vector :3, and the general problem remains one of maximizing the value of a function $F(x)$ subject to a vector inequality constraint $G(x) \leq c$. At the time when the decision is taken, the knowledge of future tastes and technology may be very imperfect. But this simply requires us to capture the uncertainties and attitudes to risk in the functions $F$ and $G$. As time unfolds, there may be opportunities to rethink the current decision and revise the plan. But this merely requires us to recognize such future revisions in our current decision. Such a consideration may lead us to take more flexible decisions now so as to allow later choices in the light of better knowledge. But it may also mean making commitments now to foreclose certain future avenues that tomorrow's preferences would tempt us into, when today's preferences dictate otherwise; here today's decision involves playing a game of strategy against one's own future self. Once all such considerations are incorporated in the objective function and the constraints, the formal theory of the previous chapters continues to apply.
+
+The reason for studying optimization involving time as a separate topic, therefore, is not that it requires any basically new theory. Rather, it is that such problems often have a special structure that enables us to say more about their solutions. The most important aspect of this special structure is the existence of stock flow relationships among the variables at successive points in time. Some of the variables, which I henceforth label $y$ with the appropriate time—subscript or argument, have the dimensions of a stock. Others, labeled $z$, have the dimensions of a flow. In the mathematical terminology, the stocks are called \textit{state variables} and the flows \textit{control variables}. Thinking in terms of the usual production interpretation, economic activity in one period determines the changes in stocks from that period to the next. The feasible increments to stocks depend on both the stocks and the flows during this period. Therefore production possibility constraints are
+\begin{equation} \label{equa10.1}
+y_{t+1} - y_t = Q(y_t, z_t, t)
+\end{equation}
+Here $t$ and $(t+1)$ are successive discrete periods of time, $y$ denotes stocks of capital goods, $z$ can include labor supply, consumption flows etc., $Q$ should be thought of as a production function, and the explicit appearance of $t$ as an argument of this function captures exogenous technological change. Mathematically, the control variables control the change in the state variables. In conformity with the usual idea that it should be permissible to throw goods away, I should write (\ref{equa10.1}) as an inequality
+\begin{equation*}
+y_t + Q(y_t, z_t, t) \geq y_{t+1}
+\end{equation*}
+But in fact this constraint will always hind along, an optimal path, so I shall use the Simpler equation form.
+
+In addition to the constraints that govern changes in stocks, there may be constraints on all the variables pertaining to any one
+date, such as
+\begin{equation} \label{equa10.2}
+  G(y_t, z_t, t) \leq 0
+\end{equation}
+where $G$ is a vector function. An example would be a constraint that requires consumption not to exceed gross output. Constraints for stocks and flows to be non-negative can also be included in (\ref{equa10.2}).
+
+Another special feature that often occurs in Optimization over time is that the criterion function is additively separatfle: it can be expressed as the sum of functions, each of which depends on the variables pertaining to only one date:
+\begin{equation} \label{equa10.3}
+  \sum\limits_{t=0}^T  F(y_t, z_t, t)  
+\end{equation}
+For example, a firm maximizing the discounted present value of its stream of profits would naturally have such an objective, and time would enter the function explicitly in the form of discount factors $(1 + r)^{-t}$, where $r$ is the rate of interest. For a consumer's choice over time (the saving decision), it is often convenient to assume that the utility function is additively separable over time. This is a restriction on preferences. Roughly, it requires that `the marginal rate of substitution between lunch and dinner is independent of the amount of breakfast'; a neat example due, I believe, to Henry Wan.
+As with the expected utility formulation in the ease of uncertainty, additive separability over time is commonly assumed because of its analytical tractability.
+
+Just one more detail remains to be specified. The time-span of the optimization problem begins at $t = 0$. The initial stocks or state variables $y_0$ must be the result of some unspecified history; we simply take them as given. Similarly, when the optimization ends at a finite $T$, we must specify some terminal condition, and the simplest is a requirement of a fixed vector $y_{T+1}$ of stocks to be bequeathed to the future.
+
+\section*{The Maximum Principle}
+
+Now the choice variables are the $y_t$, for $t = 1,2, \dots T$ and the $z_t$ for $t = 0,1, \dots T$. These are subject to the constraints (\ref{equa10.1}) and (\ref{equa10.2}), each holding for $t = 0,1, \dots T$. The objective function is given by (\ref{equa10.3}).
+
+We can define shadow prices and form the Lagrangian as usual. Let $\lambda_t$ denote the multipliers for the constraints (\ref{equa10.2}); these have the usual interpretation of shadow prices of the constraints on activities at $t$. The shadow prices of (\ref{equa10.1}) are new, and more interesting. They tell us the amount of the first—order increase in the objective function if the constraint on the increase in stocks is relaxed, that is, if we are given a gift of a small addition to the
+stock $y_{t+1}$. Therefore they are the shadow prices of the stocks at $(t + 1)$, and I shall denote them by $\pi_{t+1}$.
+
+Write $\mathcal{L}$ for the Lagrangian of the full intertemporal problem. Then
+\begin{equation} \label{equa10.4}
+\mathcal{L} = \sum\limits_{t=0}^T \left\{ F(y_t, z_t, t) + \pi_{t+1} [ y_t + Q(y_t, z_t,t) - y_{t+1} ] -\lambda_t G(y_t, z_t, t)   \right\}
+\end{equation}
+The arguments of $\mathcal{L}$ are all the $y_t$, $z_t$, $\lambda_t$, and $\pi_{t+1}$; they are too numerous to list on the left-hand side. In this chapter I shall use the first-order necessary conditions established in Chapter 3, without ever explicitly comparing the optima with other feasible choices. Therefore I shall not need bars to distinguish specific points from general ones, and shall make the notation simpler by omitting them. I shall also assume that the appropriate constraint qualification is always met.
+
+The first-order conditions with respect to $z_t$, for $t = 0,1, \dots T$ are simple:
+\begin{equation} \label{equa10.5}
+\partial \mathcal{L} / \partial z_t \equiv  F_z(y_t, z_t, t) + \pi_{t+1} Q_z(y_t, z_t,t) -\lambda_t G_z(y_t, z_t, t)=0
+\end{equation}
+Those with respect to $y_t$ are made more complicated because each $y_t$ appears in two terms of the sum. For example, $y_1$ appears in the functions $F$, $Q$, and $G$ and as $\pi_2 y_1$ in the term $t = 1$, and also as $— \pi_1 y_1$ in the term $t = 0$. We can rearrange the expression so that each $y_t$ appears in only one term. Take only the relevant portion of (\ref{equa10.4}):
+\begin{equation} \label{equa10.6}
+\begin{array}{l}
+\sum\limits_{t=0}^T  \pi_{t+1}  (y_t - y_{t+1}) \\
+              \quad   =  \pi_1 (y_0 - y_1) + \pi_2 (y_1 - y_2) + \dots + \pi_{T+1} (y_T - y_{T+1}) \\
+              \quad   =  y_0 \pi_1 + y_1 (\pi_2 - \pi_1) + \dots + y_T (\pi_{T+1} - \pi_T) - y_{T+1} \pi_{T+1} \\
+              \quad   =  \sum\limits_{t=1}^T y_t (\pi_{t+1} - \pi_t) + y_0 \pi_1 - y_{T+1} \pi_{T+1}
+\end{array}
+\end{equation}
+Then (\ref{equa10.4}) becomes
+\begin{equation} \label{equa10.7}
+\begin{array}{l}
+\mathcal{L}  =  \\
+ \quad \sum\limits_{t=1}^T  \left\{ F(y_t, z_t, t) + \pi_{t+1} Q(y_t, z_t, t) +  y_t (\pi_{t+1} - \pi_t) - \lambda_t G(y_t, z_t, t)  \right\}    \\
+  \quad  +  F(y_0, z_0, 0) + \pi_1 Q(y_0, z_0, 0) + y_0 \pi_1 - y_{T+1} \pi_{T+1}
+\end{array}
+\end{equation}
+The terms left hanging in the last line pertain to $y_0$ and $y_{T+1}$, which are not choice variables. The first-order conditions on $y_t$ for $t=1,2,\dots, T$ are
+\begin{equation*}
+\partial \mathcal{L} / \partial y_t \equiv F_y(y_t, z_t, t) + \pi_{t+1} Q_y(y_t, z_t, t) + \pi_{t+1} - \pi_t - \lambda_t G_y(y_t, z_t,t) =0
+\end{equation*}
+or
+\begin{equation} \label{equa10.8}
+\pi_{t+1} - \pi_t = -[ F_y(y_t, z_t, t) + \pi_{t+1} Q_y (y_t, z_t, t) - \lambda_t G_y(y_t, z_t, t)  ]
+\end{equation}
+
+These conditions can be written in a more compact and economically illuminating way. Define a new function $H$, called the Hamiltonian, by
+\begin{equation} \label{equa10.9}
+H(y,z,\pi,t) = F(y,z,t) + \pi Q(y,z,t)
+\end{equation}
+Then (\ref{equa10.5}) says that the controls $z_t$ at $t$ should be chosen to maximize $H(y_t, z_t, \pi_{t+1},t)$, subject to the constraint $G(y_t, z_t, t) \leq 0$. Write $H^*(y_t, \pi_{t+1}, t)$ for the resulting maximum value.
+
+Define the Lagrangian or this single—period optimization problem $L$ (not to be confused with the $\mathcal{L}$ for the full problem over all periods) as
+\begin{equation} \label{equa10.10}
+L = H(y_t, z_t, \pi_{t+1}, t) - \lambda_t G(y_t, z_t, t)
+\end{equation}
+Then (\ref{equa10.8}) is more simply written as
+\begin{equation*} 
+\pi_{t+1} - \pi_t = -L_y(y_t, z_t, \pi_{t+1}, t)  
+\end{equation*}
+In the static maximization problem, only the $z_t$ are choice variables and the $y_t$ and $\pi_{t+1}$ are parameters. Therefore the Envelope Theorem applies, and we have
+\begin{equation} \label{equa10.11}
+ \pi_{t+1} - \pi_t = -H_y^*(y_t, \pi_{t+1}, t)  
+\end{equation}
+
+The Envelope Theorem also gives $H_\pi^* = L_\pi = Q$, evaluated at the optimum. Therefore we can write (\ref{equa10.1}) in a form that is symmetric to (\ref{equa10.9}):
+\begin{equation} \label{equa10.12}
+y_{t+1} - y_t = H_\pi^*(y_t, \pi_{t+1}, t)
+\end{equation}
+
+The results can be summed up as follows:
+
+\textit{The Maximum Principle:} The first-order necessary conditions for the maximization of (\ref{equa10.3}) subject to (\ref{equa10.1}) and (\ref{equa10.2}) are 
+\begin{itemize}
+\item[(i)] for each $t$, $z_t$ maximizes the Hamiltonian $H(y_t, z_t, \pi_{t+1}, t)$ subject to the single-period constraints $G(y_t, z_t, t) \leq 0$, and 
+\item [(ii)] the changes in $y_t$ and $\pi_t$ over time are governed by the difference equations (\ref{equa10.11}) and (\ref{equa10.12}).
+\end{itemize}
+
+This principle proves useful in solving such problems in specific applications. But its greatest conceptual merit is in the economic interpretation of the maximization condition (i). It is clear that we would not want to choose $z_t$ to maximize $F(y_t, z_t, t)$: we know that the choice of $z_t$ affects $y_{t+1}$ via (\ref{equa10.1}), and therefore affects the terms in the objective function at times $t+1$ etc. In the production interpretation, for example, a big splurge of consumption today would increase utility today, but would mean a lower capital stock for the future, and therefore less consumption and less utility in the future. How can we capture all these future effects in a simple way? By using the shadow price of the affected stock, of course. The effect of $z_t$ on $y_{t+1}$ equals its effect on $Q(y_t,z_t, t)$, and the resulting change in the objective function is found by multiplying this by the shadow price $\pi_{t+1}$ of $y_{t+1}$. That is just what we add to $F$ to get the Hamiltonian. Thus the Hamiltonian offers a simple way of altering the one-period objective function $F(y_t, z_t, t)$ to take into account the future consequences of the choice of the controls $z_t$ at $t$.
+
+The condition (\ref{equa10.8}), or equivalently (\ref{equa10.11}), also has a useful economic interpretation. A marginal unit of $y_t$ yields the marginal return $F_y(t) - \lambda_t G_y(t)$ within the period $t$, paying proper attention to the shadow cost of the single—period constraint, and an extra $Q_y(t)$ the next period valued at $\pi_{t+1}$. (Note that l have used the
+argument $t$ instead of the full $(y_t, z_t, t)$ for brevity.) These can be thought of as a dividend. The change in price $\pi_{t+1} - \pi_t $ is like a capital gain, except that the prices are in present-value terms, so $\pi_{t+1}$ contains an extra discount factor that captures the usual interest or opportunity cost of carrying $y_t$ for one period. When $y_t$ is optimum, the overall marginal return, or the sum of these components, should be zero. That is just what (\ref{equa10.8}) expresses, when written as
+\begin{equation} \label{equa10.13}
+[F_y(t) - \lambda_t G_y(t)] + \pi(t) Q_y(t) + [\pi_{t+1} - \pi_t] =0 
+\end{equation}
+In other words, the shadow prices take on values that do not permit a pure or excess return from holding the stock; this is an intertemporal no—arbitrage condition.
+
+What if the terminal condition on stocks $y_{T+1}$ had not been imposed? As these stocks contribute nothing to the objective function, the optimal policy should keep them as low as possible, usually zero. But in some cases it may be desirable to build up stocks first to provide output and utility, and then depreciation limits how fast they can be run down before the terminal date. If any positive stocks are left, they must be worthless, in other words, we should have
+\begin{equation*}
+y_{T+1} \geq 0, \quad \pi_{T+1} \geq 0, \quad \mbox{with complementary slackness}
+\end{equation*}
+More generally, if there is a constraint $y_{T+1} \geq \hat{y}$, we get
+\begin{equation} \label{equa10.14}
+y_{T+1} \geq \hat{y}, \quad \pi_{T+1} \geq 0, \quad \mbox{with complementary slackness}
+\end{equation}
+Such a condition on terminal stocks and their shadow prices is often called a \textit{transversality condition}.
+
+\section*{Continuous-Time Model}
+
+Up to now I have treated time as passing in a discrete succession of periods. This permits the development of the theory as a special case of the standard Lagrange—Kuhn—Tucker theory, and easy economic interpretation of the conditions. But when solving actual specific examples, it turns out to be much more convenient to think of time as a continuous variable. There is no real theoretical reason for preferring the one or the other. For mnemonic convenience, I shall write discrete time as a subscript, and continuous time as a function argument in parentheses.
+
+We can think of continuous time as the limit when we take discrete periods of length $\Delta t$, and let this shrink to zero. This requires some modifications in (\ref{equa10.1}-\ref{equa10.3}). Flows are now rates per unit time, so the right—hand side of the stock flow relation (\ref{equa10.1}) must be multiplied by the length $\Delta t$ of the period. The equation becomes
+\begin{equation*}
+y(t + \Delta t) - y(t) = Q[y(t),z(t),t] \Delta t
+\end{equation*}
+Dividing by $\Delta t$ and letting this go to zero gives the time-derivative of the stock on the left-hand side. It is conventional to indicate this by a dot placed over the variable. Thus we have
+\begin{equation} \label{equa10.15}
+\dot{y}(t) = Q[y(t), z(t), t]
+\end{equation}
+Only a notational change from subscripts to arguments is needed in (\ref{equa10.2}) to get
+\begin{equation} \label{equa10.16}
+ G[y(t), z(t), t ] \leq 0
+\end{equation}
+
+The sum in (\ref{equa10.3}) is more complicated. The total span of time from 0 to $T$ is split into $T/\Delta t$ little discrete periods. Indexing these periods by $i$, the sum can be written as
+\begin{equation*}
+\sum\limits_{i=0}^{T/\Delta t} F[y(i \Delta t), z(i \Delta t), i \Delta t] \Delta t
+\end{equation*}
+The limit of this sum, when $\Delta t$ goes to zero, is the integral
+\begin{equation} \label{equa10.17}
+ \int_{0}^{T} F[ y(t), z(t), t ] dt
+\end{equation}
+
+An incidental advantage is that $\pi_{t+\Delta t}$ converges to $\pi_t$, and thus stocks at time $t$ do not go awkwardly together with shadow prices at $t+1$ in the Hamiltonian. Defining $H$ as in (\ref{equa10.9}), $z_t$ maximizes $H[y(t), z(t), \pi(t), t]$ subject to $G[y(t), z(t), t] \leq 0$. Writing $H^*$ for the maximum value function, $y(t)$ and $\pi(t)$ satisfy the pair of differential equations
+\begin{equation} \label{equa10.18}
+\dot{y} (t) = H_\pi^* [y(t), \pi(t), t]
+\end{equation}
+and
+\begin{equation} \label{equa10.19}
+\dot{\pi}(t) = - H_y^* [y(t), \pi(t), t]
+\end{equation}
+
+We could formally derive these conditions by first defining the Lagrangian $\mathcal{L}$ of the full problem by analogy with (\ref{equa10.4}):
+\begin{equation} \label{equa10.20}
+  \mathcal{L} = \int_0^T \left\{  F[y(t), z(t), t]  + \pi(t) [Q[y(t), z(t), t] - \dot{y}(t)] - \lambda(t) G[y(t), z(t), t]  \right\} dt
+\end{equation}
+The analog of the rearrangement in (\ref{equa10.6}) is integration by parts:
+\begin{equation} \label{equa10.21}
+ - \int_{0}^{T} \pi(t) \dot{y}(t) dt = \int_0^T y(t) \dot{\pi}(t)dt + y(0) \pi(0) - y(T)\pi(T)
+\end{equation}
+Then 
+\begin{equation} \label{equa10.22}
+\begin{array}{rl}
+ \mathcal{L} = \int_0^T \left\{ F[y(t), z(t), t] + \pi(t)Q[y(t), z(t), t] + y(t) \dot{\pi}(t)  \right. \\
+\quad  - \lambda(t) G[y(t), z(t), t] \left.   \right\} dt + \pi(0) y(0) - \pi(T) y(T)
+\end{array}
+\end{equation}
+Now we can think of the integral just like a sum, and differentiate with respect to $z(t)$ and $y(t)$ to get the first-order conditions
+\begin{equation} \label{equa10.23}
+F_z[y(t), z(t), t] + \pi(t)Q_z[y(t), z(t), t] - \lambda(t)G_z[y(t), z(t), t] =0 
+\end{equation}
+and
+\begin{equation} \label{equa10.24}
+F_y[y(t), z(t), t] + \pi(t)Q_y[y(t), z(t), t] - \lambda(t)G_y[y(t), z(t), t] =0 
+\end{equation}
+(\ref{equa10.23}) is the condition for $z(t)$ to maximize the Hamiltonian, and (\ref{equa10.24}) parallels (\ref{equa10.13}), the intertemporal arbitrage equation
+\begin{equation} \label{equa10.25}
+F_y(t)  - \lambda(t)G_y(t) + \pi(t)Q_y(t) + \dot{\pi}(t) = 0 
+\end{equation}
+
+Of course matters are not really that simple. Integrals cannot be differentiated in the ordinary sense with respect to a variable at one instant of time, and a rigorous theory of optimization with continuous time is very complicated. But short-cuts like the one above do lead to usable results. This will suffice for most readers; those demanding more can pursue the references cited at the end of the chapter.
+
+Practical applications of the Maximum Principle proceed by deriving the differential equations (\ref{equa10.18} \ref{equa10.19}), and solving them subject to the appropriate conditions at $t=0$ and $T$. If time does not enter the Hamiltonian explicitly, the solutions can be shown geometrically in the $(y, \pi)$ space; such a pictorial representation is
+called a \textit{phase diagram}. Its use is best explained by illustrating it in the context of a specific problem of economic interest. I shall develop such an application in Example 10.2.
+
+\section*{Examples}
+
+\subsubsection*{\textit{Example 10.1: Life-Cycle Saving}}
+
+Consider a worker with a known span of life $T$, over which he will earn wages at a constant rate $w$, and receive interest at a constant rate $r$ on accumulated savings, or pay the same rate on accumulated debts. Thus when his stock of accumulated assets (debt if negative) equals $k$, his flow income is $(w+rk)$. Writing $c$ for his consumption flow, capital accumulation is governed by
+\begin{equation*}
+\dot{k} = w + rk - c
+\end{equation*}
+Note that $k$ and $c$ are functions of $t$. The general point of evaluation is taken as understood; only special values are shown explicitly when needed.
+
+In technical language, $k$ is the state variable, and $c$ the control variable. Suppose there are no inheritances or bequests, so the end-point conditions are
+\begin{equation} \label{equa10.26}
+k(0) = k(T) =0
+\end{equation}
+Suppose there are no other constraints on choice. The instantaneous utility function is $\ln(c)$, and there is a utility discount rate $\rho$, so the maximand is
+\begin{equation*}
+\int_0^T \ln(c) e^{-\rho t} dt
+\end{equation*}
+
+To use the Maximum Principle, define the Hamiltonian
+\begin{equation} \label{equa10.27}
+  H = \ln(c) e^{-\rho t} + \pi (w+rk-c)
+\end{equation}
+The condition for $c$ to maximize $H$ is
+\begin{equation} \label{equa10.28}
+  c^{-1} e^{-\rho t} - \pi =0
+\end{equation}
+Substituting in (\ref{equa10.27}), the maximized Hamiltonian becomes
+\begin{equation*}
+ H^* = -[\ln(\pi) +\rho t   ] e^{-\rho t} + \pi(w+rk) - e^{-\rho t}
+\end{equation*}
+The differential equations for $k$ and $\pi$ are
+\begin{equation} \label{equa10.29}
+\dot{k} = \partial H^* / \partial \pi = w + rk - \pi^{-1} e^{-rho t}
+\end{equation}
+and 
+\begin{equation} \label{equa10.30}
+\dot{\pi} = -\partial H^* / \partial k = -r \pi
+\end{equation}
+The general solution of (\ref{equa10.30}) is obvious:
+\begin{equation} \label{equa10.31}
+\pi = \pi_0 e^{-rt}
+\end{equation}
+where $\pi_0$ is a constant to be determined. Substituting this in (\ref{equa10.29}), we have
+\begin{equation*}
+ \dot{k} = w + rk - \pi_0^{-1} e^{(r-\rho)t}
+\end{equation*}
+Now
+\begin{equation*}
+d(k e^{-rt}) / dt = (\dot{k} -rk) e^{-rt} = w e^{-rt} - \pi_0^{-1} e^{-\rho t}
+\end{equation*}
+which integrates to
+\begin{equation*}
+k e^{-rt} - k(0) = w(1-e^{-rt})/r  - \pi_0^{-1} (1-e^{-\rho t})/ \rho
+\end{equation*}
+Since we know $k(T)$, this equation fixes $\pi_0$, and completes the solution.
+
+Some economically important facts can be found without knowing the complete solution. Using (\ref{equa10.31}) in (\ref{equa10.28}) we can write
+\begin{equation*}
+c = \pi_0^{-1} e^{(r-\rho)t}
+\end{equation*}
+This shows that the worker's optimum consumption grows over his lifetime if $r>\rho$. Since consumption and wages must balance over his whole lifetime in the sense of having equal discounted present values, this implies $c < w$ in the early years of life and $c > w$ in the later years. In other words, the consumer saves early on, builds up assets, and in the last years of life runs down the savings. The opposite happens if $r < \rho$. Some institutional constraints may prevent him from having negative assets by dissaving at the beginning of his life, and of course the whole economy could not be in equilibrium with all consumers attempting to dissave. But these are separate issues.
+
+This is merely the simplest example of life-cycle saving. The theory can be generalized to include more complicated preferences, labor supply and retirement choices, taxation, uncertainty, liquidity constraints, and many more features of reality.
+
+\subsubsection*{\textit{Exercise 10.2: Optimum Growth}}
+
+This is also a problem of optimal saving, but from the point of view of the economy as a whole. The change of perspective brings with it two new features. First, the rate of return to saving cannot be an exogenous market rate of interest as it would be for an individual, but must be the endogenous marginal product of capital. Secondly, there is no logical terminal date to the plan. I shall develop the theory by formally letting $T =\infty$, and mention the attendant complications only in passing.
+
+Suppose the accumulated saving becomes a scalar stock of capital $k$, and the flow of output is given by the production function $F(k)$. The usual assumptions are that $F$ is increasing and strictly concave, with $F(0)=0$ and $F^\prime = \infty$. Capital depreciates at a proportional rate $\delta$. If the consumption flow is $c$, then the capital accumulation equation is 
+\begin{equation} \label{equa10.32}
+\dot{k} = F(k) - \delta k - c
+\end{equation}
+The initial capital stock $k(0)$ is given. There are no other constraints.
+
+The utility of the flow of consumption is $U(c)$, increasing and strictly concave. The utility discount rate is $\rho$, so the maximand is 
+\begin{equation*}
+ \int_0^\infty U(c) e^{-\rho t} dt
+\end{equation*}
+An obvious potential difficulty is the convergence of this integral. That needs a sufficiently large $\rho$; I shall leave out the details.
+
+To apply the Maximum Principle, define the Hamiltonian
+\begin{equation*}
+H = U(c) e^{-\rho t} + \pi [F(k) - \delta k -c]
+\end{equation*}
+The condition for $c$ to maximize $H$ is
+\begin{equation} \label{equa10.33}
+ U^\prime (c) e^{-\rho t} = \pi
+\end{equation}
+The differential equation satisfied by $\pi$ is 
+\begin{equation} \label{equa10.34}
+ \dot{\pi} = - \partial H / \partial k = - \pi [F^\prime(k) - \delta]
+\end{equation}
+
+We could solve (\ref{equa10.33}) for $c$ and substitute the result in (\ref{equa10.32}), which would then join (\ref{equa10.34}) in giving us a pair of differential equations for $k$ and $\pi$. Actually it is more convenient to work in terms of $\pi e^{\rho t} = \phi $ say, because the pair of differential equations for $k$ and $\phi$ does not involve time explicitly. Here I shall take a different approach, and work with $k$ and $c$.
+
+Differentiation of (\ref{equa10.33}) gives
+\begin{equation*}
+ \dot{\pi} = [ U^{\prime \prime}(c) \dot{c} - \rho U^\prime (c) ] e^{-\rho t}
+\end{equation*}
+Using (\ref{equa10.34}) and simplifying, we find
+\begin{equation} \label{equa10.35}
+\dfrac{\dot{c}}{c} = \dfrac{F^\prime(k) - (\rho + \delta)}{ \eta(c)}
+\end{equation}
+where $\eta(c)$ is the elasticity with which the marginal utility of consumption declines as consumption increases:
+\begin{equation*}
+ \eta(c) = -c U^{\prime \prime}(c) / U^\prime (c)
+\end{equation*}
+Observe that Example 10.1 had a formally identical structure, with $F^\prime(k)$ constant and equal to $r, \delta=0$, and $\eta(c)$ constant and equal to 1.
+
+Now we can use (\ref{equa10.32}) and (\ref{equa10.35}) as the pair of differential equations in $k$ and $c$. Time does not enter explicitly, and we can show the solutions in a diagram; see Figure \ref{Fig10.1}. Given any point $(k,c)$, we can find the velocities $(\dot{k}, \dot{c})$ from the differential equations. These can be shown by a small vector arrow attached to $(k,c)$. If we do this for all points, we can join successive arrows together and find whole paths of motion in the $(k,c)$ space. Given an initial point, the differential equations determine the subsequent change to proceed along the solution path passing through this point. Two such paths cannot cross, because the direction of motion is uniquely determined by the equations given a starting-point.
+
+\begin{figure}[!htb] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+\centering %图片居中
+%\includegraphics[width=0.8\textwidth]{./Fig3.1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\begin{tikzpicture}[scale=1.5  ]
+\tikzset{midarrow/.style={
+    decoration={
+        markings,
+        mark=at position 0.5 with {\arrow{>}}
+    },
+    postaction={decorate}
+}}
+    % 绘制坐标轴
+    \draw[->] (0,0) -- (5,0) node[below] {$k$};
+    \draw[->] (0,0) -- (0,5) node[left] {$c$};
+    \draw[black] (0,0) node[below left] {$O$};
+
+\draw[domain=0:4.9,smooth,variable=\x, black] plot ({\x},{-5/17 * \x * \x + 27/17 * \x }) ;
+\draw[dashed] (2.7,2.15) -- (2.7,0) node [below] {$k^\prime$} ;
+\draw[black] (4.9,2.5) node[] {$c=F(k)-\delta k$};
+\draw[black] (4.2,1.6) -- (4.2,2.3) ;
+
+% 绘制一条带有箭头的曲线
+\draw[midarrow] (0,0) .. controls (1,0.6) .. (2,2);
+\draw[midarrow] (4,4) .. controls (3,3.4) .. (2,2);
+\draw[midarrow] (3.5,1.96) .. controls (3.6,1.3) .. (4,0.8);
+\draw[black] (3.5,1.96) .. controls (3.6,2.7) .. (4,3.2);
+
+\draw[black] (0.8,0.2) .. controls (1.4,0.25) and (1.7,0.75) .. (2,0.8);
+\draw[midarrow] (2,0.8) .. controls (2.35,0.7) .. (2.7,0.5);
+\draw[black] (2.7,0.5) .. controls (3.0,0.35) .. (3.5,0.3);
+
+\draw[midarrow] (2,3.7) .. controls (1.4,3.8) .. (0.8,4.2);
+\draw[black] (2,3.7) .. controls (2.5,3.75) and (2.6,4) .. (3,4.1);
+
+\draw[midarrow] (1,2) .. controls (0.85,2.4) .. (0.6,2.8);
+\draw[black] (1,2) .. controls (1.15,1.4) .. (1,1.1);
+
+\draw[black] (2,4) -- (2,0) node [below] {$k^*$} ;
+\draw[dashed] (2,2) -- (0,2) node[left ] {$c^*$} ;
+
+\end{tikzpicture}
+\caption{Phase diagram for optimum growth} %最终文档中希望显示的图片标题
+\label{Fig10.1} %用于文内引用的标签
+\end{figure}
+
+The easiest way to understand the phase diagram is to recognize that each of $k$ and $c$ can increase or decrease; thus the space is split into four regions each corresponding to movement toward the north-east, south-east etc. From (\ref{equa10.32}), we see that $k$ increases if $c<F(k) - \delta k $, which is the region below the curve $c =F(k) - \delta k$. This curve has its peak when $F(k) - \delta k$ is maximum, that is, for $k = k^\prime$ defined by $F^\prime(k^\prime) = \delta$. Turing to (\ref{equa10.35}), we see that $c$ increases when $F^\prime(k) > \rho + \delta$; note that $\eta(c ) > 0$ since $U$ is increasing and strictly concave. But $F$ is also increasing and strictly concave; therefore $c$ increases when $k < k^*$, where $F^\prime(k^*) = \rho + \delta$. Further, when $\rho >0$, which we need for convergence, we have $k^* < k^\prime$. Putting together all this information, we get the pattern of paths shown in the figure.
+
+Writing $c^* = F(k^*) - \delta k^*$, we see that there are exactly two paths that converge to $(k^*, c^*)$, one from the left and the other from the right. All other paths diverge, and are asymptotic to, or even hit, one of the axes.
+
+We are given $k(0)$ but not $c(0)$, so we must try out alternative possibilities for $c(0)$ and see where they lead. If we choose $c(0)$ such that the path starting at $(k(0), c(0))$ converges to $(k^*, c^*)$, all is well. If we choose any other $c(0)$, the path diverges to one of the axes. Along the $k$—axis the consumption goes to zero. Along the $c$—axis consumption grows for a while, but capital runs out and eventually capital, output, and therefore consumption must fall to zero. Neither possibility looks attractive. This suggests that the right choice of $c(0)$ is on the stable path directly above $k(0)$. Indeed, an appeal to sufficient conditions, which I shall discuss briefly in Chapter 11, shows that such a choice is indeed the right one.
+
+A general feature of the solution is apparent: $c$ is higher when $k$ is higher. But the figure does not tell us whether $c/F(k)$ increases with $k$, and in fact this can go either way for particular forms of $F$ and $U$. Thus we cannot say in general that richer societies should optimally save a larger proportion of their income.
+
+\section*{Exercises}
+
+\subsubsection*{\textit{Exercise 10.1: Life-Cycle Saving}}
+
+Solve the problem of Example 10.1 with the instantaneous utility function changed to 
+\begin{equation*}
+ U(c) = c^{1-\epsilon} / (1-\epsilon), \quad \epsilon > 0
+\end{equation*}
+Thus the marginal utility is $U^\prime(c) = c^{-\epsilon}$. The earlier example is the special case where $\epsilon =1$, as can be verified by taking limits using L'Hopital's Rule.
+
+Next suppose the consumer inherits assets $k_0$ and plans to leave a bequest of $k_1$. How large can $k_1$ be before the problem has no feasible solution?
+
+\subsubsection*{\textit{Exercise 10.2: Optimum Growth}}
+
+Interpret the variable $\phi$ defined in Example 10.2. Show that $k$ and $\phi$ satisfy the pair of differential equations
+\begin{equation*}
+\dot{k} = F(k) - \delta k - G(\phi)
+\end{equation*} 
+and 
+\begin{equation*}
+\dot{\phi} = -\phi [F^\prime(k) -\rho - \delta ]
+\end{equation*} 
+where $G$ is the function inverse to $U^\prime$. Draw the phase diagram, which should look just like Figure \ref{Fig10.1} but reflected upside down. Complete the solution.
+
+\subsubsection*{\textit{Exercise 10.3: Entry-Deterrence}}
+
+The demand curve in an industry at time $t$ is given by
+\begin{equation*}
+ q(t) = a - b p(t)
+\end{equation*}
+where $a$ and $b$ are positive constants, $p(t)$ and $q(t)$ are respectively the price and the quantity. There is one large firm that sets the price, and a fringe of small firms that accept this price and sell their entire output. New fringe firms enter if the large firm charges a price greater that $p^*$. Write $x(t)$ for the output of the fringe firms. The initial $x(0)$ is given; $x(t)$ satisfies the differential equation
+\begin{equation*}
+ \int_0^\infty [p(t) - c][a - x(t) - b p(t)] e^{-\rho t} dt
+\end{equation*}
+where $\rho$ is the rate of interest. Assume $p^* > c$.
+
+Apply the Maximum Principle to this problem. taking $x$ as the state variable and $p$ as the control variable. Construct the phase diagram in $(x,p)$ space. Find the qualitative features of the optimum pricing policy of the large firm. Obtain conditions on the parameters of the problem under which the competing firms retain positive sales in the limit as $t$ goes to $\infty$.
+
+
+
+
+
+
+

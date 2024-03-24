@@ -1,0 +1,402 @@
+\chapter{Extensions and Generalizations}
+
+\section*{More Variables and Constraints}
+
+If there are $n$ choice variables $(x_1, x_2, \dots, x_n)$, we simply let the vector $x$ have $n$ components. Then (\ref{equa2.11}) is extended to $j=1,2,\dots,n$, and we have $n+1$ equations in the $(n+1)$ unknowns, namely the $n$ components of $\bar{x}$ and the number $\lambda$.
+
+If there are $m$ constraints, write them as
+\begin{equation*}
+ G^i(x) = c_i, \quad i = 1,2,\dots, m
+\end{equation*}
+where the functions are identified by superscripts to avoid confusion with partial derivatives, which are being denoted by subscripts. For the moment, continue to ignore any other restrictions such as non-negativity on the variables. We need $m<n$, for $n$ constraints on $n$ variables will generally reduce the choice to a discrete set of points, while more constraints will, in general, be mutually inconsistent.
+
+Lagrange's method extends to this situation very easily. We define a multiplier $\lambda_i$ for each constraint, and define the Lagrangian
+\begin{equation} \label{equa3.1}
+L(x_1, x_2, \dots, x_n, \lambda_1, \lambda_2, \lambda_m) = F(x_1, x_2, \dots, x_n ) + \sum_{i=1}^{m} \lambda_i [c_i - G^i(x_1, x_2, \dots, x_n)]
+\end{equation}
+The first-order necessary conditions satisfied at the optimum $\bar{x}$ are then
+\begin{equation} \label{equa3.2}
+\partial L / \partial x_j = 0, \quad j =1,2,\dots,n
+\end{equation}
+and
+\begin{equation} \label{equa3.3}
+\partial L / \partial \lambda_i = 0, \quad i =1,2,\dots,m
+\end{equation}
+When using these to search for the optimum, we treat them as $(m+n)$ equations in the $(m+n)$ unknowns $\bar{x}_1, \bar{x}_2, \dots, \bar{x}_n, \lambda_1, \lambda_2, \dots, \lambda_m$.
+
+These can be put more neatly in vector-matrix form. Let $c$ be a column vector with components $c_i$, and $G$ a column vector-valued function with component function $G^i$. Then all the constraints can be written together as a vector equation $G(x)=c$. Next, the partial derivatives $F_j(x)$ should be formed into a vector which I shall write as $F_x(x)$, the subscript $x$ indicating the vector argument with respect to which the derivatives have been taken. I shall make the convention that when the argument of a function is a column vector, the vector of partial derivatives is a row vector, and vice versa. There is a good mathematical reason for this, but the main advantage here is that it will save us from having to transpose matrices all the time. Each $G^i$ will have a row vector of partial derivatives $G_x^i(x)$ with components $G_j^i(x)$, and these row vectors will be stacked vertically to form an $m \times n$ matrix, written $G_x(x)$. The multipliers will form a row vector $\lambda$.
+
+With this notation, (\ref{equa3.1}) can be written more simply as
+\begin{equation} \label{equa3.4}
+L(x,\lambda) = F(x) + \lambda[c-G(x)]
+\end{equation}
+To verify this, note that $\lambda$ is an $m-$dimensional row vector, that is,
+an $1 \times m$ matrix, while the term in the square brackets is an $m-$dimensional column vector, that is, an $m \times 1$ matrix. The product of these two matrices is found by multiplying the $i$th element of the row vector by the corresponding element of the column vector, and adding all these products. The result is a $1 \times 1$ matrix, that is, a scalar. It is exactly the expression in (\ref{equa3.1}).
+
+In the same way, the conditions (\ref{equa3.2}) and (\ref{equa3.3}) become more compact:
+\begin{equation} \label{equa3.5}
+L_x(\bar{x}, \lambda) = 0
+\end{equation}
+\begin{equation} \label{equa3.6}
+L_\lambda(\bar{x}, \lambda) = 0
+\end{equation}
+
+What happens to the Constraint Qualification? Note that in the case of Chapter 2, we had two variables $(n=2)$ and one constraint $(m=1)$. The matrix $G_x(x)$ was $1 \times 2$, that is, simply the row vector $( G_1(x), G_2(x)  )$. The Constraint Qualification was the assumption that this vector was not zero at $\bar{x}$. The condition for the general case is that the matrix should not have any singularity. Since $m<n$, this amounts to requiring that it should have $m$ independent rows, that is, its rank should be the maximum possible, namely $m$.
+
+Let us sum up these results into a compact statement:
+
+\textit{Lagrange's Theorem:} Suppose $x$ is an $n$-dimensional vector, $c$ an $m$-dimensional vector, $F$ a function taking scalar values, $G$ a function taking $m$-dimensional vector values, with $m<n$. Define
+\begin{equation*} \tag{3.4}
+L(x, \lambda) = F(x ) + \lambda[c-G(x)]
+\end{equation*}
+where $\lambda$ is an $m$-dimensional row vector. If $\bar{x}$ maximizes $F(x)$ subject to $G(x)=c$ and no other restrictions, and rank $G_x(\bar{x})=m$, then there is a value of $\lambda$ such that
+\begin{equation*} \tag{3.5}
+L_x(\bar{x}, \lambda) = 0
+\end{equation*}
+\begin{equation*} \tag{3.6}
+L_\lambda(\bar{x}, \lambda) = 0
+\end{equation*}
+
+I have stated all these generalizations without proof. Most readers will probably accept the intuition of the case of two variables and one constraint, and merely test the general result in applications. Even they will find the precise statements like the ones above useful. For the more mathematically orientated readers, I give a formal proof of the most general result of this chapter, the Kuhn-Tucker Theorem, in the Appendix.
+
+\section*{Non-Negative Variables}
+
+Next suppose that the variables $x_j$ must be non-negative to make economic sense. If the optimum $\bar{x}$ happens to be such that these requirements are not binding, that is, all the $\bar{x}_j$ are in fact strictly positive, then the above conditions (\ref{equa3.2}) and (\ref{equa3.3}) continue to apply. If say $\bar{x}_1$ is zero, then the arbitrage argument that leads to first-order conditions is more limited. We can consider only those infinitesimal changes $dx$ for which $dx_1 >0$. Generalization of the reasoning in Chapter 1 that led to the inequality condition (\ref{equa1.10}) now gives us
+\begin{equation*}
+L_1(\bar{x})   = F_1(\bar{x}) - \sum_{i=1}^m \lambda_i G_1^i(\bar{x}) \leq 0
+\end{equation*}
+Once again I omit the formal proof.
+
+More generally, some components of $\bar{x}$ may be positive and others zero. Then an equation like (\ref{equa3.2}) should hold for the partial derivative of the Lagrangian with respect to every component that is positive, and an inequality like the one just above with respect to every component that is zero, at the initial point. In other words, for every $j$, we should have
+\begin{equation} \label{equa3.7}
+L_j(\bar{x}) \leq 0 , \quad \bar{x}_j \geq 0
+\end{equation}
+with at least one of these holding as an equation. In exceptional cases, both might hold as equations. But the logical possibility that both inequalities may be strict is ruled out by the requirements of optimality.
+
+The requirement that at least one inequality in (\ref{equa3.7}) should hold as an equation is sometimes stated more compactly as
+\begin{equation*}
+    \bar{x}_j  L_j(\bar{x}) = 0
+\end{equation*}
+The point is that the product can be zero only if at least one of the factors is zero.
+
+A pair of matched inequalities like (\ref{equa3.7}), not both of which can be strict, is said to show \textit{complementary slackness}. A single inequality, say $\bar{x}_j \geq 0$, is \textit{binding} if it holds as an equation, that is, if $x_j$ is at the extreme limit of its permitted range; the inequality is said to be  \textit{slack} if $\bar{x}_j$ is positive, and so has some room to maneuver before hitting an extreme. Each one of the pair of inequalities in (\ref{equa3.7}) therefore complements the slackness in the other: if one is slack, the other must be binding.
+
+We can collect all the component inequalities in (\ref{equa3.7}) into vectors. Here I shall use the following notation: $x \geq 0$ means that $x_j \geq 0$ for every $j$; $x>0$ means that at least one of these component inequalities is strict; $x \gg 0 $ means that all the component inequalities are strict. Then (\ref{equa3.7}) becomes
+\begin{equation*} \tag{3.7}
+L_x(\bar{x}) \leq 0 , \quad \bar{x} \geq 0, \quad \mbox{with complementary slackness}
+\end{equation*}
+it being understood that complementary slackness holds for each component pair in the vector inequalities.
+
+Once again, I summarize the result for future reference:
+
+\textit{Lagrange's Theorem with Non-Negative Variables:} Suppose $x$ is an $n$-dimensional vector, $c$ an $m$-dimensional vector, $F$ a function taking scalar values, $G$ a function taking $m$-dimensional vector values, and $m<n$. Define
+\begin{equation*} \tag{3.4}
+L(x, \lambda) = F(x) + \lambda[c-G(x)]
+\end{equation*}
+where $\lambda$ is an $m$-dimensional row vector. If $\bar{x}$ maximizes $F(x)$ subject to $G(x)=c$ and $x \geq 0$, and the constraint qualification rank $G_x(\bar{x}) = m $ holds, then there is a value of $\lambda$ such that
+\begin{equation*} \tag{3.7}
+L_x(\bar{x}, \lambda) \leq 0, \quad \bar{x} \geq 0, \quad \mbox{with complementary slackness}
+\end{equation*}
+and
+\begin{equation*} \tag{3.6}
+L_\lambda(\bar{x}, \lambda) = 0
+\end{equation*}
+
+First-order necessary conditions are supposed to narrow down our search for a solution. How does that work in this instance? We start without knowledge of which components of the solution are going to be positive and which ones zero. If we assume a particular pattern, say $\bar{x}_1 >0 , \bar{x}_2 =0. \bar{x}_3>0, \dots $, then from (\ref{equa3.7}) we get $L_1(\bar{x})=0, \bar{x}_2=0, L_3(\bar{x})=0, \dots$. In other words, an assumed pattern leads to a set of $n$ equations from (\ref{equa3.7}). These may not have a solution at all, and even if they do, it may not satisfy the other inequality conditions required from the pattern. But if a solution satisfying the requirements exists, then it becomes a candidate for the optimum choice.
+
+There are $2^n$ patterns of positive and zero components in the $n$-dimensional vector $x$. We can then repeat the same exercise for every one of these patterns and find out other candidates for optimality. Then our search narrows down to all these candidates.
+
+In some applications the search is relatively easy to perform; the simplex method for solving linear programming problems is essentially a systematic algorithm for such a search. But in general the search is too exhaustive and exhausting. If we had to carry it out every time, the prospects for solving constrained optimization problems would be very poor. Luckily many problems of practical interest offer short cuts or systems for searching among the patterns. In most basic contexts of economic theory, we can make good guesses about the likely pattern of equations and inequalities, proceed on that basis, and use second-order sufficient conditions to verify that the resulting solution is indeed the optimum.
+
+\section*{Inequality Constraints}
+
+Now we can consider more general inequality constraints. This is of considerable economic importance, because usually there is no compulsion to use all of available income or some resource, and we should determine in the process of solution whether it is optimal to use it fully.
+
+Suppose the first component in the constraint need only hold as an inequality
+\begin{equation*}
+G_1(x) \leq c_1
+\end{equation*}
+We can fit this into the context discussed before using the same trick as the introduction of the `unspent income' variable in the consumer's problem of Chapter 1. Let us define a new variable $x_{n+1}$ as
+\begin{equation} \label{equa3.8}
+ x_{n+1} = c_1 - G^1(x)
+\end{equation}
+In terms of the enlarged set of variables, the constraint has become an exact equation. The new variable $x_{n+1}$ is restricted to be non-negative, but we know how to handle that.
+
+Write $\hat{L}$ as the Lagrangian for the new problem, to distinguish it from the $L$ of the old one. Then
+\begin{equation*}
+\begin{array}{rl}
+\hat{L}( x_1, \dots, x_n, x_{n+1}, & \lambda_1,\dots,\lambda_m ) \\
+                                = & F(x_1, \dots ,x_n, x_{n+1}, \lambda_1,\dots, \lambda_m)  \\
+                        & + \lambda_1[c_1 - G^1(x_1, \dots, x_n) - x_{n+1} ] \\
+                    & + \sum_{i=2}^n \lambda_i [c_i - G^i(x_1, \dots, x_n) ] \\
+                   = & L(x_1, \dots, x_n, \lambda_1, \dots, \lambda_m) - \lambda_1 x_{n+1}
+\end{array}
+\end{equation*}
+
+All the other first-order conditions are as before, but we have a new one with respect to $x_{n+1}$:
+\begin{equation*}
+\partial \hat{L} / \partial x_{n+1} \equiv - \lambda_1 \leq 0, \quad x_{n+1} \geq 0
+\end{equation*}
+with complementary slackness. Recall that
+\begin{equation*}
+x_{n+1} = c_1 - G^1(x) = \partial L/ \partial \lambda_1
+\end{equation*}
+Therefore the condition can be written
+\begin{equation} \label{equa3.9}
+\partial L / \partial \lambda_1 \geq 0, \quad \lambda_1 \geq 0
+\end{equation}
+with complementary slackness: a form that is nicely symmetrical with the condition (\ref{equa3.6}) for non-negative variables.
+
+We can similarly allow all constraints to be inequalities. If we do that, there is no reason in general to maintain the restriction $m<n$; any number of inequality constraints can still leave a non-trivial range of variation for the choice variables $x$. The first-order conditions are the exact analogs of (\ref{equa3.9}) for the other components and we can stack them into a pair of vector inequalities with complementary slackness in each component pair.
+
+The Constraint Qualification is altered. Specifically, suppose $k$ of the constraints are binding, that is, hold as equalities. Take the rows corresponding to these $k$ from the matrix of derivative $G_x(x)$. The resulting $k \times n$ submatrix should have rank $k$.
+
+Once again we have the formal statement:
+
+\textit{Lagrange's Theorem with Inequality Constraints:} Suppose $x$ is an $n$-dimensional vector, $c$ an $m$-dimensional vector, $F$ a function taking scalar values, and $G$ a function taking $m$-dimensional vector values. Define
+\begin{equation*} \tag{3.4}
+L(x, \lambda) = F(x) + \lambda[c-G(x)]
+\end{equation*}
+where $\lambda$ is an $m$-dimensional row vector. If $\bar{x}$ maximizes $F(x)$ subject to $G(x) \leq c$, and the constraint qualification rank holds, namely that the submatrix of $G_x(\bar{x})$ formed by taking those rows $i$ for which $G^i(\bar{x})=c_i$ has the maximum possible rank, then there is a value of $\lambda$ such that
+\begin{equation*} \tag{3.5}
+L_x(\bar{x}, \lambda) = 0
+\end{equation*}
+and
+\begin{equation} \label{equa3.10}
+L_\lambda(\bar{x}, \lambda) \geq 0, \quad \lambda \geq0, \quad \mbox{with complementary slackness}
+\end{equation}
+
+Finally, we can combine the cases of non-negative variable and inequality constraints to get the most general result of this kind:
+
+\textit{The Kuhn-Tucker Theorem:} Suppose $x$ is an $n$-dimensional vector, $c$ an $m$-dimensional vector, $F$ a function taking scalar values, $G$ a function taking $m$-dimensional vector values, with $m<n$. Define
+\begin{equation*} \tag{3.4}
+L(x, \lambda) = F(x) + \lambda[c-G(x)]
+\end{equation*}
+where $\lambda$ is an $m$-dimensional row vectors. Suppose $\bar{x}$ maximizes $F(x)$ subject to $G(x) \leq c$ and $x \geq 0$, and the constraint qualification holds, namely the submatrix of $G_x(\bar{x})$ formed by taking those rows $i$ for which $G^i(\bar{x})= c_i $ has the maximum possible rank. Then there is a value of $\lambda$ such that
+\begin{equation*} \tag{3.7}
+L_x(\bar{x}, \lambda) \leq 0, \quad \bar{x} \geq 0, \quad \mbox{with complementary slackness}
+\end{equation*}
+and
+\begin{equation*} \tag{3.10}
+L_\lambda(\bar{x}, \lambda) \geq 0, \quad \lambda \geq0, \quad \mbox{with complementary slackness}
+\end{equation*}
+
+Once again, the exhaustive procedure for finding a solution using this theorem involves searching among all $2^{(m+n)}$ patterns that are possible from the $(m+n)$ complementary slackness conditions. Once again, short cuts are usually available. We shall soon see some examples that illustrate and apply the theorem.
+
+\section*{Examples}
+
+\subsubsection*{\textit{Example 3.1: Quasi-Linear Preferences}}
+
+Suppose there are two goods $x$ and $y$, whose quantities must be non-negative, and whose prices are $p$ and $q$ respectively, both being positive. Consider a consumer with income $I$ and the utility function
+\begin{equation*}
+U(x, y) = y + a \ln(x)
+\end{equation*}
+where $a$ is a given positive constant. Such preferences are called quasi-linear, because the utility function can be chosen linear in the quantity of one of the goods.
+
+To find this consumer's demand functions, we can use the Kuhn-Tucker Theorem. Form the Lagrangian
+\begin{equation*}
+L(x,y,\lambda) = y + a \ln(x) + \lambda[ I - px -qy  ]
+\end{equation*}
+The first-order conditions (\ref{equa3.7}) and (\ref{equa3.10}) become
+\begin{equation} \label{equa3.11}
+a/x - \lambda p \leq 0, \quad x \geq 0
+\end{equation}
+\begin{equation} \label{equa3.12}
+1 - \lambda q \leq 0, \quad y \geq 0
+\end{equation}
+\begin{equation} \label{equa3.13}
+I - px - qy \geq 0, \quad \lambda \geq 0
+\end{equation}
+in each case with complementary slackness.
+
+Let us solve this mathematically to develop an intuition for the technique. With two non-negative variables and one inequality constraint, there are $2^3=8$ possible patterns of equations and inequalities. Let us see which ones offer candidates for optimality.
+
+First note that the budget constraint cannot be slack. The economics of this is simple: the budget cannot go unspent because the goods have positive marginal utilities. Formally, if the budget constraint were slack, (\ref{equa3.13}) would give $\lambda =0$. Then (\ref{equa3.11}) would require $a/x \leq 0$ which is impossible; similarly (\ref{equa3.12}) would require $1<0$.
+
+This reduces the number of cases we need look at to four, namely the patterns of positive and zero $x$ and $y$ that can arise in (\ref{equa3.11}) and (\ref{equa3.12}).
+
+Both $x$ and $y$ being zero does not satisfy the budget equation, which must hold, as we saw above. Therefore this case is logically impossible. The economics of the matter is again that the goods have positive marginal utilities.
+
+If $x=0$ and $y=I/q >0$, then (\ref{equa3.12}) gives $\lambda = 1/q$, and then (\ref{equa3.11}) becomes $p/q \geq \infty$, which is not true. Therefore this case cannot arise either. The economic reason is that the first small unit of $x$ has infinite marginal utility, so it cannot be optimal to consume zero $x$.
+
+Next consider $x>0$ and $y=0$. Then from the budget constraint $x=I/p$, and from (\ref{equa3.11}), $\lambda=a/I$. Using this in (\ref{equa3.12}), we have $1 \leq a q/I$, or $I \leq aq$. This is a condition on the given parameters of the problem, and they may or may not satisfy it. If they do, the premises of the case are mutually consistent and we have a candidate for optimality.
+
+Finally, if both $x$ and $y$ are positive, (\ref{equa3.11}) and (\ref{equa3.12}) give $a/(px)=\lambda=1/1$, so $x=aq/p $. Then the budget constraint gives $y=I/q-a$. This is logically consistent if $I > aq$. Once again this may or may not be satisfied; if it is, we have a candidate for optimality.
+
+This complements the discussion of the cases. Now let us infer some useful ideas from the procedure and the results. The first thing to note is that six of the eight possible patterns could be ruled out using economic sense; after some experience it is possible to cut down the amount of formal reasoning quite a lot in this way.
+
+Next, observe that the space of all possible values of $p$, $q$, and $I$ is split into two exhaustive and mutually exclusive sets by the conditions on the parameters that make each of the last two cases internally consistent. One requires $I \leq aq$, while the other requires $I > aq$. In many applications, a similar neat classification will emerge.
+
+Third, when $I= aq$, we have $\lambda=1/q$. Therefore
+\begin{equation*}
+1 - \lambda q = 0, \quad \mbox{and} \quad y = 0
+\end{equation*}
+both inequalities in (\ref{equa3.12}) hold as exact equations. When I discussed complementary slackness following (\ref{equa3.6}), I mentioned this possibility, and called it an exceptional case. Now we see why: it arises at the special configuration of parameters where the solution is just at the point of switching from one pattern of equations and inequalities in the complementary slackness conditions to another pattern.
+
+Finally, let us restate the optimum choice rule:
+\begin{equation*}
+\mbox{if} \quad I \leq aq, \quad x = I/p \quad \mbox{and} \quad y=0
+\end{equation*}
+\begin{equation*}
+\mbox{if} \quad I > aq, \quad x = aq/p \quad \mbox{and} \quad y=I/q - a
+\end{equation*}
+
+To see the solution more clearly, carry out the thought experiment of starting at a very low level of income and raising it gradually. At first, all of income is spent on good $x$ and none on $y$. After a point, the expenditure on $x$ is kept constant, and all additional income is spent on $y$. We can think of good $x$ as an exemplar of a necessity: it has an absolute first claim on income, but once its needs are satisfied, all extra income can go toward other goods.
+
+Quasi-linear preferences are useful when we want to isolate one sector or industry and wish to avoid the feedback of income effects on the demand for its goods. This is often called `partial equilibrium'; a better name would be `industry analysis'. The assumption that changes in income do not affect the demand for the good in question is obviously not meant to be taken literally, but often proves an acceptable approximation or simplification for the purpose.
+
+\subsubsection*{\textit{Example 3.2: Technological Unemployment}}
+
+Suppose an economy has 300 units of labor and 450 units of land. These can be used in the production of wheat and beef. Each unit of wheat requires 2 of labor and 1 of land; each unit of beef requires 1 of labor and 2 of land.
+
+A plan to produce $x$ units of wheat and $y$ units of beef is feasible if its requirements of each factor of production are less than the available amount of that factor:
+\begin{equation} \label{equa3.14}
+2x + y \leq 300
+\end{equation}
+\begin{equation} \label{equa3.15}
+x + 2y \leq 450
+\end{equation}
+Each of the inequalities allow all points on or below a straight line. The set that is feasible given both constraints is the quadrilateral OABC of Figure \ref{Fig3.1}. The north-east frontier of the feasible set, or the production possibility frontier, is ABC.
+\begin{figure}[!htb] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+\centering %图片居中
+%\includegraphics[width=0.8\textwidth]{./Fig3.1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\begin{tikzpicture}[scale=0.02]
+    % 绘制坐标轴
+    \draw[->] (0,0) -- (500,0) node[below] {land};
+    \draw[->] (0,0) -- (0,330) node[left] {labor};
+    \draw[black] (0,0) node[below left] {O};
+
+
+    \draw[thick,black] (0,225) -- (450,0) ;  % 全部用于生产牛肉
+    \draw[thick,black] (0,300) -- (150,0) ;  % 全部用于生产小麦
+
+\filldraw [black] (150,0) circle (1pt) node[below] {150} node[above right] {A};
+\filldraw [black] (450,0) circle (1pt) node[below] {450};
+\filldraw [black] (0,225) circle (1pt) node[left] {225} node[above right] {C};
+\filldraw [black] (0,300) circle (1pt) node[left] {300};
+\filldraw [black] (50,200) circle (1pt) node[above right] {B=(50, 200)};
+
+    \coordinate (O) at (0,0);
+    \coordinate (A) at (150,0);
+    \coordinate (B) at (50,200);
+    \coordinate (C) at (0,225);
+    
+    % 使用shade命令填充四边形，创建阴影效果
+    %\fill[color=gray!50] (O) -- (A) -- (B) -- (C) -- cycle;
+    \fill[pattern = north west lines] (O) -- (A) -- (B) -- (C) -- cycle;
+    
+\draw[black] (50,100) -- (250,150) node[right] {feasible set};
+
+\end{tikzpicture}
+\caption{Production and unemployment} %最终文档中希望显示的图片标题
+\label{Fig3.1} %用于文内引用的标签
+\end{figure}
+
+Along AB, (\ref{equa3.14}) holds as an equation, while along BC, (\ref{equa3.15}) does. Only at B do both hold as equations. Everywhere else, there is unemployment
+of factor or the other.
+
+You might be tempted to assume that is will be optimum to have full employment, and achieve production at B with $x=50$ and $y=200$. However, that is not necessarily so.
+
+Suppose the society has an objective or social welfare function defined over the quantities of the two goods of the simple form we have used before:
+\begin{equation} \label{equa3.16}
+W(x,y ) = \alpha \ln x + \beta \ln y
+\end{equation}
+where $\alpha$ and $\beta$ are given positive constants, and $(\alpha + \beta)=1$.
+
+We know from the intuition developed in the previous example that not-negativity constraints on $x$ and $y$ are not going to be binding. So let us leave them out from the start. Write the Lagrange multiplier for the constraint (\ref{equa3.14}) as $\lambda$ and that for (\ref{equa3.15}) as $\mu$. Form the Lagrangian
+\begin{equation*}
+L(x,y,\lambda, \mu) = \alpha \ln x + \beta \ln y + \lambda [300-2x-y] + \mu[450-x-2y]
+\end{equation*}
+The first-order conditions are
+\begin{equation} \label{equa3.17}
+\alpha /x -2 \lambda - \mu =0
+\end{equation}
+\begin{equation} \label{equa3.18}
+\beta /y - \lambda - 2\mu =0
+\end{equation}
+and
+\begin{equation} \label{equa3.19}
+300 -2x - y \geq 0, \quad \lambda \geq 0, \quad \mbox{with complementary slackness}
+\end{equation}
+\begin{equation} \label{equa3.20}
+450 -x - 2y \geq 0, \quad \mu \geq 0, \quad \mbox{with complementary slackness}
+\end{equation}
+
+Between (\ref{equa3.19}) and (\ref{equa3.20}) we have four possible patterns of equations and inequalities. We should suspect that it is not going to be sensible to keep \textit{both} factors less than fully employed, that is, to have $\lambda=0$ and $\mu=0$. Let us check this out: using $\lambda=0=\mu$ in (\ref{equa3.17}) and (\ref{equa3.18}) would give $\alpha=0=\beta$, and that is not so. Therefore this case is ruled out, and we are left with three.
+
+First consider the case, $\lambda=0$ and $\mu >0$, which I shall label Case (i). Here (\ref{equa3.17}) gives $x=\alpha /\mu$ and (\ref{equa3.18}) gives $y=\beta/ (2\mu)$. Since $\mu >0$, (\ref{equa3.20}) then becomes
+\begin{equation*}
+450 = x+ 2y = (\alpha + \beta)/\mu, \quad \mbox{or} \quad \mu = 1/450
+\end{equation*}
+Then $x=450 \alpha$ and $y=225 \beta$.
+
+It remains to check out if the feasibility condition in (\ref{equa3.19}) is true. We need
+\begin{equation*}
+300 \geq 2x+y=900\alpha + 225\beta = 900-675\beta, \quad \mbox{or} \quad \beta \geq 8/9
+\end{equation*}
+
+The other cases can be checked out in the same way, and I shall merely state the results:
+
+If $\lambda>0$ and $\mu=0$ (Case (ii)), we get $x=150\alpha$, $y=300\beta$. The case is internally consistent if $\beta \leq 2/3$.
+
+If $\lambda>0$ and $\mu>0$ (Case (iii)), we get the full employment point $x=50$ and $y=200$. This case is internally consistent if $2/3 < \beta < 8/9$.
+
+The solution gives several useful insights. Once again, the range of parameters splits nicely into exhaustive and mutually exclusive regions, in each of which just one of the cases yields a candidate for optimality. For low values of $\beta$, the solution lies along the line AB. Then there is a middle range where the solution stays at the point B. Finally, for high values of $\beta$ the solution lies along the line BC.
+
+The social indifference curves for the objective function (\ref{equa3.16}) are like hyperbolas. The higher is the weight $\beta$ attached to $y$ (relative to the weight of $x$), the more willing is society to sacrifice $x$ for $y$, that is, the flatter are the hyperbolas. Therefore for low $\beta$ we get a tangency of a social welfare contour and the production possibility set along the segment AB, for medium values we have a corner solution at B, and for high values a tangency along BC.
+
+Next note that at any point along AB (except B), it is optimal to keep some land unemployed. To see why, note that the goods have fixed coefficients of input requirements, and wheat requires relatively more labor. If we wish to use the unemployed land, we must do so by producing less wheat and more beef. To try it the other way round would increase the labor requirement, but labor is already fully employed. But this is a situation with a relatively low $\beta$; beef is not highly valued relative to wheat, and the required sacrifice of wheat is not worth while.
+
+If enough substitution in production were possible, then the difficulty would not arise and both factors could be fully employed. The unemployment in this setting is a consequence of the rigid technology, not of any effective demand failures or coordination failures.
+
+Finally, look again at the complementary slackness conditions (\ref{equa3.19}) and (\ref{equa3.20}). If one factor is not fully employed at the optimum, then the Lagrange multiplier for its constraint is zero. In Chapter 1, the multiplier on the consumer's budget constraint was the marginal utility of money. In the same way, each multiplier in this problem gives the effect on social welfare of having another marginal unit of that factor. Then complementary slackness becomes economically quite intuitive: if it is optimal not to employ the available amount fully, then an increment must be worthless. In the next chapter I shall develop this idea in more detail.
+
+\section*{Exercises}
+
+\subsubsection*{\textit{Exercise 3.1: Rationing}}
+
+Suppose a consumer has the utility function
+\begin{equation} \label{equa3.21}
+U(x_1, x_2, x_3) = \alpha_1 \ln (x_1) + \alpha_2 \ln (x_2) +\alpha_3 \ln (x_3)
+\end{equation}
+where the $\alpha_j$ are positive constants summing to one. The budget constraint is
+\begin{equation*}
+p_1 x_1 + p_2 x_2 + p_3 x_3 \leq I
+\end{equation*}
+In addition, the consumer faces a rationing constraint: he is not allowed to buy more than $k$ units of good 1.
+
+Solve the optimization problem. Under what condition on the various parameters is the rationing constraint binding?
+
+Show that when the rationing constraint binds, the income that the consumer would have liked to spend on good 1 but cannot do so is now split between goods 2 and 3 in the proportions $\alpha2 : \alpha_3$. Would you expect rationing of bread purchases to affect demands for butter and rice in this way? What is the property of the utility function (\ref{equa3.21}) that produces the result, and how would you expect the bread-butter-rice case to differ?
+
+\subsubsection*{\textit{Exercise 3.2: Distribution Between Envious Consumers}}
+
+There is a fixed total $Y$ of goods at the disposal of society. There are two consumers who envy each other. If consumer 1 gets $Y_1$ and consumer 2 gets $Y_2$, their utilities are
+\begin{equation*}
+U_1 = Y_1 - k Y_2^2,  \quad   U_2 = Y_2 -k Y_1^2
+\end{equation*}
+where $k$ is a positive constant. The allocation must satisfy $Y_1 + Y_2 \leq Y$, and maximize $U_1 + U_2$.
+
+Show that if $Y > 1/k$, the resource constraint will be slack at the optimum. Interpret the result.
+
+\subsubsection*{\textit{Exercise 3.3: Investment Allocation}}
+
+A capital sum $C$ is available for allocation among $n$ investment projects. If the non-negative amount $x_j$ is allocated to project $j$ for $j=1,2,\dots,n$, the expected return from this portfolio of projects is
+\begin{equation*}
+\sum_{j=1}^n [ \alpha_j x_j - \dfrac{1}{2} \beta_j x_j^2 ]
+\end{equation*}
+The allocation is to be chosen to maximize this.
+
+Find the first-order necessary conditions from the Kuhn-Tucker Theorem. Define
+\begin{equation*}
+ H= \sum_{j=1}^n (\alpha_j/ \beta_j), \quad K=\sum_{j=1}^n (1/\beta_j)
+\end{equation*}
+Show that
+
+(i) If $C>H$, then a part of the total sum available is left unused.
+
+(ii) If $\alpha_j > (H-C)/K$ for all $j$, then every project will receive some funding.
+
+(iii) If any project receives zero funding, then it must have a lower $\alpha$ than any project that gets some funding.
+
+

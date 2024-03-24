@@ -1,0 +1,310 @@
+\chapter{Shadow Prices}
+
+\section*{Comparative Statics}
+
+Lagrange's methods, and its extensions and generalizations in Chapter 3, all introduce an undetermined multiplier for each constraint. The values of these multipliers are found as a part of the solution. The heuristic discussion of the consumer choice problem in Chapter 1 offered an economic interpretation for its Lagrange multiplier: it was the marginal utility of income. In Chapter 2 and 3 I hinted that a similar interpretation holds much more generally for constrained optimization problem. That is the focus of this chapter.
+
+A constrained optimization problem has several parameters as data. In the maximization of $F(x)$ subject to $G(x)=c$, the parameter $c$ is an obvious example. There are also other parameters that appear in the definitions of the functions $F$ and $G$, for example the weight $\alpha$, $\beta$ and the prices, in the examples and exercises of Chapter 2. Economists often need to know how the solution to the problem will change if these parameters take different values. In consumer theory, we discuss the income and substitution effects of price changes by comparing the optimum choices for different budget lines. In the theory of a firm's production and supply, its marginal cost is the difference between the costs of producing two different levels of output when the firm chooses the least-cost imput mix for each output level. The general method of comparing solutions for various parameter changes is called \textit{comparative statics}, and the importance of Lagrange multipliers lies in the fact that they provide the answer to a very important comparative static question.
+
+\section*{Equality Constraints}
+
+Let us begin in the simple setting of Chapter 2, with two choice variables $(x_1, x_2)$, an objective function $F(x)$, and one equality constraint $G(x)=c$. Let $\bar{x}$ denote the optimum choice, and $v=F(\bar{x})$ the highest attainable value. Now suppose $c$ increases by an infinitesimal amount $dc$. Let $\bar{x}+ d\bar{x}$ be the new optimum choice, and $v+dv$ the new optimum value.
+
+Note a slight difference between the usage here and that of Chapter 2. There the aim was to test $\bar{x}$ for optimality, and we did this by considering \textit{arbitrary} deviations $dx$ from it. This led us to the first-order necessary conditions that held at the optimum $x$. Now the increment $d\bar{x}$ is not arbitrary; it is the \textit{optimum} small change in the choice, arising in response to a small change in the parameters.
+
+For these small changes, we can use the first-order Taylor approximations to the changes in the values of $F$ and $G$. We have
+\begin{equation*}
+\begin{array}{rl}
+dv = & F(\bar{x} + d\bar{x} ) - F(\bar{x}) \\
+   = & F_1(\bar{x}) d\bar{x}_1 + F_2(\bar{x}) d\bar{x}_2 \\
+   = & \lambda [ G_1(\bar{x}) d\bar{x}_1 + G_2(\bar{x}) d\bar{x}_2 ] \\
+   = & \lambda [ G(\bar{x} + d\bar{x} ) - G(\bar{x}) ] \\
+   = & \lambda [(c+dc)-c] = \lambda dc
+\end{array}
+\end{equation*}
+In the derivation, the second and the fourth lines are the Taylor approximations, the third line uses the first-order condition (\ref{equa2.6}), and the fifth line uses the constraint (\ref{equa2.1}). The result can now be written
+\begin{equation} \label{equa4.1}
+dv / dc = \lambda
+\end{equation}
+
+Thus the multiplier is the rate of change of the maximum attainable value of the objective function with respect to a change in the parameter on the right-hand side of the constraint. Now we can see the marginal utility of income in Chapter 1 as a special case of this more general result.
+
+The case of several choice variables and many equation Constraints is no harder. In vector-matrix notation, the argument is in fact identical. Look at the first section of Chapter 3. Let the right-hand side of the vector constraint change by $dc$, and write $d\bar{x}$ for the resulting change in the optimum vector $\bar{x}$. Then
+\begin{equation*}
+\begin{array}{rl}
+dv = & F(\bar{x} + d\bar{x} ) - F(\bar{x}) = F_x(\bar{x}) d\bar{x}  \\
+   = & \lambda G_x(\bar{x}) d\bar{x} = \lambda [ G(\bar{x} + d\bar{x} ) - G(\bar{x}) ] = \lambda dc
+\end{array}
+\end{equation*}
+Pause a moment to check the sizes of the various vectors and matrices being multiplied. For example, in the first expression of the second line, $\lambda$ is an $m$-dimensional row vector, $G_x(\bar{x})$ is an $m \times n$ matrix, and $d\bar{x}$ is an $n$-dimensional column vector. The final result is the product of the row vector $\lambda$ and the column vector $dc$ of equal dimensions $m$; therefore it is a scalar. In fact it is the inner product of the two vectors:
+\begin{equation*}
+ \lambda dc = \sum_i \lambda_i dc_i
+\end{equation*}
+
+The result is important enough to be stated separately for reference:
+
+\textit{Interpretation of Lagrange Multipliers:} If $v$ is the maximum of $F(x)$ subject to a vector of Constraints $G(x)=c$, and $\lambda$ is the row vector of multipliers for the constraints, then change $dv$ that results from an infinitesimal change $dc$ is given by
+\begin{equation} \label{equa4.2}
+dv = \lambda dc
+\end{equation}
+
+It should be stressed that (\ref{equa4.2}) gives only the first-order or linear approximation to the change in $v$ if the change in $c$ is more than infinitesimal. For such changes, we can carry the Taylor expansion to higher orders and find a closer approximation. This will be done, although for a different purpose, in Chapter 8.
+
+\section*{Shadow Prices}
+
+To illustrate and explain (\ref{equa4.2}), consider a planned economy for which a production plan $\bar{x}$ is to be chosen to maximize a social welfare function $F(x)$. The vector of the plan's resource requirement is $G(x)$, and the vector of the available amounts of these resources is $c$. Suppose the problem has been solved, and the vector of the Lagrange multipliers $\lambda$ is known. Now suppose some power outside the economy puts a small additional amount $dc_1$ of the first resource (say labor) at its disposal. The optimization problem can be solved afresh with the new labor constraint to determine the new pattern of production. But we know the resultant increase in social welfare without having to do this calculation: it is simply $\lambda_1 dc_1$. We can then say that the multiplier $\lambda_1$ is the marginal product of labor in this economy, measured in units of its social welfare. This is clearly a vital piece of economic information, and that is why Lagrange's method and his multipliers are so important in economics.
+
+If there is only one scarce input, then a paraphrase of the argument of Chapter 1 yields another very instructive way of looking at this result. Suppose we use the additional labor input to raise the quantity of a particular good, say good $j$, leaving the outputs of all the other goods unchanged. Since we are assuming full employment of labor in both situations, the increase $d\bar{x}_j$ in the output of the chosen good must satisfy
+\begin{equation*}
+G_j^1(\bar{x}) d\bar{x}_j = dc_1, \quad \mbox{or} \quad d\bar{x}_j = dc_1 / G_j^1(\bar{x})
+\end{equation*}
+The resultant increases in social welfare is
+\begin{equation*}
+F_j(\bar{x}) d\bar{x}_j =  [F_j(\bar{x})/ G_j^1(\bar{x})]  dc_1
+\end{equation*}
+The condition of optimality (\ref{equa2.5}) says that the ratio in the square brackets should be the same for all $j$. Therefore the effect of the marginal increase in labor supply on social welfare is independent of how the extra labor is used. That is why we can speak unambiguously of the marginal product of labor.
+
+Now suppose the additional labor can only be used at some cost. The maximum the economy is willing to pay in terms of its own social welfare units is clearly $\lambda_1$ per marginal unit of $c_1$. Any smaller payment leaves it with a positive net benefit from using the extra labor; for any larger payment the cost exceeds the benefit. In this natural sense, the Lagrange multiplier is the \textit{demand price}  the planner places on labor services. A price expressed in units of social welfare may seem strange, but a minor modification brings it into familiar light. Consider some other resource, say land, and number it 2. Now suppose the economy is offered the services of an extra $dc_1$ of labor, but asked to give in return the services of $dc_2$ of land. The net gain in social welfare from this transaction is $(\lambda_1 dc_1 - \lambda_2 dc_2)$. Therefore the most land the planner is willing to give up is $(\lambda_1/ \lambda_2 )dc_1$. Then it is equally natural to call the ratio $\lambda_1/ \lambda_2$ the demand price of a unit of labor measured in units of land. You know from microeconomic theory that \textit{relative} prices rather than \textit{absolute} ones govern market exchange; similarly the relative magnitudes of the Lagrange multipliers for different resources govern the planner's willingness to exchange one resource for another.
+
+If a neighboring economy has a different trade-off between the two resources on account of differences in their relative availability or technology, then there is a possibility of mutually advantageous trade in factor services between the two. (Even if factor services cannot be traded, exchange of goods made using these factors can secure some or even all of the mutual gain, but details of that would take us too far into the theory of international trade.)
+
+Of course, the internal organization of the economy need have nothing to do with prices, and the Lagrange multiplier for the labor constraint need not equal the wage that is actually paid for each man-hour. Labor may simply be directed to various tasks in a command economy. (There are serious conceptual and practical problems in so doing, as most Soviet-style economics have now realized, but that again is another story.) But the plan implicitly places values on the resources, and the planner's understanding of the economy and of its possible bottlenecks will be improved by paying attention to the multipliers that relect these values.
+
+Now consider an economy that does allocate resources using markets. In equilibrium, the prices are such that the demands and supplies chosen by individuals solving their own constrained maximization problems are equal in the aggregate. Now suppose an economist sets out to evaluate the performance of the economy using some given criterion. To get a comparison standard, he will solve the planning problem of maximizing this criterion function subject to constraints arising from the economy's resource availability, technology, and information transmission. The solution will include a vector of Lagrange multipliers for the resource constraints.
+
+You may think there is little reason why the market should replicate this planned allocation, and equally little reason why the Lagrange multipliers should have anything to do with the market prices. But there are important cases where the optimum can be replicated in the market, and the Lagrange multipliers are proportional to the market prices of the resources: the relative prices equal the corresponding ratios of multipliers. In such cases the economist is tempted to say that the economy is guided by an `invisible hand' to his planned optimum. Such a case is worked out in detail in Example 4.1. If rests on many special assumptions whose validity is often doubtful, and most of modern economic theory is concerned with questions of what happens when those assumptions are not met. But the case has great importance as the point of departure for all such analysis, and as a practical matter many people believe in the optimality of the market mechanism. Therefore it deserves careful study.
+
+To evoke the connection with prices, and yet maintain a conceptual distinction from market prices, Lagrange multipliers are often called \textit{shadow prices}.
+
+\section*{Inequality Constraints}
+
+An economic question now arises. We expect prices to be non-negative, but so far we have seen no reason why the shadow prices (Lagrange multipliers) should be non-negative. In the planning application used in the above exposition, the multipliers measured the increase in social welfare resulting from increased availability of scarce resources. Having more of a resource leaves all previous production opportunities available and adds some new ones. This should allow the planner to achieve at least as high a level of social welfare, and in most instances a higher level. In the same way, in the general problem of constrained optimization, a relaxation of the constraint should be a desirable thing. Can the mathematics confirm this intuition?
+
+One difficulty is that in the general formulation of the problem with equality constraints, an increase in the right-hand side of a constraint equation need not mean a relaxation of the constraint. Trivially, we could have written the constraint $G^i(x)=c_i$ as $-G^i(x)=-c_i$, and an increase in the right-hand side of the new form would be a decrease in the quantity $c_i$ of resource $i$. Also, not all of the constraints need be ones of resource availability. For example, we might want to maximize the amount of investment while ensuring a minimum acceptable provision of some consumer goods. Now an increase in this stipulated minimum tightens the economic constraint, so a smaller amount of investment can be squeezed out and the multiplier is negative. Here the multiplier is like the slope of a transformation function (consumption into investment). We should expect such a curve to be downward-sloping, and should interpret \textit{minus} the slope as the shadow price.
+
+These examples show that if we want non-negative shadow prices, we must be careful to write the constraints in such a way that an increase in the right-hand side does relax the restrictions on the choice.
+
+There is another, more important, consideration. There may be cases in which the marginal value of a resource turns negative beyond a point. For example, too many workers may simply interfere with one another's effort. In such a case, a further increase in the quantity of the resource will mean a lower maximum value of the objective function and a negative multiplier. But in such a situation, it would be better not to use the resource in such excessive amounts even if it is available. Exercise 3.2 considered a situation where it was optimal to throw away some quantity of a good in the face of overwhelming envy effects. Mathematically, the equality constraint forces use of the entire amount available. If the constraint were an Inequality, $G^i(x) \leq c_i$, then we would have the freedom to leave resources idle when this serves the goals of optimization.
+
+In practice there may be some costs of leaving resources idle. Unemployment of labor might be thought to be socially undesirable, and some capital, especially brains, can rust when unused. In such situations we should include these costs in the objective function. Provided this has been done, there is no economic reason to deny ourselves the freedom of leaving some part of the resource endowment unused if this leads to a better outcome.
+
+This discussion has an exact parallel in market prices, too. If some `goods' are actually `bads', we expect them to have negative prices. More generally, it is the assumption of \textit{free disposal} that ensures non-negative prices.
+
+The Kuhn-Tucker Theorem stated in Chapter 3 gives the first-order necessary conditions for maximization subject to Inequality constraints. It immediately confirms this intuition. The condition (\ref{equa3.10}) says that the vector of the Lagrange multipliers is non-negative. It yields a further result of considerable importance. The vector inequality $\lambda \geq 0$ shows complementary slackness with $L_\lambda \geq 0$, which is just another way of writing $G(x) \leq c$. For every $i$, at least one of the pair
+\begin{equation*}
+G^i(x) \leq c_i, \quad \lambda_i \geq 0
+\end{equation*}
+holds as an equation. If resource $i$ is not fully used, then its shadow price is zero; a resource with a positive shadow price must be fully used.
+
+This supports and completes the interpretation of shadow prices as the marginal value products of the resources. If part of some resource is already idle, then any increment in it will also be left idle. The maximum value of the objective function will not change, and the shadow price will be zero. On the other hand, a positive shadow price means that a marginal increment in resource availability can be put to good use. Then none of the amount originally available can have been left idle in the original plan. You should return to the account of technological unemployment in Example 3.2 and examine the results there in this light.
+
+There is just one tricky point to be taken care of. Suppose $c_i$ is much that resource $i$ is just on the point of becoming superfluous at the margin. This amount is fully used, but any increment will be left unused. Complementary slackness does not tell us whether the multiplier will be positive or zero at this point. In fact the answer is specific to each problem, and depends on whether the slope of the maximum value $v$ shown as a function of $c_i$ drops smoothly or suddenly to zero at the borderline point.
+
+\begin{figure}[!htp]  % 常见htbp  here top bottom p表示浮动  !表示忽略“美学”标准
+ \centering
+ \subfloat[ ] %第一张子图
+ {
+   \begin{minipage}{0.5\linewidth}
+\centering
+        \begin{tikzpicture}[scale=2]
+    % 绘制坐标轴
+    \draw[->] (0,0) -- (2.5,0) node[below] {$c_i$};
+    \draw[->] (0,0) -- (0,2.5) node[left] {$v$};
+    \draw[black] (0,0) node[below left] {O};
+
+    \draw[domain=0.2:1,smooth,variable=\x] plot ({\x},{( 4 * \x -2 * \x * \x)}) ;
+    \draw[] (1,2) -- (2,2) ; 
+        \end{tikzpicture}
+   \end{minipage} }
+ \subfloat[ ] %第二张子图
+   {
+   \begin{minipage}{0.5\linewidth}
+\centering
+       \begin{tikzpicture}[scale=2]
+    % 绘制坐标轴
+    \draw[->] (0,0) -- (2.5,0) node[below] {$c_i$};
+    \draw[->] (0,0) -- (0,2.5) node[left] {$v$};
+    \draw[black] (0,0) node[below left] {O};
+
+    \draw[domain=0.4:1,smooth,variable=\x] plot ({\x},{( 2.5 * \x -0.5)}) ;
+    \draw[] (1,2) -- (2,2) ; 
+
+\filldraw [black] (1,2) circle (1pt)   ;
+      \end{tikzpicture}
+   \end{minipage} }
+ \caption{Resource quantities and shadow prices} \label{Fig4.1} 
+\end{figure}
+
+
+Figure \ref{Fig4.1} shows both possibilities. In (a) the drop is smooth, and the multiplier at the point in question is zero. In (b) the drop is sudden, and any value of $\lambda_i$ between the slope of the curve to the left and its slope to the right (zero) will serve at athe point of transition. This happens in the context of linear programming (Example 7.1).
+
+\section*{Examples}
+
+\subsubsection*{\textit{Example 4.1: The Invisible Hand - Distribution}}
+
+Consider the stage of planning where the production of the various goods is already known, and the only remaining question is that of distributing them among the consumers. There are $C$ consumers, labeled $c=1,2,\dots, C$, and $G$ goods, labeled $g=1,2,\dots,G$. Let $X_g$ be the fixed total amount of good $g$, and $x_{cg}$ the amount allocated to consumer $c$. Each consumer's utility is a function only of his own allocation,
+\begin{equation} \label{equa4.3}
+u_c = U^c(x_{c1}, x_{c2}, \dots, x_{cG}    )
+\end{equation}
+Social welfare is a function of these utility levels
+\begin{equation*}
+w = W(u_{1}, u_{2}, \dots, u_{C}    )
+\end{equation*}
+The constraints are that for each good, its allocation to the individuals should add up to no more than the total amount available. When the utilities and social welfare are increasing functions, it is clear that no goods are going to be wasted, so we can express the constraints as equations
+\begin{equation} \label{equa4.4}
+ x_{1g} + x_{2g} + \dots + x_{Cg} = X_g, \quad \mbox{for} \quad g=1,2,\dots,G
+\end{equation}
+and use Lagrange's Theorem. Let $\pi_g$ be the multiplier for the constraint on good $g$, and form the Lagrangian
+\begin{equation*}
+L = W[ U^1(x_{11}, \dots, x_{1G}  ), \dots, U^C(  x_{C1}, \dots, x_{CG}  ) ] + \sum_g \pi_g [X_g - \sum_c x_{cg} ]
+\end{equation*}
+where the arguments of $L$ and the ranges of summation are omitted for brevity.
+
+When deriving the first-order conditions, we must differentiate $L$ with respect to every $x_{cg}$ using the chain rule. This gives
+\begin{equation} \label{equa4.5}
+ (\partial W / \partial u_c)  (\partial U^c / \partial x_{cg}) - \pi_g =0
+\end{equation}
+
+All the partial derivatives are to be evaluated at the optimum as usual; I omit them for case of notation. The multipliers $\pi_g$ are also obtained as a part of the solution.
+
+Now suppose the $\pi_g$ are made the prices of the goods. Every consumer $c$ is given a money income $I_c$, and allowed to choose his consumption vector to maximize his utility \ref{equa4.3} subject to the budget constraint
+\begin{equation} \label{equa4.6}
+  \pi_1 x_{c1} + \pi_2 x_{c2} + \dots + \pi_G x_{cG} = I_c
+\end{equation}
+This optimization will be characterized by the conditions
+\begin{equation} \label{equa4.7}
+   \partial U^c / \partial x_{cg} = \lambda_c \pi_g
+\end{equation}
+for all $g$ and $c$. As usual, $\lambda_c$ is the marginal utility of income for consume $c$.
+
+If we compare \ref{equa4.5} and \ref{equa4.7}, we see that they coincide provided we set
+\begin{equation} \label{equa4.8}
+ \partial W/ \partial u_c = 1/\lambda_c, \quad \mbox{or} \quad (\partial W/ \partial u_c ) \lambda_c =1
+\end{equation}
+for all $c$. This can be done by adjusting the money incomes $I_c$. The left hand side of the second equation in (\ref{equa4.8}) is simply the marginal effect on social welfare of giving a unit of income to consumer $c$; it is the marginal effect on $c$'s own utility \textit{times} the effect of a unit of his utility on social welfare.
+
+In other words, the distribution of income should be arranged so that at the margin the social value of every consumer's income is the same. Once this is done, they can be left free to choose their actual consumption bundles. This is the `invisible hand' result for the distribution problem.
+
+The argument comparing first-order conditions is not fully rigorous, but better proofs exist. The important thing is to recognize the crucial assumptions that lead to the result. Here the most important is the dependence of every consumer's utility only on his own consumption quantities. If one consumer's utility depends on another's consumption, this is called an `external effect' or `externality'. Such effects can interfere with the simple decentralization of consumption through prices. In essence, we must charge each consumer not just for the scarcity value of his consumption, but also for the harm his consumption causes to the utility of others (or pay him for the benefit he confers on others). Such prices can be person-specific, and the market implementation becomes much more complicated.
+
+\subsubsection*{\textit{Example 4.2: Duty-Free Purchases}}
+
+Let us turn from the dreary image that central planning and income distribution always invoke, to the consumption decision of a jet-setter. He can buy various brands of liquor at his hometown store, or at the duty-free stores of the various airports he travels through. The duty-free stores have cheaper prices, but the total quantity he can buy there is restricted by his home country's customs regulations.
+
+There are $n$ brands. Let $p$ be the row vector of hometown prices and $q$ that of duty-free prices. The duty-free prices are uniformly lower: $ q \ll p$. Let $x$ be the column vector of his hometown purchases and $y$ that of the duty-free. Suppose he travels and entertains enough in a year that we can regard the quantities as continuous variables, not restricted to integer numbers of bottles. The integer problem gives similar results, but needs different techniques.
+
+Let us simplify the problem by leaving aside the problem of choice between liquor as a whole and all other goods. Thus we take the income he has decided to spend on liquor during the year as fixed, say $I$. The budget constraint then becomes
+\begin{equation} \label{equa4.9}
+  px + qy \leq I
+\end{equation}
+
+Suppose during the year our jet-setter is allowed to import $K$ bottles of liquor duty-free. This constraint is
+\begin{equation*}
+ y_1 + y_2 + \dots + y_n \leq K
+\end{equation*}
+To simplify the notation, let $e$ be the row vector with every component equal to one. Then the left-hand side is just the product $ey$, and the constraint can be written
+\begin{equation} \label{equa4.10}
+ e y \leq K
+\end{equation}
+
+Unless the consumer is satiated within his duty-free allowance (an unlikely story), both constraints are going to hold as equations. But we should expect that it will be optimal to buy some brands only at duty-free stores and others only at hometown stores. Therefore we must remember that $x$ and $y$ are restricted to be non-negative.
+
+Utility depends only on the total consumption $c=x+y$. Therefore the Lagrangian is
+\begin{equation*}
+  L = U(c )+ \lambda[I- px-qy] + \mu [K-ey]
+\end{equation*}
+The first-order conditions are given by Lagrange's Theorem for non-negative variables in Chapter 3. For each $j$, we have
+\begin{equation} \label{equa4.11}
+ \partial L / \partial x_j  \equiv   \partial U / \partial c_j - \lambda p_j \leq 0, \quad x_j \geq 0
+\end{equation}
+with complementary slackness, and
+\begin{equation} \label{equa4.12}
+ \partial L / \partial y_j  \equiv   \partial U / \partial c_j - \lambda q_j -\mu \leq 0, \quad y_j \geq 0
+\end{equation}
+also with complementary slackness.
+
+These inequality pairs permit $2^{2n}$ patterns of equations and zeros, and sorting them out systematically would be hopeless. But a search assisted by economic intuition quickly reveals the solution.
+
+Can some brand $j$ be bought in positive amounts at both kinds of stores? If so, the equations that emerge from (\ref{equa4.11}) and (\ref{equa4.12}) are
+\begin{equation*}
+ \partial U / \partial c_j - \lambda p_j = 0 = \partial U / \partial c_j  -\lambda q_j - \mu
+\end{equation*}
+or
+\begin{equation} \label{equa4.13}
+\lambda p_j = \partial U /\partial c_j = \lambda q_j + \mu
+\end{equation}
+
+Save by coincidence, this can hold for at most one $j$. If it were true for $j=1$ and 2, say, we would have
+\begin{equation*}
+ \lambda(p_1 - q_1) = \mu = \lambda (p_2 - q_2)
+\end{equation*}
+Since we are supposing the consumer is not satiated, $\lambda$ is positive and
+\begin{equation*}
+   p_1 - q_1 = p_2 - q_2
+\end{equation*}
+With given prices, this can occur only by chance. This argument not only narrows down our search, but also tells us that the \textit{absolute} price differences between the two sets of prices will have a lot to do with the optimal purchases decision.
+
+Now suppose brand $j$ is bought only in the hometown store. With $x_j >0$ and $y_j=0$, we have
+\begin{equation} \label{equa4.14}
+ \partial U / \partial c_j  = \lambda p_j
+\end{equation}
+and
+\begin{equation} \label{equa4.15}
+ \partial U / \partial c_j \leq  \lambda q_j + \mu
+\end{equation}
+
+Of these, (\ref{equa4.14}) is familiar, but even it benefits from a reinterpretation. The left-hand side is just the marginal utility of brand $j$. The right-hand side is the marginal opportunity cost of buying it at the hometown store: to do so takes $p_j$ of income which cannot then be used for other purchases, and the utility value of this much income is $\lambda p_j$.
+
+This in turn casts light on (\ref{equa4.15}). Its right-hand side is the marginal opportunity cost of buying a unit of brand $j$ at a duty-free store. This requires $q_j$ of income having utility value $\lambda q_j$. But is also uses up a unit of the duty-free allowance, which has the shadow price $\mu$. The total opportunity cost of the purchases is the sum of these two components. If the brand is not bought at the duty-free store, it must be because the opportunity cost of so doing exceeds the marginal utility from its consumption.
+
+Now the principle is clear: buy each brand at the outlet with the lower opportunity cost. Note that
+\begin{equation*}
+  \lambda q_i +\mu < \lambda p_i   \quad \mbox{if and only if} \quad p_i -q_i > \mu / \lambda
+\end{equation*}
+Therefore our jet-setter should rank the brands by their absolute price differences in the two kinds of stores. The brands with the largest price differences are bought at the duty-free stores, and those with the smallest price differences, at the hometown store. The meeting-point of the two is chosen so as to use up the duty-free allowance. There may be at most one brand that is bought at both kinds of stores.
+
+Incidentally, if the duty-free allowance restricts the total value $qy$ of purchases instead of the quantity $cy$, then the solution will be similar, but the brands will be ranked by their \textit{relative} price differences instead of the \textit{absolute} ones. I shall leave this case for the readers to work out as an exercise.
+
+\section*{Exercises}
+
+\subsubsection*{\textit{Exercise 4.1: The Invisible Hand - Production}}
+
+Continue with the notation of Example 4.1, but now allow production of the goods. Let there be $F$ factor inputs, available in fixed quantities $Z_f$ for $ f = 1,2,\dots, F$. If $z_{fg}$ of factor $f$ is used in the production of good $g$, the output $X_g$ is given by the production function
+\begin{equation} \label{equa4.16}
+  X_g = \Phi^g (z_{1g}, z_{2g}, \dots, z_{Fg})
+\end{equation}
+
+Add these constraints to the earlier problem. Verify that the first-order conditions of optimum distribution are the same as before, but new conditions for optimum factor allocation are added. Interpret the Lagrange multiplier. Can production be decentralized, with one firm producing each good? Show that the sum of the incomes $I_c$ handed out to the consumers equals the value of aggregate output.
+
+\subsubsection*{\textit{Exercise 4.2: The Invisible Hand - Factor Supplies}}
+
+Now let even the factor supplies $Z_f$ be a part of the optimization. Suppose each consumer $c$ supplies $z_{cf}$ of factor $f$. These amounts affect his utility adversely; there is disutility from supplying factors.
+
+Find the first-order conditions. Interpret the Lagrange multipliers and discuss the implementation of the optimum in a market framework.
+
+Now you must distinguish two source of income for the consumers: their earnings from the factor services they supply, and the lump sums $I_c$ they get from the government. These lump sums must now be varied (in a person-specific way) to attain the condition (\ref{equa4.8}). Show that the total of the lump sums handed out to the consumers equals the total profit in production, that is, the value of output minus the payments to the factors.
+
+\subsubsection*{\textit{Exercise 4.3: Borrowing and Lending}}
+
+Consider a consumer planning his consumption over two years. He will have income $I_1$ during the first year and $I_2$ during the second. In each year there are two goods to consume. In year 1, the prices are $p_1$ and $q_1$, and the corresponding quantities $x_1$ and $y_1$. In year 2, we similarly have $p_2$ , $q_2$ and $x_2$ , $y_2$. The utility function is
+\begin{equation*}
+ u_1 = \alpha_1 \ln (x_1) + \beta_1 \ln (y_1) + \alpha_2 \ln (x_2) + \beta_2 \ln (y_2)
+\end{equation*}
+This is to be maximized subject to two budget constraints, one for each year.
+
+Solve this problem, and find the multipliers $\lambda_1$ and $\lambda_2$ for the two constraints. Examine how they depend on money income and other parameters of the problem.
+
+How much more of year-2 income will the consumer require if he is to give up $dI_1$ of year-1 income? In other words, what is the rate of return needed to induce him to save a little? You would expect borrowing and lending institutions arise in an economy populated by such consumers. What governs who will borrow and who will lend?
+
+
+
+
+
+
+
+
+
+
+
+
+

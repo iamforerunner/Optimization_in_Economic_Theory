@@ -1,0 +1,372 @@
+\chapter{Lagrange’s Method}
+
+\section*{Statement of the Problem}
+
+Let us begin the development of the general theory of optimization subject to constraints, using a setting very close to the consumer choice model of Chapter 1. Suppose the choice variables are $x_1$ and $x_2$. I shall write them more compactly as a vector $x$ arranged in a column,
+
+\begin{equation*}
+   x = \left( \begin{array}{c}
+   x_1 \\
+   x_2
+   \end{array}
+   \right)
+\end{equation*}
+Initially, I shall use vectors only to abbreviate lists of components; actual operations with vectors and matrices will appear gradually.
+
+We will need notation that distinguishes between the general vector $x$ and some particular value of $x$ such as the optimum, while remembering the family resemblance between the two: both are vectors of choice variables. I shall generally use the symbol $\bar{x}$ to denote the optimum value of the general variable $x$. The components of $\bar{x}$ will be written $\bar{x}_1$ etc.
+
+The function to be maximized, called the objective function, is $F(x)$. The constraint is a general non-linear one,
+
+\begin{equation}\label{equa2.1}
+G(x)=c
+\end{equation}
+where $G$ is a function and $c$ a given constraint. The model of Chapter 1 was a special case of this: $F$ was the utility function, $G$ was a linear function showing the expenditure,
+\begin{equation*}
+G(x) = p_1 x_1 + p_2 x_2
+\end{equation*}
+and $c$ was income. If it helps, you can now think of $G$ as a more general non-linear expenditure or cost function, such as would arise if the consumer faced a quantity discount or premium price schedule.
+
+With this notation, the problem in this chapter is to find the value $\bar{x}$ that maximizes $F(x)$ subject to $G(x)=c$.
+
+\section*{The Arbitrage Argument}
+
+As we did in Chapter 1, start with a trial point and an infinitesimal change. Let the particular trial point be $\bar{x}$, and the infinitesimal change
+\begin{equation*}
+ dx = \left(
+ \begin{array}{c}
+ dx_1 \\ dx_2
+ \end{array}
+ \right)
+\end{equation*}
+We want $(\bar{x} + dx)$ to satisfy the constrain, and see if it yields a higher value of the objective function.
+
+Since the change in $x$ is infinitesimal, we can approximate the changes in values in functions of $x$ by the first-order linear terms in their Taylor series. Let subscripts on a function denote its partial derivatives with respect to the indicated argument; for example $F_1$ is $\partial F/ \partial x_1$. We must remember that in general each partial derivative is itself a function of the whole vector $x$. Only in the special case where $F$ is linear will the partial derivatives be constraints; only in the special case where $F$ is additivity separable (a function of $x_1$ plus a function of $x_2$) will $F_1$ be independent of $x_2$ and vice versa. Thus we should write the partial derivatives as function $F_1(x)$ and $F_2(x)$. When these are evaluated at our initial trial point $\bar{x}$, their values will be written $F_1(\bar{x})$ and $F_2(\bar{x})$.
+
+The first-order Taylor approximation of the change in $F(x)$ as a result of the infinitesimal move from the general point $x$ to $x+dx$ is
+\begin{equation}\label{equa2.2}
+  \begin{array}{rl}
+dF(x) & = F(x+dx)-F(x) \\
+      & = F_1(x) dx_1 + F_2(x) dx_2
+  \end{array}
+\end{equation}
+Observe the similarity with the expression for the change in utility (\ref{equa1.3}) of Chapter 1; the marginal utilities that were motivated there by economic intuition are simply the partial derivatives of the utility function with respect to the amounts of the two goods consumed.
+
+There is a similar expression for the change in $G(x)$:
+\begin{equation}\label{equa2.3}
+dG(x) = G_1(x) dx_1 + G_2(x) dx_2
+\end{equation}
+In Chapter 1, the partial derivatives of $G$ were simply the prices. If we now think of $G$ as a more general non-linear outlay or expenditure function, the partial derivatives are the marginal prices of the respective commodities.
+
+Now we can modify the arbitrage argument of Chapter 1 to apply to the new more general setting. Start at a point $\bar{x}$ where the constraint (\ref{equa2.1}) holds, and consider a change $dx$ such that $(\bar{x}+ dx)$ also satisfies the constraint. Then $dG(\bar{x})=0$. Using (\ref{equa2.3}) with the particular initial point, we have
+\begin{equation*}
+G_1(\bar{x}) dx_1 = - G_2(\bar{x}) dx_2
+\end{equation*}
+Call the common value of these two sides $dc$. Then our arbitrage consists of reallocating an amount $dc$ in the value of the function $G(x)$ away from $x_2$ and toward $x_1$.
+
+First Suppose $G_1(\bar{x})$ and $G_2(\bar{x})$ are both non-zero. Then\begin{equation*}
+dx_1 = dc / G_1(x)  \mbox{\quad and \quad}   dx_2 = dc / G_2(x)
+\end{equation*}
+The resulting change in the value of the objective function is found by substituting into (\ref{equa2.2}) as
+\begin{equation}\label{equa2.4}
+dF(\bar{x}) = [F_1(\bar{x}) / G_1(\bar{x})  - F_2(\bar{x}) / G_2(\bar{x})  ] dc
+\end{equation}
+
+If the bracketed expression is non-zero, then $F(x)$ can be increased by choosing $dc$ to have the same sign as that of the bracketed expression. As before, we can turn this around to find a no-arbitrage condition that holds when $\bar{x}$ is the optimum choice. So long as neither $\bar{x}_1$ nor $\bar{x}_2$ has hit some natural boundary such as zero, then changes $dc$ of either sign are possible. If $\bar{x}$ is optimum, then no such change should be capable of increasing $F(x)$. Therefore the bracketed expression in (\ref{equa2.4}) should be zero, or
+\begin{equation}\label{equa2.5}
+F_1(\bar{x}) / G_1(\bar{x})  = F_2(\bar{x}) / G_2(\bar{x})
+\end{equation}
+This is the analog of the condition (\ref{equa1.6}) of the previous chapter.
+
+Note the exact statement: $if$ the optimum choice is $\bar{x}$, $then$ it satisfies (\ref{equa2.5}). I have not established any implication the other way round, so there is no guarantee that a solution to (\ref{equa2.5}) is the optimum. This is the difference between necessary and sufficient conditions, and I will discuss it in more detail later in this chapter.
+
+If $\bar{x}$ lies at some natural boundary, for example if one of $\bar{x}_1$ and $\bar{x}_2$ is zero when both must be non-negative, then only one-sided changes $dc$ are meaningful, and we get an inequality that corresponds to (\ref{equa1.4}) and (\ref{equa1.5}). I shall not consider this case in this chapter, but shall return to it in the next.
+
+As in Chapter 1, let us define $\lambda$ to be the common value of the two sides in (\ref{equa2.5}). Then we can write that equation as a set of two equations
+\begin{equation}\label{equa2.6}
+F_j(\bar{x}) = \lambda G_j(\bar{x}), \mbox{\quad} j=1,2
+\end{equation}
+Remember that the $\lambda$ of Chapter 1 could be interpreted as the marginal utility of income. In the same way, the $lambda$ just introduced turns out to be the rate at which the optimum value of $F(x)$ responds to a change in $c$. I shall develop this interpretation and its implications in Chapter 4. The main topic in the rest of this chapter involves writing \ref{equa2.6}) in a way that easily extends to more general settings, and provides a method for finding the optimum $x$. But first a couple of necessary digressions.
+
+\section*{Constraint Qualification}
+
+What happens if say $G_1(\bar{x})$ is zero? Now $bar{x}_1$ can be changed slightly without affecting the constraint. If $F_1(\bar{x})$ is not zero, it is desirable to do so. For example, if $F_1(\bar{x})$ is positive, then $F(x)$ can be increased by raising $x_1$. This goes on until either $F_1(x)$ drops to zero, or $G_1(x)$ becomes non-zero. In the consumption interpretation, a consumer will go on using more of a free good either until he is satiated, or until the marginal unit of a free good is no longer free. Therefore if $G_1(\bar{x})$ is zero and $\bar{x}$ is optimum, then $F_1(\bar{x})$ must be zero, too. We can define the ratio of these two zeros as we please, and there is no harm in defining it so that (\ref{equa2.5}) is satisfied.
+
+What if $G_1(\bar{x})$ and $G_2(\bar{x})$ are both zero? This might mean that both goods are free, and should be consumed to the point of satiation. But there is a more ominous possibility arising from the quirks of algebra and calculus. Take the budget line (\ref{equa1.1}) of the previous chapter, and write its equation as
+\begin{equation*}
+(p_1 x_1 + p_2 x_2 -I)^3 = 0
+\end{equation*}
+This is an unnecessarily complicated way of writing (\ref{equa1.1}), but the two are mathematically fully equivalent, and we should see if the change makes any difference. Let $G(x)$ be the function on the left-hand side of this. Then
+\begin{equation*}
+G_1(x) = 3 p_1 (p_1 x_1 + p_2 x_2 -I)^2
+\end{equation*}
+which is always zero when $x$ satisfies the budget constraint. The same is true for $G_2(x)$. Goods are not free at the margin, and yet their quantities have zero effect on the constraint function. In such a case, our method runs into trouble.
+
+The formal mathematical theory cops out and simply refuses to deal with such cases by assuming a condition called a Constraint Qualification. In the present instance that simply amounts to assuming that at least one of $G_1(\bar{x})$ and $G_2(\bar{x})$ is non-zero. If this is not true in a particular application, then conditions like (\ref{equa2.6}) may be invalid there. Luckily, failure of the Constraint Qualification is rarely a problem in practice. In the rara cases where it arises, it can usually be circumvented by writing the algebraic from of the constraint differently, as with the budget constraint above. But students of the subject should not forget the problem altogether; it is a favorite source of trick questions in examinations. If something strange seems to be going wrong when you try the standard methods, you should check to see if the problem violates the Constraint Qualification. But I shall omit further mention of this complication except in the formal statements and mathematical proofs.
+
+\section*{The Tangency Argument}
+
+The second digressions relates the arbitrage argument to the tangency condition more familiar from elementary economic texts. In Chapter 1 we saw an alternative way to obtain the condition (\ref{equa1.6}), based on the tangency of the budget line and an indifference curve. The same can be done for (\ref{equa2.5}). Figure \ref{Fig2.1} shows the story. Along the curve $G(x)=c$, we have $dG(x)=0$, and from (\ref{equa2.3}) we can calculate the slope of the tangent to the curve at $x$ as
+\begin{equation}\label{equa2.7}
+dx_2 / dx_1 = - G_1(x) / G_2(x)
+\end{equation}
+\begin{figure}[!tb] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+\centering %图片居中
+%\includegraphics[width=0.8\textwidth]{./Fig2.1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\begin{tikzpicture}[scale=2]
+    % 绘制坐标轴
+    \draw[->] (0,0) -- (2.5,0) node[below] {$x_1$};
+    \draw[->] (0,0) -- (0,2.5) node[left] {$x_2$};
+    \draw[black] (0,0) node[below left] {O};
+
+    \draw[thick,blue] (0.3,1.7) -- (1.7,0.3) ; 
+    \draw[thick,blue] (2.8,0) node[above] {common tangent};
+
+% 无差异曲线 x1 * x2 分别等于1,2,3
+    \draw[domain=0.5:1.8,smooth,variable=\x,red] plot ({\x},{1/\x}) ;
+    \draw[red] (0.8, 2.0) node[above, align=center] {$F(x)=v$};
+    
+    \draw[domain=0.3:1.4,smooth,variable=\x,red] plot ({\x},{1/(\x-2)+2}) ;
+    \draw[red] (0.3, 0) node[above right, align=center] {$G(x)=c$};
+    
+
+% 标记均衡点（假设）
+    \filldraw [black] (1,1) circle (1pt) node[above right] {$\bar{x}$} ;
+    
+\end{tikzpicture}
+\caption{The tangency solution} %最终文档中希望显示的图片标题
+\label{Fig2.1} %用于文内引用的标签
+\end{figure}
+Note the reversal of the subscripts, exactly as in Chapter 1. Note also that if $G_2(x)=0$ the curve is vertical; this is not a serious problem. If both $G_1(x)$ and $G_2(x)$ are zero, the slope is not well defined, and the method may run into a problem as was explained just above. In most economic applications, $G$ is an increasing function of both arguments. Then $G_1(x)$ and $G_2(x)$ are both positive, $dx_2 /dx_1$ along the curve is negative, and we have the usual downward-sloping transformation frontier for the constraint.
+
+A contour of the objective function $F$, that is, a curve of equal values $F(x)$, runs through the point $x$. The slope of the tangent to the contour at this point is similarly calculated
+\begin{equation}\label{equa2.8}
+dx_2 / dx_1 = - F_1(x) / F_2(x)
+\end{equation}
+Once again, in most economic applications, $F$ is an increasing function and the contour (indifference curve) is downward-sloping.
+
+If $\bar{x}$ is optimum, the two curves must be mutually tangential, that is, have the same slope, at this point. Equating the two expressions, we have
+\begin{equation}\label{equa2.9}
+F_1(\bar{x}) / F_2(\bar{x}) = G_1(\bar{x}) / G_2(\bar{x})
+\end{equation}
+which is equivalent to (\ref{equa2.5}).
+
+\section*{Necessary vs. Sufficient Conditions}
+
+Recall what the above argument established: $if$ $\bar{x}$ maximizes $F(x)$ subject to $G(x)=c$, $then$ (\ref{equa2.5}) holds. In other words, the condition (\ref{equa2.5}) is a logical consequence of the optimality of $barP{x}$. Therefore it is called a necessary condition for optimality. To be more precise, since it involves the first-order derivatives of the functions $F$ and $G$, it is called the $first-order \ necessary \ condition$.
+
+In searching for an optimum, the first-order necessary condition helps to narrow down the search. The necessary conditions were established starting with an assumed known optimum $\bar{x}$. But we turn the story around by treating the components $\bar{x}_1$ and $\bar{x}_2$ as unknowns, and the constraint (\ref{equa2.1}) and the necessary condition (\ref{equa2.5}) as two equations that will determine them. Typically, there is a whole continuous range of values of $\bar{x}$ satisfying the constraint (\ref{equa2.1}). But there are only a few values of $\bar{x}$, and if we are lucky, just one, that also satisfies the condition (\ref{equa2.5}).
+
+If we know from separate reasoning that our problem indeed has a solution, and we find that there is a unique $\bar{x}$ satisfying the constraint and the first-order necessary condition, then it must be the solution we seek. If there are multiple solutions to (\ref{equa2.1}) and (\ref{equa2.5}) taken together, then all are candidates for optimality as far as the present analysis is concerned, and some other method must be used to find the correct solution. Even then, the first-order necessary condition (\ref{equa2.5}) will have cut down quite drastically the number of candidate points we need to examine.
+
+The main reason that the first-order necessary condition does not always lead us to the right solution is that the same first-order condition is also necessary for the problem of $minimizing$ the same function $F(x)$ subject to the same constraint $G(x)=c$. Minimizing $F(x)$ is the same as maximizing $-F(x)$. By the same reasoning as that leading to (\ref{equa2.8}), we can find the slope of a contour of this function:
+\begin{equation*}
+dx_2 / dx_1 = - [ -F_1(x)] /[ -F_2(x) ] = - F_1(x) / F_2(x)
+\end{equation*}
+Equating the value of this at $\bar{x}$ to (\ref{equa2.7}), we get (\ref{equa2.9}) again.
+
+There is also the point that to obtain the condition, we asked if the value $F(x)$ could be improved by making $small$ changes in $x$. If not, then $x$ is better than the comparison points in a small neighborhood, or it yields a local peak of $F(x)$. Now a function can in general have several such local peaks, and several local troughs too. The same first order necessary condition will be true at all these points. Only one will give a true or global maximum.
+
+Finally, either a maximum or minimum implies (\ref{equa2.5}) but not vice versa. Therefore the condition might be satisfied at a point that is neither a maximum nor a minimum, even in a small neighborhood. As a simple example, consider $F(x)= x^3$ where  $x$ is a scalar. We have $F^\prime(0) = 0$, but $x=0$ gives neither a maximum nor a minimum of $F(x)$.
+
+To distinguish such cases, any point satisfying the first order necessary conditions is called a $stationary \ point$. The true optimum is one of the stationary points. To locate it among these candidates, we need some other test. Such tests typically rely on the curvature, or the second-order derivatives, of the functions. In Figure \ref{Fig2.1} the curvatures of the contours of $F$ and $G$ have been chosen correctly for a maximum. Thus the curve $G(x)=c$ gets flatter as $x_1$ decreases and $x_2$ increases along it; the economic interpretation is that the marginal rate of transformation of $x_1$ into $x_2$ diminishes as more and more of such a transformation is carried out. Similarly, the contour of $F$ shows a diminishing marginal rate of substitution.
+
+Test involving curvatures or second-order derivatives are the subject of Chapter 6-8. These tests differ from the first-order conditions of this chapter in another way: $if$ such a condition holds, $then$ the point in question is a maximum, at least in comparison with neighboring points; the condition ensures optimality. Therefore such a condition is called a $second-order \ sufficient$ condition.
+
+\section*{Lagrange's Method}
+
+Now let us express the first-order necessary condition (\ref{equa2.6}) in a way that is easy to remember and use. This is called Lagrange's Method after its inventor. Note that we want to use the condition to solve for the optimum $\bar{x}$. We introduced $\lambda$ as the common value of the two sides in (\ref{equa2.5}), so it is just as much unknown as the optimum $\bar{x}$. That is, we have to determine it as an integral part of the solution. In the meantime, call it an undetermined Lagrange multiplier. Define a new function, called the Lagrangian,
+\begin{equation} \label{equa2.10}
+L(x, \lambda) = F(x) + \lambda[c - G(x) ]
+\end{equation}
+Note that $L$ is also a function of $c$, and of any other parameters that appear in the functional forms of $F$ and $G$. Such arguments of $L$ will be shown explicitly only when they are important in the context.
+
+Denote the partial derivatives of $L$ by 
+\begin{equation*}
+L_j \equiv \partial L/ \partial x_j, \quad L_\lambda \equiv \partial L / \partial \lambda
+\end{equation*}
+Then
+\begin{equation*}
+L_j(x, \lambda) = F_j(x) - \lambda G_j(x)
+\end{equation*}
+and
+\begin{equation*}
+L_\lambda(x, \lambda) = c- G(x)
+\end{equation*}
+The first-order necessary condition (\ref{equa2.6}) becomes just $L_j =0$ for $j=1$ and 2, and the constraint (\ref{equa2.1}) simply $L_\lambda =0$. Then we can state the result of the whole argument so far into a simple statement:
+
+$Lagrange's Theorem:$ Suppose $x$ is a two-dimensional vector, $c$ is a scalar, and $F$ and $G$ functions taking scalar values. Define the function $L$ as in (\ref{equa2.10}). If $\bar{x}$ maximizes $F(x)$ subject to $G(x)=c$, with no other constraints (such as non-negativity), and if $G_j(\bar{x}) \neq 0$ for at least one $j$, then there is a value of $\lambda$ such that
+
+\begin{equation} \label{equa2.11}
+L_j(\bar{x}, \lambda) = 0  \  for  \ j=1,2  \quad L_\lambda(\bar{x}, \lambda) = 0
+\end{equation}
+
+Remember that the theorem provides necessary conditions for optimality. In other words, it starts with a known optimum $\bar{x}$, and establishes that it must satisfy (\ref{equa2.11}). But in practice, much of the use of the theorem is in helping us narrow down the search for an initially unknown optimum. We regard (\ref{equa2.11}) as three equations for the three unknowns $\bar{x}_1$, $\bar{x}_2$, and $\lambda$. The equations are generally non-linear and neither existence nor uniqueness of the solution is guaranteed. If the conditions have no solution, the reason may be either that the maximization problem itself has no solution, or that the Constraint Qualification fails and the first-order conditions are inapplicable. If the conditions have multiple solutions, we need the second-order conditions to arbitrate between the candidate solutions. But in most of our applications, the problems will be well posed enough that the first-order necessary conditions take us to the unique solution. I shall now develop some examples that use Lagrange's method, and offer some exercises for you to attempt similar solutions. After you have gained some experience of problems with two variables and one constraint, you will be ready for the extensions considered in the next chapter.
+
+While the notation $\bar{x}$ keeps the theoretical developments clear by distinguishing the general point from the particular optimum, it becomes cumbersome in applications where we are searching for an unknown optimum. Therefore we often drop the bar on $x$ in conditions like (\ref{equa2.11}) when using them in particular contexts, such as the examples below.
+
+\section*{Examples}
+
+\subsubsection*{ \textit{Example 2.1: Preferences that Imply Constant Budget Shares} }
+
+Consider a consumer choosing between two goods $x$ and $y$, with prices $p$ and $q$ respectively. (The notation $x_1$, $x_2$ etc. was used in the theoretical part because it generalizes more easily to several goods and constraints, but the $x$, $y$ notation is simpler in examples with just two goods.) His income is $I$, so the budget constraint is 
+\begin{equation*}
+px + qy =I
+\end{equation*}
+Suppose the utility function is 
+\begin{equation} \label{equa2.12}
+U(x,y ) = \alpha \ln(x) + \beta \ln(y)
+\end{equation}
+where $alpha$, $\beta$ are positive constants and ln denotes natural logarithms.
+
+Write the Lagrangian
+\begin{equation*}
+L(x,y,\lambda) = \alpha \ln(x) + \beta \ln(y) + \lambda( I-px-qy )
+\end{equation*}
+Recall that $d\ln(x)/dx=1/x$. Therefore the first-order necessary conditions (\ref{equa2.11}) become
+\begin{equation*}
+\partial L / \partial x \equiv \alpha / x - \lambda p = 0 
+\end{equation*}
+\begin{equation*}
+\partial L / \partial y \equiv \beta / y - \lambda q = 0
+\end{equation*}
+and
+\begin{equation*}
+\partial L / \partial \lambda \equiv I - px - qy = 0
+\end{equation*}
+
+To solve these, substitute for $x$, $y$ from the first two into the third. This gives
+\begin{equation} \label{equa2.13}
+\lambda = ( \alpha + \beta ) /I 
+\end{equation}
+and then 
+\begin{equation} \label{equa2.14}
+x =  \dfrac{\alpha I}{(\alpha + \beta)p}, \quad y= \dfrac{\beta I}{(\alpha + \beta)q} 
+\end{equation}
+These are the demand functions, namely the solutions for the optimum quantities in terms of the prices, income and the given parameters $alpha$, $beta$.
+
+We can write them alternatively as 
+\begin{equation} \label{equa2.15}
+\dfrac{px}{I} =  \dfrac{\alpha }{\alpha + \beta}, \quad \dfrac{qy}{I}= \dfrac{\beta }{(alpha + \beta} 
+\end{equation}
+In other words, for the utility function specified, the shares of income spent on the two goods are constraints. This is a convenient property, and one that is sometimes close enough to reality. In the initial exploration of theoretical models, this specification is often the crucial simplification that yields concrete results that suggest the directions for further analysis and testing. Therefore this function is a favorite of economics.
+
+Note that in (\ref{equa2.13}) the marginal utility of income is inversely proportional to the income. This might seem a natural consequence of the intuitively appealing idea of diminishing marginal utility. But that is a treacherous concept; see Exercise 2.1 below.
+
+\subsubsection*{\textit{Example 2.2: Guns vs. Butter} }
+
+Consider an economy with 100 units of labor. It can produce guns $x$ or butter $y$. To produce $x$ guns, it take $x^2$ units of labor; likewise $y^2$ units of labor are needed to produce $y$ guns. Therefore the economy's resource constraint is 
+\begin{equation*}
+x^2 + y^2 =100
+\end{equation*}
+Geometrically, you can easily see that the production possibility frontier is a quarter-circle.
+
+The objective function to be maximized is 
+\begin{equation*}
+F(x,y ) = ax + by
+\end{equation*}
+where $a$, $b$ are given positive constants.
+
+To solve this problem, form the Lagrangian
+\begin{equation*}
+L(x,y,\lambda) = ax + by + \lambda(100- x^2 - y^2)
+\end{equation*}
+The first-order conditions are 
+\begin{equation*}
+\partial L / \partial x \equiv a - 2 \lambda x = 0  
+\end{equation*}
+\begin{equation*}
+\partial L / \partial y \equiv b - 2 \lambda y = 0
+\end{equation*}
+and
+\begin{equation*}
+\partial L / \partial \lambda \equiv 100 - x^2 - y^2 = 0
+\end{equation*}
+
+Substitute from the first two into the third to get
+\begin{equation*}
+100 = (a^2 + b^2) / (4 \lambda^2) 
+\end{equation*}
+or
+\begin{equation*}
+\lambda = \sqrt{a^2 + b^2} / 20 
+\end{equation*}
+Then
+\begin{equation} \label{equa2.16}
+x = 10a / \sqrt{a^2 + b^2}, \quad   y = 10b / \sqrt{a^2 + b^2}
+\end{equation}
+
+You can think of $a$, $b$ as the weights or social values attached to the two goods, and then (\ref{equa2.16}) gives the economy's optimal supplies as functions of these weights. If both weights are increased in equal proportions, say doubled, then the optimum quantities $x$ and $y$ are unchanged. The supplies are homogeneous of degree zero in the values, so only the $relative$ values matter. The supply of each good increases as its relative value increases. In later work, especially the chapter on comparative static, we shall see how generally valid such properties are.
+
+\section*{Exercises}
+
+\subsubsection*{\textit{Exercise 2.1: The Cobb-Douglas Utility Function}}
+
+Consider the consumer's problem as in Example 1, but with a different utility function $\tilde{U}$ defined by 
+\begin{equation*}
+\tilde{U} = x^\alpha y^\beta
+\end{equation*}
+Show that it yields the same constant-budget-share demand functions (\ref{equa2.14}) as above. (Hint to simplify the solution process: eliminate the Lagrange multiplier between the first-order conditions for the two goods. This gives a relation between $x$ and $y$. Simplify this as far as possible, and then use it and the budget constraint to solve for the quantities.)
+
+Note that the two utility functions are linked 
+\begin{equation*}
+U(x,y) = \ln[\tilde{U}( x, y)],  \quad \mbox{or} \quad \tilde{U}( x, y) = e^{U(x,y)}
+\end{equation*}
+This illustrates that changing the utility function by any increasing transformation does not affect the consumer's optimum choice. If observed demand behavior is all that matters, then the form of the utility function is indeterminate (and irrelevant) to within such a transformation. Any properties that depend on the choice of a particular form are meaningless.
+
+One such is diminishing marginal utility of income. If we write the multiplier for this problem as $\tilde{\lambda}$ to distinguish it from the $\lambda$ of Example 2.1, then you should verify that
+\begin{equation} \label{equa2.17}
+\tilde{\lambda} = \dfrac{\alpha^\alpha \beta^\beta}{(\alpha+\beta)^{\alpha + \beta}} \dfrac{I^{\alpha+\beta-1}}{p^\alpha q^\beta}
+\end{equation}
+If $(\alpha + \beta)>1$, then $\tilde{\lambda}$ increases with income.
+
+In some circumstances, specific forms of the utility function play special roles. This happens when some assumptions about interpersonal comparability are made, or when functions that are additively separable across time-periods or states of the world are used for representing preferences in situations involving time or uncertainty. But in all these cases, the primacy of the special functional forms arises from those other considerations, not from the underlying mechanism of individual choice.
+
+When these other considerations are absent, we are free to transform the utility function for computational convenience. Note that changing both $\alpha$ and $\beta$ in the same proportions leaves demand unaffected in Example 2.1 as well as in Exercise 2.1. A glance at equation (\ref{equa2.14}) or (\ref{equa2.17}) shows that is is convenient to choose these proportions so that $\alpha + \beta =1$.
+
+\subsubsection*{\textit{Exercise 2.2: The Linear Expenditure System}}
+
+Return once again to the consumer of Example 2.1, but let the utility function be modified to $\hat{U}$, where
+\begin{equation*}
+\hat{U}(x,y) = \alpha \ln(x-x_0) + \beta \ln(y-y_0)
+\end{equation*}
+where $x_0$ and $y_0$ are given constants, and $\alpha + \beta=1$. Show that the optimal expenditures on the two goods are linear functions of income and prices:
+\begin{equation*}
+px = \alpha I + \beta p x_0 - \alpha q y_0
+\end{equation*}
+\begin{equation*}
+qy = \beta I - \beta p x_0 + \alpha q y_0
+\end{equation*}
+
+This slight modification of the utility function brings with it a much richer range of possible optimum choice. The budget shares of the two goods can now vary systematically with income and prices. One good can be a necessity and the other a luxury (but neither good can be inferior since $\alpha$ and $\beta$ must be positive to keep the marginal utilities positive). But the expenditures still have a simple functional form. For these reasons, this specification was popular in the early empirical work on consumer demand. 
+
+\subsubsection*{\textit{Exercise 2.3: Production and Cost-Minimization}}
+
+Consider a producer who rents machines $K$ at $r$ per year and hires labor $L$ at wage $w$ per year to produce output $Q$, where
+\begin{equation*}
+Q = \sqrt{K} + \sqrt{L}
+\end{equation*}
+Suppose he wishes to produce a fixed quantity $Q$ at minimum cost. Find his factor demand functions. Show that the Lagrange multiplier is given by 
+\begin{equation*}
+\lambda = 2 w r Q/(w+r)
+\end{equation*}
+Suggest an economic interpretation for $\lambda$.
+
+Now let $p$ denote the price of output. Suppose the producer can vary the quantity of output, and seeks to maximize profit. Show that his optimum output supply is 
+\begin{equation*}
+Q = p(w+r)/(2wr)
+\end{equation*}
+Relate this to your interpretation of $\lambda$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
